@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Fonts — loaded via layout.tsx <link> */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-body text-brand-900 bg-sand-50;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-900;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply max-w-3xl mx-auto px-6;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  .prose-nr h2 {
+    @apply font-display text-2xl md:text-3xl text-brand-800 mt-12 mb-4;
+  }
+
+  .prose-nr h3 {
+    @apply font-display text-xl md:text-2xl text-brand-700 mt-8 mb-3;
+  }
+
+  .prose-nr p {
+    @apply text-base md:text-lg leading-relaxed text-brand-800/80 mb-5;
+  }
+
+  .prose-nr ul {
+    @apply list-disc list-inside space-y-2 mb-5 text-brand-800/80;
+  }
+
+  .prose-nr blockquote {
+    @apply border-l-4 border-brand-300 pl-6 italic text-brand-700 my-8;
+  }
+
+  .prose-nr a {
+    @apply text-ocean-600 underline underline-offset-2 hover:text-ocean-700 transition-colors;
+  }
+
+  /* Grain texture overlay */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+/* Smooth page transitions */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main {
+  animation: pageEnter 0.4s ease-out;
+}
