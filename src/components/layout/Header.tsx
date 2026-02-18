@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { navigation, siteConfig } from '@/lib/config'
 import { cn } from '@/lib/utils'
+import { Logo } from '@/components/ui/Logo'
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -14,13 +15,8 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-sand-50/90 backdrop-blur-md border-b border-brand-100/50">
       <nav className="container-wide flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white font-display text-lg group-hover:bg-brand-600 transition-colors">
-            N
-          </div>
-          <span className="font-display text-xl text-brand-800">
-            {siteConfig.name}
-          </span>
+        <Link href="/" className="flex items-center group">
+          <Logo size="md" />
         </Link>
 
         {/* Desktop Navigation */}

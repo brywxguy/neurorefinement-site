@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { siteConfig } from '@/lib/config'
+import { Logo } from '@/components/ui/Logo'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -11,12 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-full bg-brand-500 flex items-center justify-center text-white font-display text-lg">
-                N
-              </div>
-              <span className="font-display text-xl text-white">
-                {siteConfig.name}
-              </span>
+              <Logo size="sm" variant="light" />
             </Link>
             <p className="text-sm text-brand-300 leading-relaxed mb-4">
               {siteConfig.tagline}

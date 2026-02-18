@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, TestimonialCard } from '@/components/ui'
 import { siteConfig, pricing, lessonThemes } from '@/lib/config'
 import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun } from 'lucide-react'
@@ -11,15 +12,16 @@ export default function HomePage() {
           ============================================================ */}
       <section className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-sand-50 to-sand-50 grain">
         <div className="container-wide relative z-10 pt-16 pb-20 md:pt-24 md:pb-32">
-          <div className="max-w-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-100 text-brand-700 text-sm font-medium rounded-full mb-6">
               <Sparkles className="w-4 h-4" />
               Neuroplasticity-based movement &amp; coaching
             </span>
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-brand-900 mb-6 leading-tight">
-              Refining Movement.
+              Refine Movement.
               <br />
-              <span className="text-brand-500">Renewing Life.</span>
+              <span className="text-brand-500">Revitalize Life.</span>
             </h1>
             <p className="text-xl md:text-2xl text-brand-600 leading-relaxed mb-10 max-w-2xl">
               Gentle, science-informed movement lessons and strengths-based coaching
@@ -38,6 +40,25 @@ export default function HomePage() {
             <p className="mt-6 text-sm text-brand-400">
               Based in {siteConfig.location.city}, {siteConfig.location.state} &middot; Virtual sessions available worldwide
             </p>
+          </div>
+
+          {/* Hero Image */}
+          <div className="hidden lg:block relative">
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-warm-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80"
+                alt="Gentle movement practice in a peaceful setting"
+                width={800}
+                height={1000}
+                className="object-cover w-full h-full"
+                priority
+              />
+            </div>
+            <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-card border border-brand-100/50 px-5 py-3">
+              <p className="text-xs font-medium text-brand-600">Neuroplasticity-based movement</p>
+              <p className="text-xs text-brand-400">Gentle &middot; Precise &middot; Transformative</p>
+            </div>
+          </div>
           </div>
 
           {/* Decorative background shapes */}
@@ -267,14 +288,14 @@ export default function HomePage() {
             </div>
           </div>
           <div className="relative">
-            {/* TODO: Replace with Bryan's headshot */}
-            <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-brand-100 to-ocean-100 flex items-center justify-center">
-              <div className="text-center text-brand-400">
-                <p className="font-display text-lg">Bryan Thunstrom</p>
-                <p className="text-sm mt-1">Photo coming soon</p>
-                <p className="text-xs mt-3 text-brand-300">ABM® NeuroMovement® Practitioner</p>
-                <p className="text-xs text-brand-300">Strengths-Based Coach</p>
-              </div>
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-warm-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80"
+                alt="Mindful movement and wellness practice"
+                width={800}
+                height={1000}
+                className="object-cover w-full h-full"
+              />
             </div>
             {/* Credential badges */}
             <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-card border border-brand-100/50 px-5 py-3">
