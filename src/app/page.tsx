@@ -46,8 +46,8 @@ export default function HomePage() {
           <div className="hidden lg:block relative">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-warm-lg">
               <Image
-                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80"
-                alt="Gentle movement practice in a peaceful setting"
+                src="/images/hero-atm-class.jpeg"
+                alt="Anat Baniel Method group class — students practicing gentle floor movements"
                 width={800}
                 height={1000}
                 className="object-cover w-full h-full"
@@ -290,8 +290,8 @@ export default function HomePage() {
           <div className="relative">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-warm-lg">
               <Image
-                src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80"
-                alt="Mindful movement and wellness practice"
+                src="/images/bryan-headshot.jpeg"
+                alt="Bryan Thunstrom — ABM NeuroMovement Practitioner, Carlsbad CA"
                 width={800}
                 height={1000}
                 className="object-cover w-full h-full"
