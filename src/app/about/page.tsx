@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import { Button, Section, SectionHeader, FAQ } from '@/components/ui'
 import { ArrowRight, Award, Heart, Brain, Lightbulb } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
@@ -36,12 +37,15 @@ export default function AboutPage() {
             </div>
           </div>
           <div>
-            {/* TODO: Bryan's headshot */}
-            <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-brand-100 to-ocean-100 flex items-center justify-center">
-              <div className="text-center text-brand-400">
-                <p className="font-display text-xl">Bryan Thunstrom</p>
-                <p className="text-sm mt-2">Headshot coming soon</p>
-              </div>
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/bryan-headshot.jpg"
+                alt="Bryan Thunstrom — Certified ABM NeuroMovement Practitioner"
+                width={600}
+                height={750}
+                className="object-cover w-full h-full"
+                priority
+              />
             </div>
           </div>
         </div>
