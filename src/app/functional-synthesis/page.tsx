@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Clock, MapPin, Video, CheckCircle } from 'lucide-react'
 import { pricing } from '@/lib/config'
@@ -81,6 +82,81 @@ export default function FunctionalSynthesisPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Children & Special Needs */}
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="inline-block text-sm font-medium text-ocean-500 uppercase tracking-wider mb-3">
+              Children &amp; Special Needs
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl text-brand-900 mb-6">
+              Helping Children Discover What&apos;s Possible
+            </h2>
+            <div className="space-y-4 text-brand-700 leading-relaxed">
+              <p>
+                The Anat Baniel Method&reg; is renowned for its work with children facing
+                developmental challenges. Rather than trying to &quot;fix&quot; what&apos;s missing,
+                we work with your child&apos;s brain — meeting them exactly where they are and
+                helping their nervous system discover new pathways for learning and movement.
+              </p>
+              <p>
+                Through gentle, playful touch and movement, children often achieve milestones
+                that traditional therapies alone haven&apos;t unlocked. The approach is
+                non-invasive, pain-free, and works <em>with</em> your child&apos;s natural
+                curiosity and brain plasticity.
+              </p>
+              <p className="font-medium text-brand-800">
+                Sessions can support children with:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {[
+                  'Cerebral palsy',
+                  'Autism spectrum',
+                  'Developmental delays',
+                  'Genetic conditions',
+                  'Traumatic brain injury',
+                  'Seizure disorders',
+                  'Sensory processing challenges',
+                  'Undiagnosed movement difficulties',
+                ].map((condition) => (
+                  <div key={condition} className="flex gap-2 items-center">
+                    <CheckCircle className="w-4 h-4 text-ocean-500 shrink-0" />
+                    <span className="text-sm text-brand-600">{condition}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-brand-500 italic mt-4">
+                A parent or guardian must be present during all children&apos;s sessions.
+                NeuroRefinement is educational wellness, not medical treatment. Please
+                consult your child&apos;s healthcare provider regarding medical questions.
+              </p>
+            </div>
+            <div className="mt-6 flex flex-col sm:flex-row gap-4">
+              <Button href="#booking" size="lg">
+                Book a Children&apos;s Session <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <Button href="/contact" variant="outline" size="lg">
+                Talk to Me First
+              </Button>
+            </div>
+          </div>
+          <div>
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/functional-integration-session.jpg"
+                alt="Gentle hands-on NeuroMovement session with a child"
+                width={800}
+                height={600}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <p className="text-xs text-brand-400 mt-3 text-center">
+              A Functional Integration session — gentle, hands-on work supporting a child&apos;s development
+            </p>
           </div>
         </div>
       </Section>
@@ -179,6 +255,10 @@ export default function FunctionalSynthesisPage() {
             {
               question: 'Do you offer virtual sessions?',
               answer: 'Yes! While in-person Functional Synthesis sessions involve hands-on guidance, I also offer virtual consultations where I can guide you through movement explorations, assess your needs, and create a personalized plan. Virtual coaching sessions are fully available.',
+            },
+            {
+              question: 'Do you work with children?',
+              answer: 'Absolutely. The Anat Baniel Method is widely recognized for its remarkable work with children with special needs — including cerebral palsy, autism spectrum, developmental delays, genetic conditions, and brain injuries. Children often respond beautifully because their brains have extraordinary plasticity. Sessions are gentle, playful, and a parent or guardian is always present. I offer both individual sessions and intensive packages for families traveling to Carlsbad.',
             },
           ]} />
         </div>
