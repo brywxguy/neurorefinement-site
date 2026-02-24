@@ -50,7 +50,7 @@ export default function HomePage() {
                 alt="Anat Baniel Method group class — students practicing gentle floor movements"
                 width={800}
                 height={1000}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full grayscale"
                 priority
               />
             </div>

@@ -97,7 +97,7 @@ export const lessonThemes = [
   { slug: 'hands-wrists-arms', label: 'Hands, Wrists & Arms', icon: '🖐️', description: 'Comfort for desk workers and anyone who uses their hands' },
   { slug: 'hips-knees-ankles', label: 'Hips, Knees & Ankles', icon: '🦵', description: 'Build resilience from the ground up' },
   { slug: 'balance-fall-prevention', label: 'Balance & Fall Prevention', icon: '⚖️', description: 'Confidence and stability at every age' },
-  { slug: 'tos-upper-extremity', label: 'TOS & Upper Extremity Pain', icon: '💪', description: 'Gentle approaches for nerve pain and thoracic outlet challenges' },
+  { slug: 'tos-upper-extremity', label: 'TOS & Upper Extremity Pain', icon: '🤲', description: 'Gentle approaches for nerve pain and thoracic outlet challenges' },
   { slug: 'travel-recovery', label: 'Travel Recovery', icon: '✈️', description: 'Reset after long flights and road trips' },
   { slug: 'morning-routines', label: 'Morning Wake-Up', icon: '☀️', description: 'Start your day with 5-10 minutes of ease' },
   { slug: 'evening-unwind', label: 'Evening Unwind', icon: '🌅', description: 'Release the day and prepare for rest' },
