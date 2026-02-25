@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, TestimonialCard } from '@/components/ui'
 import { siteConfig, pricing, lessonThemes } from '@/lib/config'
+import { ThemeIcon } from '@/components/ui/ThemeIcon'
 import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, MessageCircle, ClipboardCheck, TrendingUp, Baby } from 'lucide-react'
 
 export default function HomePage() {
@@ -239,7 +240,7 @@ export default function HomePage() {
               href={`/lessons?theme=${theme.slug}`}
               className="group flex flex-col items-center text-center p-5 rounded-2xl bg-white border border-brand-100/50 hover:shadow-card hover:-translate-y-0.5 transition-all"
             >
-              <span className="text-3xl mb-3">{theme.icon}</span>
+              <ThemeIcon slug={theme.slug} size={28} className="mb-3" />
               <span className="text-sm font-medium text-brand-700 group-hover:text-brand-900 transition-colors">
                 {theme.label}
               </span>

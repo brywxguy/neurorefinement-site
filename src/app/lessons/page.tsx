@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Button, Section, SectionHeader, Card, PriceTag } from '@/components/ui'
 import { Play, Clock, ArrowRight, Filter } from 'lucide-react'
 import { lessonThemes, pricing } from '@/lib/config'
+import { ThemeIcon } from '@/components/ui/ThemeIcon'
 
 export const metadata: Metadata = {
   title: 'Audio Lesson Library — Voice-Guided Movement Lessons',
@@ -119,7 +120,7 @@ export default function LessonsPage() {
               href={`/lessons?theme=${theme.slug}`}
               className="group flex flex-col items-center text-center p-4 rounded-xl bg-white border border-brand-100/50 hover:shadow-card hover:-translate-y-0.5 transition-all"
             >
-              <span className="text-2xl mb-2">{theme.icon}</span>
+              <ThemeIcon slug={theme.slug} size={24} className="mb-2" />
               <span className="text-xs font-medium text-brand-700 group-hover:text-brand-900 transition-colors">
                 {theme.label}
               </span>

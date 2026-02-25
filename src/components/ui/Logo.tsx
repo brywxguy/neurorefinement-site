@@ -10,15 +10,16 @@ interface LogoProps {
 export function Logo({ size = 'md', className, showText = true, variant = 'dark' }: LogoProps) {
   const sizes = {
     sm: { ring: 32, text: 'text-lg' },
-    md: { ring: 38, text: 'text-xl' },
-    lg: { ring: 52, text: 'text-2xl' },
+    md: { ring: 40, text: 'text-xl' },
+    lg: { ring: 56, text: 'text-2xl' },
   }
 
   const s = sizes[size]
+  const c = variant === 'dark' ? '#2A4E5E' : '#c0d9ee'
+  const mid = variant === 'dark' ? '#3B6F8E' : '#adc7d3'
 
   return (
     <span className={cn('inline-flex items-center gap-2.5', className)}>
-      {/* Concentric Rings Mark */}
       <svg
         width={s.ring}
         height={s.ring}
@@ -27,18 +28,13 @@ export function Logo({ size = 'md', className, showText = true, variant = 'dark'
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        {/* Outermost ring */}
-        <circle cx="60" cy="60" r="56" stroke={variant === 'dark' ? '#2A4E5E' : '#d6e3e9'} strokeWidth="3.5" opacity="0.65" />
-        {/* Ring 2 */}
-        <circle cx="60" cy="60" r="46" stroke={variant === 'dark' ? '#2A4E5E' : '#d6e3e9'} strokeWidth="4" opacity="0.75" />
-        {/* Ring 3 */}
-        <circle cx="60" cy="60" r="36" stroke={variant === 'dark' ? '#3B6F8E' : '#adc7d3'} strokeWidth="4.5" opacity="0.85" />
-        {/* Ring 4 */}
-        <circle cx="60" cy="60" r="26" stroke={variant === 'dark' ? '#3B6F8E' : '#c0d9ee'} strokeWidth="5" opacity="0.9" />
-        {/* Inner ring */}
-        <circle cx="60" cy="60" r="16" stroke={variant === 'dark' ? '#2A4E5E' : '#f0f5f7'} strokeWidth="5.5" opacity="0.95" />
-        {/* Center dot */}
-        <circle cx="60" cy="60" r="5" fill={variant === 'dark' ? '#D4A853' : '#D4A853'} />
+        <circle cx="60" cy="60" r="55" stroke={c} strokeWidth="4" />
+        <circle cx="60" cy="60" r="46" stroke={c} strokeWidth="4" />
+        <circle cx="60" cy="60" r="37" stroke={mid} strokeWidth="4.5" />
+        <circle cx="60" cy="60" r="28" stroke={mid} strokeWidth="4.5" />
+        <circle cx="60" cy="60" r="19" stroke={c} strokeWidth="5" />
+        <circle cx="60" cy="60" r="10" stroke={c} strokeWidth="5" />
+        <circle cx="60" cy="60" r="3" fill="#D4A853" />
       </svg>
 
       {showText && (
