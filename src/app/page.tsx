@@ -62,9 +62,25 @@ export default function HomePage() {
           </div>
           </div>
 
-          {/* Decorative background shapes */}
-          <div className="absolute top-20 right-0 w-96 h-96 bg-brand-200/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-20 w-64 h-64 bg-ocean-200/20 rounded-full blur-3xl" />
+          {/* Decorative concentric ring watermarks */}
+          <svg className="absolute -top-20 -right-20 w-[500px] h-[500px] opacity-[0.07]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="60" cy="60" r="55" stroke="#2A4E5E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="46" stroke="#2A4E5E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="37" stroke="#3B6F8E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="28" stroke="#3B6F8E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="19" stroke="#2A4E5E" strokeWidth="4" />
+            <circle cx="60" cy="60" r="10" stroke="#2A4E5E" strokeWidth="4" />
+            <circle cx="60" cy="60" r="3" fill="#D4A853" />
+          </svg>
+          <svg className="absolute bottom-0 -left-16 w-[300px] h-[300px] opacity-[0.05]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="60" cy="60" r="55" stroke="#2A4E5E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="46" stroke="#2A4E5E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="37" stroke="#3B6F8E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="28" stroke="#3B6F8E" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="19" stroke="#2A4E5E" strokeWidth="4" />
+            <circle cx="60" cy="60" r="10" stroke="#2A4E5E" strokeWidth="4" />
+            <circle cx="60" cy="60" r="3" fill="#D4A853" />
+          </svg>
         </div>
       </section>
 
@@ -316,6 +332,15 @@ export default function HomePage() {
           STRENGTHS-BASED COACHING — CliftonStrengths Discovery Flow
           ============================================================ */}
       <Section variant="dark" className="relative grain">
+        <svg className="absolute top-8 right-8 w-[350px] h-[350px] opacity-[0.06]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="60" cy="60" r="55" stroke="#c0d9ee" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="46" stroke="#c0d9ee" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="37" stroke="#adc7d3" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="28" stroke="#adc7d3" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="19" stroke="#c0d9ee" strokeWidth="4" />
+            <circle cx="60" cy="60" r="10" stroke="#c0d9ee" strokeWidth="4" />
+            <circle cx="60" cy="60" r="3" fill="#D4A853" />
+          </svg>
         <div className="relative z-10">
           <SectionHeader
             variant="dark"
@@ -413,6 +438,15 @@ export default function HomePage() {
           MEMBERSHIP CTA
           ============================================================ */}
       <Section variant="dark" className="relative grain">
+        <svg className="absolute -bottom-10 -left-10 w-[300px] h-[300px] opacity-[0.05]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="60" cy="60" r="55" stroke="#c0d9ee" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="46" stroke="#c0d9ee" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="37" stroke="#adc7d3" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="28" stroke="#adc7d3" strokeWidth="3.5" />
+            <circle cx="60" cy="60" r="19" stroke="#c0d9ee" strokeWidth="4" />
+            <circle cx="60" cy="60" r="10" stroke="#c0d9ee" strokeWidth="4" />
+            <circle cx="60" cy="60" r="3" fill="#D4A853" />
+          </svg>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <span className="inline-block text-sm font-medium text-brand-300 uppercase tracking-wider mb-3">
             Membership
