@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, TestimonialCard } from '@/components/ui'
 import { siteConfig, pricing, lessonThemes } from '@/lib/config'
-import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, MessageCircle, ClipboardCheck, TrendingUp } from 'lucide-react'
+import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, MessageCircle, ClipboardCheck, TrendingUp, Baby } from 'lucide-react'
 
 export default function HomePage() {
   return (
@@ -76,7 +76,7 @@ export default function HomePage() {
           title="Find Your Path to Ease"
           description="Whether you're an athlete refining performance, someone navigating chronic pain, or simply seeking more vitality — there's a place for you here."
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {[
             {
               icon: <Waves className="w-7 h-7" />,
@@ -101,6 +101,12 @@ export default function HomePage() {
               title: 'Chronic Pain & Neuropathy',
               description: 'Thoracic Outlet Syndrome, nerve pain, and persistent aches. A gentle, neuroplasticity-based alternative to forcing through pain.',
               href: '/lessons?theme=tos-upper-extremity',
+            },
+            {
+              icon: <Baby className="w-7 h-7" />,
+              title: 'Children with Special Needs',
+              description: 'Brain-based movement for children with developmental challenges, cerebral palsy, autism spectrum, and other neurological conditions.',
+              href: '/children',
             },
           ].map((segment) => (
             <Card key={segment.title} href={segment.href} className="group text-center">
@@ -311,6 +317,7 @@ export default function HomePage() {
       <Section variant="dark" className="relative grain">
         <div className="relative z-10">
           <SectionHeader
+            variant="dark"
             eyebrow="Strengths-Based Coaching"
             title="You Don't Have to Figure It All Out Alone"
             description="What if the answer isn't fixing what's wrong — but building on what's already strong? As part of our coaching process, I use the CliftonStrengths® assessment to help you see what you naturally do best. Then we build from there."

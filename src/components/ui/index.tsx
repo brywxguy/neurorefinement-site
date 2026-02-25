@@ -114,21 +114,34 @@ interface SectionHeaderProps {
   description?: string
   centered?: boolean
   className?: string
+  variant?: 'light' | 'dark'
 }
 
-export function SectionHeader({ eyebrow, title, description, centered = true, className }: SectionHeaderProps) {
+export function SectionHeader({ eyebrow, title, description, centered = true, className, variant = 'light' }: SectionHeaderProps) {
+  const isDark = variant === 'dark'
+
   return (
     <div className={cn('mb-12 md:mb-16', centered && 'text-center', className)}>
       {eyebrow && (
-        <span className="inline-block text-sm font-medium text-brand-500 uppercase tracking-wider mb-3">
+        <span className={cn(
+          'inline-block text-sm font-medium uppercase tracking-wider mb-3',
+          isDark ? 'text-brand-300' : 'text-brand-500'
+        )}>
           {eyebrow}
         </span>
       )}
-      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-brand-900 mb-4">
+      <h2 className={cn(
+        'font-display text-3xl md:text-4xl lg:text-5xl mb-4',
+        isDark ? 'text-white' : 'text-brand-900'
+      )}>
         {title}
       </h2>
       {description && (
-        <p className={cn('text-lg text-brand-600 leading-relaxed', centered && 'max-w-2xl mx-auto')}>
+        <p className={cn(
+          'text-lg leading-relaxed',
+          isDark ? 'text-brand-200' : 'text-brand-600',
+          centered && 'max-w-2xl mx-auto'
+        )}>
           {description}
         </p>
       )}

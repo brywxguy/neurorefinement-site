@@ -120,6 +120,7 @@ export const navigation = {
         { label: 'Functional Synthesis (ABM)', href: '/functional-synthesis', description: 'Hands-on neuroplasticity sessions' },
         { label: 'Coaching', href: '/coaching', description: 'Life, career & business coaching' },
         { label: 'Group Classes', href: '/classes', description: 'Transformational Movement Lessons' },
+        { label: 'Children with Special Needs', href: '/children', description: 'Brain-based movement for kids' },
       ],
     },
     {
