@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, TestimonialCard } from '@/components/ui'
 import { siteConfig, pricing, lessonThemes } from '@/lib/config'
-import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun } from 'lucide-react'
+import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, MessageCircle, ClipboardCheck, TrendingUp } from 'lucide-react'
 
 export default function HomePage() {
   return (
@@ -301,6 +301,68 @@ export default function HomePage() {
             <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-card border border-brand-100/50 px-5 py-3">
               <p className="text-xs font-medium text-brand-600">Certified ABM® Practitioner</p>
             </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ============================================================
+          STRENGTHS-BASED COACHING — CliftonStrengths Discovery Flow
+          ============================================================ */}
+      <Section variant="dark" className="relative grain">
+        <div className="relative z-10">
+          <SectionHeader
+            eyebrow="Strengths-Based Coaching"
+            title="You Don't Have to Figure It All Out Alone"
+            description="What if the answer isn't fixing what's wrong — but building on what's already strong? As part of our coaching process, I use the CliftonStrengths® assessment to help you see what you naturally do best. Then we build from there."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+            {[
+              {
+                icon: <MessageCircle className="w-6 h-6" />,
+                step: '1',
+                title: 'Free Discovery Call',
+                description: "15 minutes — just a conversation about what matters to you. Your goals, your challenges, what you're hoping for. No pressure, no pitch.",
+                detail: 'Book via Calendly',
+              },
+              {
+                icon: <ClipboardCheck className="w-6 h-6" />,
+                step: '2',
+                title: 'Discover Your Top 5',
+                description: "I'll send you a personalized intake form and a pre-paid CliftonStrengths access code. Complete both before our first session so I can come prepared with real insights.",
+                detail: 'StrengthsFinder included',
+              },
+              {
+                icon: <TrendingUp className="w-6 h-6" />,
+                step: '3',
+                title: 'Coach, Move, Grow',
+                description: "We integrate your natural strengths with NeuroRefinement principles — building awareness of how your talents show up in your work, relationships, and daily life. You leave each session with clarity and a plan.",
+                detail: 'Packages available',
+              },
+            ].map((item) => (
+              <div key={item.step} className="text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-brand-700/50 text-[#C99B45] mb-5">
+                  {item.icon}
+                </div>
+                <span className="block text-xs font-medium text-brand-300 uppercase tracking-wider mb-2">
+                  Step {item.step}
+                </span>
+                <h3 className="font-display text-xl text-white mb-3">{item.title}</h3>
+                <p className="text-sm text-brand-200 leading-relaxed mb-4">{item.description}</p>
+                <span className="inline-block text-xs font-medium text-[#C99B45] uppercase tracking-wider">
+                  {item.detail}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button href="/coaching" size="lg">
+              Book a Free Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <p className="mt-4 text-sm text-brand-400">
+              No commitment required &middot; Virtual or in-person &middot; CliftonStrengths&reg; is a registered trademark of Gallup, Inc.
+            </p>
           </div>
         </div>
       </Section>

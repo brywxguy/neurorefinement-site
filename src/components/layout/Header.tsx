@@ -71,7 +71,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href={navigation.cta.href}
-            className="hidden md:inline-flex items-center px-5 py-2.5 bg-brand-500 text-white text-sm font-medium rounded-full hover:bg-brand-600 transition-colors shadow-warm"
+            className="hidden md:inline-flex items-center px-5 py-2.5 bg-[#6B8F7B] text-white text-sm font-medium rounded-full hover:bg-[#5A7F65] transition-colors shadow-warm"
           >
             {navigation.cta.label}
           </Link>
@@ -122,7 +122,7 @@ export function Header() {
               <Link
                 href={navigation.cta.href}
                 onClick={() => setMobileOpen(false)}
-                className="block w-full text-center px-5 py-3 bg-brand-500 text-white font-medium rounded-full hover:bg-brand-600 transition-colors"
+                className="block w-full text-center px-5 py-3 bg-[#6B8F7B] text-white font-medium rounded-full hover:bg-[#5A7F65] transition-colors"
               >
                 {navigation.cta.label}
               </Link>
