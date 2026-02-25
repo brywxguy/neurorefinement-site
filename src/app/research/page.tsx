@@ -76,42 +76,42 @@ const books = [
     year: 2012,
     title: 'Kids Beyond Limits',
     note: 'Foreword by Michael Merzenich, PhD. Practical guide to using the Nine Essentials with children with special needs — cerebral palsy, autism, developmental delays, and more.',
-    amazonSearch: 'Kids+Beyond+Limits+Anat+Baniel',
+    amazonUrl: 'https://www.amazon.com/dp/0399537368?tag=neurorefineme-20',
   },
   {
     author: 'Baniel A',
     year: 2009,
     title: 'Move Into Life: The Nine Essentials for Lifelong Vitality',
     note: 'The foundational book on applying the Nine Essentials for adults seeking vitality, pain relief, and peak performance.',
-    amazonSearch: 'Move+Into+Life+Anat+Baniel',
+    amazonUrl: 'https://www.amazon.com/dp/0307395294?tag=neurorefineme-20',
   },
   {
     author: 'Feldenkrais M',
     year: 1972,
     title: 'Awareness Through Movement: Health Exercises for Personal Growth',
     note: 'The original text that launched the Feldenkrais Method — foundational to ABM NeuroMovement and all brain-based movement education.',
-    amazonSearch: 'Awareness+Through+Movement+Feldenkrais',
+    amazonUrl: 'https://www.amazon.com/dp/0062503227?tag=neurorefineme-20',
   },
   {
     author: 'Feldenkrais M',
     year: 1949,
     title: 'Body and Mature Behavior: A Study of Anxiety, Sex, Gravitation and Learning',
     note: 'Feldenkrais\'s most scientific work — connecting physics, neuroscience, and movement education decades before mainstream science caught up.',
-    amazonSearch: 'Body+Mature+Behavior+Feldenkrais',
+    amazonUrl: 'https://www.amazon.com/dp/1583941150?tag=neurorefineme-20',
   },
   {
     author: 'Doidge N',
     year: 2015,
     title: 'The Brain\'s Way of Healing: Remarkable Discoveries and Recoveries from the Frontiers of Neuroplasticity',
     note: 'Features a detailed chapter on the Feldenkrais Method. Excellent introduction to neuroplasticity for general audiences.',
-    amazonSearch: 'Brain+Way+Healing+Norman+Doidge',
+    amazonUrl: 'https://www.amazon.com/dp/0143128752?tag=neurorefineme-20',
   },
   {
     author: 'Merzenich MM',
     year: 2013,
     title: 'Soft-Wired: How the New Science of Brain Plasticity Can Change Your Life',
     note: 'The definitive guide to brain plasticity by the scientist who endorses Anat Baniel\'s Nine Essentials as practical neuroplasticity.',
-    amazonSearch: 'Soft+Wired+Merzenich',
+    amazonUrl: 'https://www.amazon.com/dp/0989432823?tag=neurorefineme-20',
   },
 ]
 
@@ -275,7 +275,7 @@ export default function ResearchPage() {
                 {book.note}
               </p>
               <a
-                href={`https://www.amazon.com/s?k=${book.amazonSearch}`}
+                href={book.amazonUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-xs text-brand-500 hover:text-brand-700 transition-colors"
