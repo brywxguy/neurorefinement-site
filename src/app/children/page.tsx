@@ -61,7 +61,7 @@ export default function ChildrenPage() {
         <SectionHeader
           eyebrow="Who We Help"
           title="Children Facing a Wide Range of Challenges"
-          subtitle="The Anat Baniel Method has helped children with many different conditions discover new developmental breakthroughs. Every child's journey is unique."
+          description="The Anat Baniel Method has helped children with many different conditions discover new developmental breakthroughs. Every child's journey is unique."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
