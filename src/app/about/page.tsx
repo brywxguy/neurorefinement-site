@@ -168,6 +168,81 @@ export default function AboutPage() {
         </div>
       </Section>
 
+
+      {/* Training & Lineage */}
+      <Section variant="light">
+        <SectionHeader
+          eyebrow="Training & Lineage"
+          title="Trained by the Creator of the Method"
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+          <div>
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/bryan-with-anat-baniel.png"
+                alt="Bryan Thunstrom with Anat Baniel, creator of the Anat Baniel Method"
+                width={600}
+                height={750}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+          <div>
+            <div className="prose-nr">
+              <p>
+                I had the privilege of training directly under <strong>Anat Baniel</strong> —
+                the creator of the Anat Baniel Method&reg; NeuroMovement&reg; and a former
+                student of Dr. Moshe Feldenkrais himself. This direct lineage means the work
+                I bring to every session carries the depth and precision of the method&apos;s
+                original source.
+              </p>
+              <p>
+                Anat&apos;s genius lies in translating cutting-edge neuroscience into practical,
+                gentle movement that the brain can actually use. Her work with children with
+                special needs and adults facing limitations has been featured in peer-reviewed
+                research and transformed thousands of lives worldwide.
+              </p>
+              <p>
+                Training with Anat wasn&apos;t just education — it was transformation. It
+                changed how I understand the brain, movement, and what&apos;s possible when
+                we stop forcing and start listening.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="prose-nr">
+              <h3 className="font-display text-2xl text-brand-900 mb-4">
+                Certification &amp; Continuing Education
+              </h3>
+              <p>
+                After completing the rigorous ABM NeuroMovement&reg; practitioner training
+                program, I received my certification alongside fellow practitioners who
+                share a commitment to this brain-based approach. The training included
+                hundreds of hours of hands-on practice, anatomy study, and supervised
+                clinical work with both children and adults.
+              </p>
+              <p>
+                I continue to deepen my practice through ongoing education, mentorship,
+                and collaboration with the global ABM community.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div className="aspect-[16/9] rounded-3xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/abm-graduation-ceremony.png"
+                alt="Bryan Thunstrom at ABM NeuroMovement practitioner certification ceremony with Anat Baniel and Marcy Lindheimer"
+                width={900}
+                height={506}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* CTA */}
       <Section variant="warm">
         <div className="max-w-2xl mx-auto text-center">

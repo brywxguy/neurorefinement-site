@@ -44,8 +44,8 @@ export default function ChildrenPage() {
           <div>
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg">
               <Image
-                src="/images/functional-integration-session.jpg"
-                alt="Gentle hands-on NeuroMovement session with a child"
+                src="/images/fs-session-child-toys.jpg"
+                alt="Bryan Thunstrom working with a child in a Functional Synthesis session while mother participates"
                 width={600}
                 height={750}
                 className="object-cover w-full h-full"
@@ -133,6 +133,38 @@ export default function ChildrenPage() {
               moment.
             </p>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+              <Image
+                src="/images/fs-session-child-toys.jpg"
+                alt="Functional Synthesis session — practitioner and child exploring movement through play with mother present"
+                width={500}
+                height={375}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+              <Image
+                src="/images/fs-session-child-reading.jpg"
+                alt="Practitioner reading with child during Functional Synthesis session — learning through connection"
+                width={500}
+                height={375}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+              <Image
+                src="/images/fs-session-child-ambulance.jpg"
+                alt="Child engaging with toys during a gentle NeuroMovement session with parents present"
+                width={500}
+                height={375}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+          <p className="text-center text-sm text-brand-400 mt-4 italic">
+            Real Functional Synthesis sessions with children — gentle, playful, and always with family present.
+          </p>
         </div>
       </Section>
     </>
