@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Button, Section } from '@/components/ui'
-import { Mail, MapPin, Clock } from 'lucide-react'
+import { Mail, MapPin, Clock, Phone } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
@@ -35,12 +35,31 @@ export default function ContactPage() {
               </div>
               <div className="flex gap-4">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="font-medium text-brand-800">Phone</p>
+                  <a href={`tel:${siteConfig.contact.phoneE164}`} className="text-ocean-600 hover:text-ocean-700">
+                    {siteConfig.contact.phone}
+                  </a>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
                   <p className="font-medium text-brand-800">Location</p>
-                  <p className="text-brand-600">{siteConfig.location.city}, {siteConfig.location.state}</p>
+                  <p className="text-brand-600">{siteConfig.location.city}, {siteConfig.location.state} &middot; {siteConfig.location.region}</p>
                   <p className="text-sm text-brand-400">Virtual sessions available worldwide</p>
+                  <a
+                    href={siteConfig.location.googleBusinessProfile}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-ocean-600 hover:text-ocean-700"
+                  >
+                    View on Google Maps
+                  </a>
                 </div>
               </div>
               <div className="flex gap-4">
