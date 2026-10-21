@@ -18,10 +18,23 @@ export function Footer() {
               {siteConfig.tagline}
             </p>
             <p className="text-sm text-brand-400">
-              {siteConfig.location.city}, {siteConfig.location.state}
+              {siteConfig.location.city}, {siteConfig.location.state} &middot; {siteConfig.location.region}
               <br />
               Virtual sessions available
             </p>
+            <div className="text-sm mt-3 space-y-1">
+              <a href={`tel:${siteConfig.contact.phoneE164}`} className="block text-brand-300 hover:text-white transition-colors">
+                {siteConfig.contact.phone}
+              </a>
+              <a
+                href={siteConfig.location.googleBusinessProfile}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-brand-300 hover:text-white transition-colors"
+              >
+                Find us on Google
+              </a>
+            </div>
           </div>
 
           {/* Services */}
@@ -96,6 +109,9 @@ export function Footer() {
             name: siteConfig.name,
             description: siteConfig.description,
             url: siteConfig.url,
+            telephone: siteConfig.contact.phoneE164,
+            hasMap: siteConfig.location.googleBusinessProfile,
+            sameAs: [siteConfig.location.googleBusinessProfile],
             address: {
               '@type': 'PostalAddress',
               addressLocality: siteConfig.location.city,
@@ -104,6 +120,7 @@ export function Footer() {
             },
             areaServed: [
               { '@type': 'City', name: 'Carlsbad' },
+              { '@type': 'AdministrativeArea', name: 'North County San Diego' },
               { '@type': 'State', name: 'California' },
             ],
             priceRange: '$$',
