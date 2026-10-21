@@ -64,6 +64,8 @@ Required variables:
 
 Go to your Supabase project → SQL Editor → paste and run `supabase/schema.sql`.
 
+For an existing database, run any files in `supabase/migrations/` (oldest first) in the SQL Editor, or with `supabase db push` if using the Supabase CLI.
+
 #### Supabase keep-alive
 
 Free-tier Supabase projects pause after about 7 days without database activity. Two independent daily jobs each run a one-row `SELECT` on `lessons` to prevent this:

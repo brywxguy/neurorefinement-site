@@ -139,6 +139,7 @@ ALTER TABLE public.intake_submissions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.contact_submissions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.lessons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.bundles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.bundle_lessons ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.purchases ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.class_events ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.class_registrations ENABLE ROW LEVEL SECURITY;
@@ -149,6 +150,11 @@ CREATE POLICY "Published lessons are viewable by everyone" ON public.lessons
 
 CREATE POLICY "Published bundles are viewable by everyone" ON public.bundles
   FOR SELECT USING (is_published = TRUE);
+
+CREATE POLICY "Bundle lessons are viewable by everyone" ON public.bundle_lessons
+  FOR SELECT TO anon, authenticated USING (TRUE);
+
+REVOKE INSERT, UPDATE, DELETE, TRUNCATE ON public.bundle_lessons FROM anon, authenticated;
 
 CREATE POLICY "Published classes are viewable by everyone" ON public.class_events
   FOR SELECT USING (is_published = TRUE);
