@@ -58,10 +58,20 @@ Required variables:
 - `NEXT_PUBLIC_CALENDLY_URL` — Your Calendly scheduling link
 - `CONVERTKIT_API_KEY` — From ConvertKit account settings
 - `CONVERTKIT_FORM_ID` — From ConvertKit form settings
+- `CRON_SECRET` — Random string (e.g. `openssl rand -hex 32`); protects `/api/keepalive`
 
 ### 3. Set Up Database
 
 Go to your Supabase project → SQL Editor → paste and run `supabase/schema.sql`.
+
+#### Supabase keep-alive
+
+Free-tier Supabase projects pause after about 7 days without database activity. Two independent daily jobs each run a one-row `SELECT` on `lessons` to prevent this:
+
+- **GitHub Action** (`.github/workflows/supabase-keepalive.yml`, 14:00 UTC ≈ 7 AM Pacific) queries Supabase's REST API directly. Needs repository secrets `SUPABASE_URL` and `SUPABASE_ANON_KEY` (GitHub → Settings → Secrets and variables → Actions). Can be run manually from the Actions tab.
+- **Vercel cron** (`vercel.json`, daily at 15:00 UTC) calls `/api/keepalive`, which uses `SUPABASE_SERVICE_ROLE_KEY`. Needs `CRON_SECRET` set in Vercel project environment variables.
+
+A failed run (e.g. the project is already paused) fails the GitHub Action, which emails the repo owner.
 
 ### 4. Run Development Server
 
