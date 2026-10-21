@@ -18,7 +18,8 @@ export const siteConfig = {
     googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',
   },
   contact: {
-    email: 'bryan@neurorefinement.com', // TODO: confirm email
+    // Public-facing address. Inquiry notifications go to INQUIRY_NOTIFY_EMAIL (default bryan@neurorefinement.com).
+    email: 'info@neurorefinement.com',
     // Google Voice business line (matches Google Business Profile). Never list a personal cell.
     phone: '(760) 607-6000',
     phoneE164: '+17606076000',
@@ -33,9 +34,9 @@ export const siteConfig = {
 }
 
 // ============================================================
-// BOOKING (Cal.com) — swap the username here or via env vars.
-// Until a real username is set, booking sections show a "request a time"
-// fallback instead of a broken embed.
+// BOOKING (Cal.com) — defaults below; NEXT_PUBLIC_CAL_* env vars override.
+// If the username is ever set back to the placeholder, booking sections show
+// a "request a time" fallback instead of a broken embed.
 // ============================================================
 
 export const CAL_USERNAME_PLACEHOLDER = 'your-cal-username'
@@ -43,7 +44,7 @@ export const CAL_USERNAME_PLACEHOLDER = 'your-cal-username'
 export const booking = {
   calOrigin: process.env.NEXT_PUBLIC_CAL_ORIGIN || 'https://cal.com',
   calEmbedScript: process.env.NEXT_PUBLIC_CAL_EMBED_SCRIPT || 'https://app.cal.com/embed/embed.js',
-  calUsername: process.env.NEXT_PUBLIC_CAL_USERNAME || CAL_USERNAME_PLACEHOLDER, // TODO: Bryan's Cal.com username
+  calUsername: process.env.NEXT_PUBLIC_CAL_USERNAME || 'neurorefinement',
   events: {
     // New people only. Pre-call questions are collected on-site before the calendar appears.
     freeCall: {
@@ -57,11 +58,18 @@ export const booking = {
       duration: 45,
     },
   },
-  // Full Cal.com private link (e.g. https://cal.com/d/abc123/45-min-lesson). Only used on
-  // the unlisted /book/client page that Bryan shares with existing clients.
-  existingClientUrl: process.env.NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL || '',
+  // Hidden Cal.com event (or private link) for existing clients. Only used on the
+  // unlisted /book/client page that Bryan shares with clients.
+  existingClientUrl: process.env.NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL || 'https://cal.com/neurorefinement/client-lesson',
   intensiveHref: '/contact?type=intensive#inquiry-form',
 }
+
+// ============================================================
+// TESTIMONIALS — the homepage section stays hidden while this list is empty.
+// Add real client quotes (with permission) to show it.
+// ============================================================
+
+export const testimonials: Array<{ quote: string; name: string; location?: string; service?: string }> = []
 
 export const isCalConfigured = booking.calUsername !== CAL_USERNAME_PLACEHOLDER && booking.calUsername.trim() !== ''
 

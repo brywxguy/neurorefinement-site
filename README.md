@@ -191,10 +191,10 @@ Row Level Security is on and the public `anon`/`authenticated` roles have no acc
    | `INQUIRY_NOTIFY_EMAIL` | No | Recipient(s), default `bryan@neurorefinement.com` |
    | `ADMIN_EMAILS` | No | Admin allowlist, default `bryan@neurorefinement.com,bpthunstrom@gmail.com` |
    | `INQUIRY_IP_SALT` | No | Random string for hashing IPs used in rate limiting |
-   | `NEXT_PUBLIC_CAL_USERNAME` | For booking | Cal.com username |
+   | `NEXT_PUBLIC_CAL_USERNAME` | No | Default `neurorefinement` |
    | `NEXT_PUBLIC_CAL_FREE_CALL_SLUG` | No | Default `free-20-min-call` |
    | `NEXT_PUBLIC_CAL_LESSON_45_SLUG` | No | Default `45-min-lesson` |
-   | `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL` | No | Private link for existing clients |
+   | `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL` | No | Default `https://cal.com/neurorefinement/client-lesson` |
 
    `NEXT_PUBLIC_*` values are baked in at build time, so redeploy after changing them.
 
@@ -209,15 +209,15 @@ Row Level Security is on and the public `anon`/`authenticated` roles have no acc
 
 ### Cal.com booking
 
-Booking settings live in one place: the `booking` block in `src/lib/config.ts`. To go live, either set `NEXT_PUBLIC_CAL_USERNAME` in Vercel or replace the `your-cal-username` placeholder there. Until then, booking sections still work: the free-call questions are saved as an inquiry and the visitor is told Bryan will reach out to schedule.
+Booking settings live in one place: the `booking` block in `src/lib/config.ts`, which defaults to Bryan's Cal.com account (`cal.com/neurorefinement`). Any `NEXT_PUBLIC_CAL_*` env var overrides the matching default. If the username is set to the placeholder `your-cal-username`, booking sections fall back to saving the free-call questions as an inquiry and telling the visitor Bryan will reach out.
 
-Create these in Cal.com:
+Cal.com event types used by the site:
 
 | Event type | URL slug | Notes |
 |------------|----------|-------|
 | Free 20-Minute Call | `free-20-min-call` | For new people. The site asks who it's for, the main concern, and how they heard *before* showing the calendar, saves those answers, and pre-fills name, email and notes in Cal.com. Optionally add the same booking questions in Cal.com (event type → Advanced → Booking questions) for anyone who books on cal.com directly. |
 | 45-Minute Lesson | `45-min-lesson` | Embedded on `/functional-synthesis`. |
-| Existing-client lesson | any | Create a private link (event type → Advanced → Private links) and set `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL`. It's shown only on the unlisted page `/book/client` (hidden from search engines), which you share with clients. If you use single-use private links, send those directly instead. |
+| Existing-client lesson | `client-lesson` | Hidden event type, embedded only on the unlisted page `/book/client` (not linked anywhere, hidden from search engines), which you share with clients. Hidden events can still be booked by anyone who has the link. To use a Cal.com private link instead, set `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL`. |
 | Intensive | — | Not a Cal.com event: "Request an Intensive" opens the inquiry form (`form_type = intensive`). |
 
 If you change a slug in Cal.com, set the matching `NEXT_PUBLIC_CAL_*_SLUG` variable (or edit the default in `src/lib/config.ts`).
@@ -254,7 +254,7 @@ To change who can sign in, set `ADMIN_EMAILS`.
 - [ ] **ABM trademark compliance** — Verify language with ABM organization
 
 ### After Launch
-- [ ] **Real testimonials** — Replace placeholder testimonials (minimum 3-5)
+- [ ] **Real testimonials** — Add to `testimonials` in `src/lib/config.ts` (the homepage section is hidden while it's empty)
 - [ ] **Additional audio lessons** — Build out the library over time
 - [ ] **Blog posts** — Publish the starter posts (outlines in blog page)
 - [ ] **Google Search Console** — Submit sitemap
