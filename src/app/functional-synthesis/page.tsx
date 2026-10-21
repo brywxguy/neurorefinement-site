@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Clock, MapPin, Video, CheckCircle } from 'lucide-react'
 import { pricing } from '@/lib/config'
+import { BookingOptions } from '@/components/booking/BookingOptions'
 
 export const metadata: Metadata = {
   title: 'Functional Synthesis — ABM NeuroMovement Sessions',
@@ -211,19 +212,10 @@ export default function FunctionalSynthesisPage() {
         <SectionHeader
           eyebrow="Book now"
           title="Schedule Your Session"
-          description="Choose a time that works for you. First-time visitors are encouraged to book the 90-minute Deep Dive."
+          description="New here? Start with a free 20-minute call so Bryan can learn about your situation. Then choose a time that works for you."
         />
         <div className="max-w-3xl mx-auto">
-          {/* Calendly embed placeholder */}
-          <div className="rounded-2xl border border-brand-100/50 bg-white p-12 text-center">
-            <p className="text-brand-500 mb-4">Calendly scheduling widget loads here</p>
-            <p className="text-sm text-brand-400">
-              Configure your NEXT_PUBLIC_CALENDLY_URL environment variable to activate
-            </p>
-            <Button href="https://calendly.com" variant="outline" size="sm" className="mt-6">
-              Book on Calendly (placeholder)
-            </Button>
-          </div>
+          <BookingOptions />
         </div>
       </Section>
 

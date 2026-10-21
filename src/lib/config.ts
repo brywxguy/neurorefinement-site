@@ -30,13 +30,47 @@ export const siteConfig = {
     instagram: '',  // TODO: add Instagram URL
     youtube: '',    // TODO: add YouTube URL
   },
-  calendly: {
-    url: process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/neurorefinement',
-    functionalSynthesis60: '', // TODO: specific event type URLs
-    functionalSynthesis90: '',
-    coaching60: '',
-    freeConsult: '',
+}
+
+// ============================================================
+// BOOKING (Cal.com) — swap the username here or via env vars.
+// Until a real username is set, booking sections show a "request a time"
+// fallback instead of a broken embed.
+// ============================================================
+
+export const CAL_USERNAME_PLACEHOLDER = 'your-cal-username'
+
+export const booking = {
+  calOrigin: process.env.NEXT_PUBLIC_CAL_ORIGIN || 'https://cal.com',
+  calEmbedScript: process.env.NEXT_PUBLIC_CAL_EMBED_SCRIPT || 'https://app.cal.com/embed/embed.js',
+  calUsername: process.env.NEXT_PUBLIC_CAL_USERNAME || CAL_USERNAME_PLACEHOLDER, // TODO: Bryan's Cal.com username
+  events: {
+    // New people only. Pre-call questions are collected on-site before the calendar appears.
+    freeCall: {
+      slug: process.env.NEXT_PUBLIC_CAL_FREE_CALL_SLUG || 'free-20-min-call',
+      label: 'Free 20-Minute Call',
+      duration: 20,
+    },
+    lesson45: {
+      slug: process.env.NEXT_PUBLIC_CAL_LESSON_45_SLUG || '45-min-lesson',
+      label: '45-Minute Lesson',
+      duration: 45,
+    },
   },
+  // Full Cal.com private link (e.g. https://cal.com/d/abc123/45-min-lesson). Only used on
+  // the unlisted /book/client page that Bryan shares with existing clients.
+  existingClientUrl: process.env.NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL || '',
+  intensiveHref: '/contact?type=intensive#inquiry-form',
+}
+
+export const isCalConfigured = booking.calUsername !== CAL_USERNAME_PLACEHOLDER && booking.calUsername.trim() !== ''
+
+export function calLink(eventSlug: string) {
+  return `${booking.calUsername}/${eventSlug}`
+}
+
+export function calUrl(eventSlug: string) {
+  return `${booking.calOrigin}/${calLink(eventSlug)}`
 }
 
 // ============================================================

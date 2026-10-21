@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "@stripe/stripe-js": "^2.4.0",
-    "@supabase/ssr": "^0.1.0",
+    "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.39.0",
     "clsx": "^2.1.0",
     "gray-matter": "^4.0.3",

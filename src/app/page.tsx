@@ -355,8 +355,8 @@ export default function HomePage() {
                 icon: <MessageCircle className="w-6 h-6" />,
                 step: '1',
                 title: 'Free Discovery Call',
-                description: "15 minutes — just a conversation about what matters to you. Your goals, your challenges, what you're hoping for. No pressure, no pitch.",
-                detail: 'Book via Calendly',
+                description: "20 minutes — just a conversation about what matters to you. Your goals, your challenges, what you're hoping for. No pressure, no pitch.",
+                detail: 'Book online',
               },
               {
                 icon: <ClipboardCheck className="w-6 h-6" />,
