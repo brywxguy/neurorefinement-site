@@ -15,7 +15,7 @@ export const siteConfig = {
     state: 'CA',
     region: 'North County San Diego',
     virtual: true,
-    googleBusinessProfile: 'https://maps.app.goo.gl/2ZwSn69CViKGNcM26',
+    googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',
   },
   contact: {
     email: 'bryan@neurorefinement.com', // TODO: confirm email
