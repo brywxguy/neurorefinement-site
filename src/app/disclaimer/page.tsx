@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Section } from '@/components/ui'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'Disclaimer',
@@ -75,7 +76,7 @@ export default function DisclaimerPage() {
           <h2>Contact</h2>
           <p>
             If you have questions about this disclaimer or our services, please contact us
-            at bryan@neurorefinement.com.
+            at {siteConfig.contact.email}.
           </p>
 
           <p className="text-sm text-brand-400 mt-8">

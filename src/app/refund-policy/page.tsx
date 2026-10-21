@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Section } from '@/components/ui'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = { title: 'Refund Policy' }
 
@@ -23,7 +24,7 @@ export default function RefundPolicyPage() {
           <h2>Membership</h2>
           <p>Membership subscriptions may be cancelled at any time. Cancellation takes effect at the end of the current billing period. No pro-rated refunds for partial months.</p>
           <h2>How to Request a Refund</h2>
-          <p>Contact us at bryan@neurorefinement.com with your name, email, and purchase details. We aim to respond within 2 business days.</p>
+          <p>Contact us at {siteConfig.contact.email} with your name, email, and purchase details. We aim to respond within 2 business days.</p>
           <p className="text-sm text-brand-400 mt-8">Last updated: February 2026</p>
         </div>
       </div>
