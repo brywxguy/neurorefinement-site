@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { Button, Section } from '@/components/ui'
 import { ArrowRight, ArrowLeft, CheckCircle, Shield, AlertTriangle } from 'lucide-react'
+import { FormError, HoneypotField } from '@/components/forms/fields'
+import { HONEYPOT_FIELD } from '@/lib/inquiries'
+import { submitInquiry } from '@/lib/submit-inquiry'
 
 type FormData = {
   // Personal Info
@@ -82,6 +85,7 @@ export default function IntakeFormPage() {
   const [step, setStep] = useState<Step>('personal')
   const [form, setForm] = useState<FormData>(initialForm)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const currentIndex = STEPS.findIndex((s) => s.id === step)
 
@@ -102,17 +106,25 @@ export default function IntakeFormPage() {
 
   const handleSubmit = async () => {
     setSubmitting(true)
-    try {
-      await fetch('/api/intake', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      setStep('complete')
-    } catch {
-      alert('Something went wrong. Please try again or contact us directly.')
-    }
+    setError(null)
+    const { fullName, email, phone, howDidYouHear, primaryReason, anythingElse, ...rest } = form
+    const result = await submitInquiry({
+      form_type: 'intake',
+      name: fullName,
+      email,
+      phone,
+      how_heard: howDidYouHear,
+      concern: primaryReason,
+      message: anythingElse,
+      details: rest,
+      [HONEYPOT_FIELD]: (document.getElementById(HONEYPOT_FIELD) as HTMLInputElement | null)?.value,
+    })
     setSubmitting(false)
+    if (result.ok) {
+      setStep('complete')
+    } else {
+      setError(result.message)
+    }
   }
 
   // ── Reusable form components ──
@@ -508,6 +520,9 @@ export default function IntakeFormPage() {
                 </div>
               </>
             )}
+
+            <HoneypotField />
+            {error && <FormError message={error} className="mt-6" />}
 
             {/* ── Navigation Buttons ── */}
             <div className="flex justify-between mt-8 pt-6 border-t border-sand-200">

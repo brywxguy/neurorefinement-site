@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { Button, Section, SectionHeader } from '@/components/ui'
 import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react'
+import { FormError, HoneypotField } from '@/components/forms/fields'
+import { HONEYPOT_FIELD } from '@/lib/inquiries'
+import { submitInquiry } from '@/lib/submit-inquiry'
 
 type Step = 'concerns' | 'areas' | 'goals' | 'history' | 'info' | 'complete'
 
@@ -19,7 +22,8 @@ export default function StartHerePage() {
     howDidYouHear: '',
     consent: false,
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const toggleItem = (field: 'concerns' | 'painAreas' | 'goals', value: string) => {
     setForm((prev) => ({
@@ -31,16 +35,29 @@ export default function StartHerePage() {
   }
 
   const handleSubmit = async () => {
-    try {
-      await fetch('/api/intake', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      setSubmitted(true)
+    setSubmitting(true)
+    setError(null)
+    const result = await submitInquiry({
+      form_type: 'start_here',
+      name: form.name,
+      email: form.email,
+      concern: form.concerns.join(', '),
+      how_heard: form.howDidYouHear,
+      message: form.movementHistory,
+      details: {
+        concerns: form.concerns,
+        painAreas: form.painAreas,
+        goals: form.goals,
+        stressLevel: form.stressLevel,
+        consent: form.consent,
+      },
+      [HONEYPOT_FIELD]: (document.getElementById(HONEYPOT_FIELD) as HTMLInputElement | null)?.value,
+    })
+    setSubmitting(false)
+    if (result.ok) {
       setStep('complete')
-    } catch (err) {
-      alert('Something went wrong. Please try again.')
+    } else {
+      setError(result.message)
     }
   }
 
@@ -293,15 +310,17 @@ export default function StartHerePage() {
                   </span>
                 </label>
               </div>
+              <HoneypotField />
+              {error && <FormError message={error} className="mb-6" />}
               <div className="flex gap-3">
                 <Button variant="ghost" onClick={() => setStep('history')}>
                   <ArrowLeft className="mr-2 w-4 h-4" /> Back
                 </Button>
                 <Button
                   onClick={handleSubmit}
-                  disabled={!form.name || !form.email || !form.consent}
+                  disabled={!form.name || !form.email || !form.consent || submitting}
                 >
-                  Get My Recommendations <ArrowRight className="ml-2 w-4 h-4" />
+                  {submitting ? 'Sending…' : 'Get My Recommendations'} <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
             </div>
