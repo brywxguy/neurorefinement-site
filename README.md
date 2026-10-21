@@ -13,10 +13,10 @@ A modern website for Bryan Thunstrom's ABM NeuroMovement® practice and strength
 | Framework | Next.js 14 (App Router) + TypeScript |
 | Styling | Tailwind CSS + custom design system |
 | Database | Supabase (PostgreSQL) |
-| Auth | Supabase Auth (magic link) |
+| Auth | Supabase Auth (magic link; admin area) |
 | Payments | Stripe (one-time + subscriptions) |
-| Scheduling | Calendly (embedded, swappable) |
-| Email | ConvertKit / Kit |
+| Scheduling | Cal.com (embedded, configured in `src/lib/config.ts`) |
+| Email | ConvertKit / Kit (marketing), Resend (inquiry notifications) |
 | Analytics | Plausible (privacy-respecting) |
 | Hosting | Vercel (recommended) |
 
@@ -28,7 +28,8 @@ A modern website for Bryan Thunstrom's ABM NeuroMovement® practice and strength
 - Node.js 18+ installed
 - A Supabase account (free tier works)
 - A Stripe account
-- A Calendly account
+- A Cal.com account
+- A Resend account (inquiry notification emails)
 - A ConvertKit (Kit) account
 
 ### 1. Clone and Install
@@ -55,16 +56,17 @@ Required variables:
 - `STRIPE_SECRET_KEY` — From Stripe dashboard
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` — From Stripe dashboard
 - `STRIPE_WEBHOOK_SECRET` — From Stripe webhook settings
-- `NEXT_PUBLIC_CALENDLY_URL` — Your Calendly scheduling link
 - `CONVERTKIT_API_KEY` — From ConvertKit account settings
 - `CONVERTKIT_FORM_ID` — From ConvertKit form settings
 - `CRON_SECRET` — Random string (e.g. `openssl rand -hex 32`); protects `/api/keepalive`
 
+Inquiries, admin and booking variables (full list with comments in `.env.example`) are described in [Inquiries, Booking & Admin](#inquiries-booking--admin) below.
+
 ### 3. Set Up Database
 
-Go to your Supabase project → SQL Editor → paste and run `supabase/schema.sql`.
+Go to your Supabase project → SQL Editor → paste and run `supabase/schema.sql`, then every file in `supabase/migrations/` (oldest first).
 
-For an existing database, run any files in `supabase/migrations/` (oldest first) in the SQL Editor, or with `supabase db push` if using the Supabase CLI.
+For an existing database, run any migrations not yet applied (oldest first) in the SQL Editor, or with `supabase db push` if using the Supabase CLI.
 
 #### Supabase keep-alive
 
@@ -115,7 +117,9 @@ neurorefinement/
 │   │   ├── membership/          # Membership page
 │   │   ├── blog/                # Blog listing + posts
 │   │   ├── research/            # Research & evidence
-│   │   ├── contact/             # Contact form
+│   │   ├── admin/inquiries/     # Private inquiry inbox (Supabase Auth)
+│   │   ├── book/client/         # Unlisted existing-client booking page
+│   │   ├── contact/             # Contact + intensive request form
 │   │   ├── start-here/          # Intake questionnaire
 │   │   ├── dashboard/           # Member dashboard
 │   │   ├── disclaimer/          # Legal disclaimer
@@ -125,8 +129,7 @@ neurorefinement/
 │   │   ├── sitemap.ts           # Dynamic sitemap
 │   │   ├── robots.ts            # Robots.txt
 │   │   └── api/
-│   │       ├── contact/         # Contact form handler
-│   │       ├── intake/          # Intake form handler
+│   │       ├── inquiries/       # Saves every form submission + emails Bryan
 │   │       ├── newsletter/      # Newsletter signup
 │   │       ├── stripe/          # Stripe checkout
 │   │       └── webhook/         # Stripe webhooks
@@ -155,6 +158,81 @@ neurorefinement/
 
 ---
 
+## Inquiries, Booking & Admin
+
+### How it works
+
+Every public form saves a row to the Supabase `inquiries` table and emails Bryan:
+
+| Form | Where | `form_type` |
+|------|-------|-------------|
+| Contact form | `/contact` | `contact` |
+| Request an intensive | `/contact?type=intensive` (also linked from booking sections) | `intensive` |
+| Free 20-min call questions | Booking sections on `/functional-synthesis` and `/coaching` | `free_call` |
+| Start Here questionnaire | `/start-here` | `start_here` |
+| New client intake | `/intake` | `intake` |
+
+Submissions go to `POST /api/inquiries`, which validates input, drops bot submissions (hidden honeypot field), limits each IP to 5 submissions per 10 minutes, inserts with the service-role key, then sends the email. If Resend isn't configured or fails, the inquiry is still saved. Visitors only see an error if it could neither be saved nor emailed, and then they're told to email or call instead.
+
+Row Level Security is on and the public `anon`/`authenticated` roles have no access to the table at all, so nobody can read or write inquiries through the public Supabase API. Intake answers (which can include health information) are stored in the `details` column and shown only in the admin page, never in the notification email.
+
+### Setup checklist
+
+1. **Database:** run `supabase/migrations/20261021210000_inquiries.sql` (SQL Editor or `supabase db push`).
+2. **Vercel env vars** (Production *and* Preview):
+
+   | Variable | Required | Purpose |
+   |----------|----------|---------|
+   | `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
+   | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Admin sign-in |
+   | `SUPABASE_SERVICE_ROLE_KEY` | Yes | Saving inquiries, admin page (server only) |
+   | `RESEND_API_KEY` | For email | Notification emails |
+   | `RESEND_FROM_EMAIL` | For email | Sender, e.g. `NeuroRefinement <notifications@neurorefinement.com>` |
+   | `INQUIRY_NOTIFY_EMAIL` | No | Recipient(s), default `bryan@neurorefinement.com` |
+   | `ADMIN_EMAILS` | No | Admin allowlist, default `bryan@neurorefinement.com,bpthunstrom@gmail.com` |
+   | `INQUIRY_IP_SALT` | No | Random string for hashing IPs used in rate limiting |
+   | `NEXT_PUBLIC_CAL_USERNAME` | For booking | Cal.com username |
+   | `NEXT_PUBLIC_CAL_FREE_CALL_SLUG` | No | Default `free-20-min-call` |
+   | `NEXT_PUBLIC_CAL_LESSON_45_SLUG` | No | Default `45-min-lesson` |
+   | `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL` | No | Private link for existing clients |
+
+   `NEXT_PUBLIC_*` values are baked in at build time, so redeploy after changing them.
+
+3. **Resend:** create an account at [resend.com](https://resend.com), add and verify the `neurorefinement.com` domain (it gives you DNS records to add), create an API key, and set `RESEND_API_KEY` + `RESEND_FROM_EMAIL`. Before the domain is verified, Resend's `onboarding@resend.dev` sender only delivers to the email you signed up to Resend with. Replying to a notification email replies straight to the person who wrote in.
+
+4. **Supabase Auth (admin sign-in):** in Supabase → Authentication → URL Configuration, set the Site URL to `https://neurorefinement.com` and add these Redirect URLs:
+   - `https://neurorefinement.com/admin/auth/callback`
+   - `https://*-bryan-thunstroms-projects.vercel.app/**` (Vercel previews)
+   - `http://localhost:3000/admin/auth/callback`
+
+   The built-in Supabase email sender is limited to a few emails per hour, which is plenty for two admins. Add custom SMTP (e.g. Resend) under Authentication → Emails if you ever hit the limit.
+
+### Cal.com booking
+
+Booking settings live in one place: the `booking` block in `src/lib/config.ts`. To go live, either set `NEXT_PUBLIC_CAL_USERNAME` in Vercel or replace the `your-cal-username` placeholder there. Until then, booking sections still work: the free-call questions are saved as an inquiry and the visitor is told Bryan will reach out to schedule.
+
+Create these in Cal.com:
+
+| Event type | URL slug | Notes |
+|------------|----------|-------|
+| Free 20-Minute Call | `free-20-min-call` | For new people. The site asks who it's for, the main concern, and how they heard *before* showing the calendar, saves those answers, and pre-fills name, email and notes in Cal.com. Optionally add the same booking questions in Cal.com (event type → Advanced → Booking questions) for anyone who books on cal.com directly. |
+| 45-Minute Lesson | `45-min-lesson` | Embedded on `/functional-synthesis`. |
+| Existing-client lesson | any | Create a private link (event type → Advanced → Private links) and set `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL`. It's shown only on the unlisted page `/book/client` (hidden from search engines), which you share with clients. If you use single-use private links, send those directly instead. |
+| Intensive | — | Not a Cal.com event: "Request an Intensive" opens the inquiry form (`form_type = intensive`). |
+
+If you change a slug in Cal.com, set the matching `NEXT_PUBLIC_CAL_*_SLUG` variable (or edit the default in `src/lib/config.ts`).
+
+### Reviewing inquiries (for Bryan)
+
+1. Go to **`/admin/inquiries`** (e.g. `https://neurorefinement.com/admin/inquiries`).
+2. Enter `bryan@neurorefinement.com` or `bpthunstrom@gmail.com` and click **Email me a sign-in link**, then open the link **in the same browser**.
+3. Inquiries are listed newest first. Use the tabs to filter by status (New, Contacted, Booked, Not a fit), change the status and add private notes on each one, then click **Save**. Click **Form answers** to see the full questionnaire or intake answers.
+4. **Export CSV** downloads the current filter (all columns, including notes) for a spreadsheet.
+
+To change who can sign in, set `ADMIN_EMAILS`.
+
+---
+
 ## Key File: `src/lib/config.ts`
 
 **All prices, offerings, session durations, lesson themes, and navigation are defined in this single file.** To change any pricing or offering, edit this file — all pages will update automatically.
@@ -170,7 +248,7 @@ neurorefinement/
 - [ ] **First 3-5 audio lessons** — At minimum the free "15-Minute Reset" lesson
 - [ ] **Audio lesson transcripts** — Accessibility requirement
 - [ ] **Confirm email address** — Update in `src/lib/config.ts`
-- [ ] **Calendly event types** — Set up and add URLs to config
+- [ ] **Cal.com event types** — See [Inquiries, Booking & Admin](#inquiries-booking--admin)
 - [ ] **Stripe products** — Create products/prices in Stripe dashboard
 - [ ] **Attorney review** — Disclaimer, Privacy, Terms, Refund Policy, Waiver
 - [ ] **ABM trademark compliance** — Verify language with ABM organization
@@ -244,7 +322,8 @@ Edit `tailwind.config.ts` → `colors` section.
 
 ### Components
 All reusable components are in `src/components/ui/index.tsx`:
-Button, Section, SectionHeader, Card, PriceTag, TestimonialCard, FAQ, CalendlyEmbed
+Button, Section, SectionHeader, Card, PriceTag, TestimonialCard, FAQ.
+Booking components (`BookingOptions`, `CalEmbed`) are in `src/components/booking/`; form components in `src/components/forms/`.
 
 ---
 
