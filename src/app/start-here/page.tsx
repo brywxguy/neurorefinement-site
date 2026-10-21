@@ -337,7 +337,7 @@ export default function StartHerePage() {
               </h2>
               <p className="text-lg text-brand-600 mb-8 max-w-lg mx-auto">
                 Based on what you shared, here&apos;s your personalized starting point.
-                We&apos;ve also sent a copy to your email.
+                Bryan will also review your answers and may follow up personally.
               </p>
 
               {/* Personalized Recommendations (rule-based MVP) */}
