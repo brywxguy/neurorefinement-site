@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Button, Section, SectionHeader, FAQ } from '@/components/ui'
 import { ArrowRight, Award, Heart, Brain, Lightbulb } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
@@ -164,6 +165,9 @@ export default function AboutPage() {
               <strong>Mindful reframing</strong> (inspired by Dr. Ellen Langer&apos;s research)
               ties it all together: the ability to shift from fixed assumptions to flexible
               noticing, so both your body and your thinking regain options.
+            </p>
+            <p>
+              <Link href="/research">See the research behind the method</Link>
             </p>
           </div>
         </div>
