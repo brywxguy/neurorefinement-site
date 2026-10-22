@@ -137,10 +137,10 @@ export async function POST(req: NextRequest) {
         message: inquiry.message ?? null,
         source_page: inquiry.source_page ?? null,
         details: inquiry.details ?? {},
-        // Consent columns only exist for free lesson signups (see the free_lesson migration).
-        ...(inquiry.form_type === 'free_lesson'
+        // Consents are recorded only for forms that ask for them (free lesson gate, Start Here texts).
+        ...(inquiry.form_type === 'free_lesson' || inquiry.consent_sms !== undefined
           ? {
-              consent_followup: inquiry.consent_followup === true,
+              consent_followup: inquiry.form_type === 'free_lesson' ? inquiry.consent_followup === true : null,
               consent_sms: inquiry.consent_sms === true,
               consented_at: new Date().toISOString(),
             }

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button, Section } from '@/components/ui'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
-import { FormError, HoneypotField } from '@/components/forms/fields'
+import { Field, FormError, HoneypotField, inputClass } from '@/components/forms/fields'
 import { HONEYPOT_FIELD } from '@/lib/inquiries'
 import { submitInquiry } from '@/lib/submit-inquiry'
 import { CHILD_CONCERN, QUIZ_CONCERNS, QUIZ_GOALS, recommend, resultsHref } from '@/lib/quiz'
@@ -22,6 +22,8 @@ export default function StartHerePage() {
     movementHistory: '',
     name: '',
     email: '',
+    phone: '',
+    smsConsent: false,
     howDidYouHear: '',
     consent: false,
   })
@@ -43,23 +45,33 @@ export default function StartHerePage() {
     setError(null)
     const name = form.name.trim()
     const email = form.email.trim()
+    const phone = form.phone.trim()
     if (!form.consent) {
       setError('Please tick the box above to see your recommendations.')
       return
     }
-    if (Boolean(name) !== Boolean(email)) {
-      setError('To have Bryan follow up, please add both your name and email — or leave both blank.')
+    const wantsFollowUp = Boolean(name || email || phone || form.smsConsent)
+    if (wantsFollowUp && (!name || !email)) {
+      setError(
+        'To have Bryan follow up, please add your name and email address — or leave the contact fields blank to just see your recommendations.'
+      )
+      return
+    }
+    if (form.smsConsent && !phone) {
+      setError('Add a cell number to get texts, or uncheck that box.')
       return
     }
 
     let saved: boolean | undefined
-    if (name && email) {
+    if (wantsFollowUp) {
       setSubmitting(true)
       const rec = recommend(form.concerns, form.goals)
       const result = await submitInquiry({
         form_type: 'start_here',
         name,
         email,
+        phone,
+        consent_sms: form.smsConsent,
         who_for: form.concerns.includes(CHILD_CONCERN) ? 'My child' : undefined,
         concern: form.concerns.join(', '),
         how_heard: form.howDidYouHear,
@@ -74,9 +86,10 @@ export default function StartHerePage() {
         },
         [HONEYPOT_FIELD]: (document.getElementById(HONEYPOT_FIELD) as HTMLInputElement | null)?.value,
       })
-      if (!result.ok && result.fieldErrors?.email) {
+      const fieldError = result.ok ? undefined : result.fieldErrors?.email || result.fieldErrors?.phone
+      if (fieldError) {
         setSubmitting(false)
-        setError(result.fieldErrors.email)
+        setError(fieldError)
         return
       }
       saved = result.ok
@@ -267,24 +280,57 @@ export default function StartHerePage() {
                 Last step — want Bryan to follow up?
               </h2>
               <p className="text-brand-600 mb-6 -mt-3">
-                Add your name and email if you&apos;d like Bryan to review your answers and reach out.
-                This is optional — your recommendations appear either way.
+                To have Bryan review your answers and reach out, add your name and email address.
+                Or leave the contact fields blank — your recommendations appear either way.
               </p>
               <div className="space-y-4 mb-8">
-                <input
-                  type="text"
-                  placeholder="Your name (optional)"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
-                />
-                <input
-                  type="email"
-                  placeholder="Email address (optional)"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
-                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Field label="Name" htmlFor="sh-name">
+                    <input
+                      id="sh-name"
+                      type="text"
+                      autoComplete="name"
+                      maxLength={200}
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className={inputClass}
+                    />
+                  </Field>
+                  <Field label="Email address" htmlFor="sh-email">
+                    <input
+                      id="sh-email"
+                      type="email"
+                      autoComplete="email"
+                      maxLength={320}
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      className={inputClass}
+                    />
+                  </Field>
+                </div>
+                <Field label="Cell phone (optional)" htmlFor="sh-phone">
+                  <input
+                    id="sh-phone"
+                    type="tel"
+                    autoComplete="tel"
+                    maxLength={50}
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className={inputClass}
+                  />
+                </Field>
+                <label className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    checked={form.smsConsent}
+                    onChange={(e) => setForm({ ...form, smsConsent: e.target.checked })}
+                    className="mt-1 accent-brand-500"
+                  />
+                  <span className="text-sm text-brand-600">
+                    Optional: it&apos;s OK to text me at the cell number above. Message and data rates may apply;
+                    reply STOP to opt out.
+                  </span>
+                </label>
                 <select
                   value={form.howDidYouHear}
                   onChange={(e) => setForm({ ...form, howDidYouHear: e.target.value })}
