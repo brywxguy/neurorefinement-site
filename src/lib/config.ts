@@ -8,14 +8,28 @@ export const siteConfig = {
   owner: 'Bryan Thunstrom',
   tagline: 'Refine Movement. Revitalize Life.',
   description:
-    'Gentle, neuroplasticity-based movement learning and strengths-based coaching to help you reduce pain, improve function, and renew your life.',
+    'Gentle, neuroplasticity-based ABM NeuroMovement lessons in Carlsbad, CA to help you reduce pain, improve function, and renew your life.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://neurorefinement.com',
   location: {
     city: 'Carlsbad',
     state: 'CA',
+    postalCode: '92008',
     region: 'North County San Diego',
-    virtual: true,
+    // Never publish the street address anywhere on the site; Bryan shares it after booking.
+    studio: 'Home studio in Carlsbad, CA 92008, near Tamarack and El Camino Real.',
+    addressNote: 'Exact address provided after booking.',
+    formats: 'Lessons are in person at the home studio. The Free Intro Call is on Zoom.',
+    travel: 'Travel to clients is available at Bryan’s discretion for an additional fee.',
     googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',
+  },
+  hours: {
+    days: 'Monday–Friday',
+    time: '9 AM–2 PM',
+    closed: 'Closed weekends and Carlsbad Unified (CUSD) school holidays.',
+    byRequest: 'Evenings and weekends by request.',
+  },
+  payment: {
+    note: 'Payment is collected at time of service.',
   },
   contact: {
     // Public-facing address. Inquiry notifications go to INQUIRY_NOTIFY_EMAIL (default bryan@neurorefinement.com).
@@ -45,17 +59,30 @@ export const booking = {
   calOrigin: process.env.NEXT_PUBLIC_CAL_ORIGIN || 'https://cal.com',
   calEmbedScript: process.env.NEXT_PUBLIC_CAL_EMBED_SCRIPT || 'https://app.cal.com/embed/embed.js',
   calUsername: process.env.NEXT_PUBLIC_CAL_USERNAME || 'neurorefinement',
+  // Labels match the Cal.com event titles.
   events: {
     // New people only. Pre-call questions are collected on-site before the calendar appears.
     freeCall: {
       slug: process.env.NEXT_PUBLIC_CAL_FREE_CALL_SLUG || 'free-20-min-call',
-      label: 'Free 20-Minute Call',
+      label: 'Free Intro Call',
       duration: 20,
+      format: 'Zoom',
     },
-    lesson45: {
-      slug: process.env.NEXT_PUBLIC_CAL_LESSON_45_SLUG || '45-min-lesson',
-      label: '45-Minute Lesson',
+    // First visit for new clients. Length and price come from pricing.abm.newClientLesson.
+    newClientLesson: {
+      slug: process.env.NEXT_PUBLIC_CAL_NEW_CLIENT_LESSON_SLUG || 'new-client-lesson',
+      label: 'New Client Functional Synthesis Lesson',
+    },
+    // Existing clients only (hidden event, see existingClientUrl).
+    clientLesson: {
+      slug: 'client-lesson',
+      label: 'Functional Synthesis Lesson',
       duration: 45,
+    },
+    coachingSession: {
+      slug: process.env.NEXT_PUBLIC_CAL_COACHING_SLUG || 'coaching-session',
+      label: 'Coaching Session',
+      duration: 60,
     },
   },
   // Hidden Cal.com event (or private link) for existing clients. Only used on the
@@ -86,17 +113,31 @@ export function calUrl(eventSlug: string) {
 // ============================================================
 
 export const pricing = {
-  // 1:1 ABM Sessions
+  // ABM NeuroMovement is the overall practice. These are its 1:1 Functional Synthesis (FS)
+  // lessons, in person at the home studio. Never label a session 'ABM NeuroMovement Session'.
   abm: {
-    session60: { price: 150, duration: 60, label: 'Standard Session' },
-    session90: { price: 200, duration: 90, label: 'Deep Dive / First Visit' },
+    session: {
+      price: 150,
+      duration: 45, // approximate; always under 60
+      label: 'Functional Synthesis Lesson (1:1)',
+      shortLabel: 'FS Lesson (1:1)',
+      lengthNote: 'About 45 minutes (always under 60). Length is flexible, especially for children with special needs.',
+    },
+    newClientLesson: {
+      price: 200,
+      duration: 90,
+      label: 'New Client Functional Synthesis Lesson (1:1)',
+      shortLabel: 'New Client FS Lesson (1:1)',
+      description: 'The same one-on-one session, with extra time for discovery and conversation.',
+    },
     pack4:     { price: 540, sessions: 4, savings: '10% off', perSession: 135 },
     pack10:    { price: 1275, sessions: 10, savings: '15% off', perSession: 127.5 },
   },
 
-  // 1:1 Coaching
+  // NeuroStrengths coaching — available but not promoted on the homepage. Remote OK.
+  // Programs and the VIP day are kept for reference but not shown on the site.
   coaching: {
-    session60:  { price: 175, duration: 60, label: 'Single Session' },
+    session:    { price: 175, duration: 60, label: 'NeuroStrengths Coaching Session' },
     program6:   { price: 900, sessions: 6, label: '6-Week Program', perSession: 150 },
     program12:  { price: 1680, sessions: 12, label: '12-Week Program', savings: '20% off', perSession: 140 },
     vipDay:     { price: 750, duration: 180, label: 'VIP Half-Day', description: '3 hours of focused coaching' },
@@ -123,6 +164,9 @@ export const pricing = {
     faithFunction: { price: 19, interval: 'month', label: 'Faith + Function Community' },
   },
 } as const
+
+export const otherLessonsNote =
+  'Bryan also offers individual or group TML (Transformational Movement Lessons) and voice-guided lessons.'
 
 // ============================================================
 // AUDIO LESSON THEMES
@@ -162,9 +206,9 @@ export const navigation = {
       label: 'Services',
       children: [
         { label: 'Work With Me', href: '/work-with-me', description: 'Overview of all 1:1 services' },
-        { label: 'Functional Synthesis (ABM)', href: '/functional-synthesis', description: 'Hands-on neuroplasticity sessions' },
-        { label: 'Coaching', href: '/coaching', description: 'Life, career & business coaching' },
-        { label: 'Group Classes', href: '/classes', description: 'Transformational Movement Lessons' },
+        { label: 'Functional Synthesis (ABM)', href: '/functional-synthesis', description: 'One-on-one lessons at the Carlsbad studio' },
+        { label: 'Coaching', href: '/coaching', description: 'Strengths-based life, career & business coaching' },
+        { label: 'TML Lessons', href: '/classes', description: 'Individual or group Transformational Movement Lessons' },
         { label: 'Children with Special Needs', href: '/children', description: 'Brain-based movement for kids' },
       ],
     },

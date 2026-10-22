@@ -15,7 +15,7 @@ export type CalPrefill = {
 }
 
 interface CalEmbedProps {
-  /** Path after the Cal.com origin, e.g. "bryan/free-20-min-call" or "d/abc123/45-min-lesson". */
+  /** Path after the Cal.com origin, e.g. "bryan/free-20-min-call" or "d/abc123/new-client-lesson". */
   link: string
   origin?: string
   prefill?: CalPrefill

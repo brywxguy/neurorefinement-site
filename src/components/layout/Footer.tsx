@@ -18,9 +18,12 @@ export function Footer() {
               {siteConfig.tagline}
             </p>
             <p className="text-sm text-brand-400">
-              {siteConfig.location.city}, {siteConfig.location.state} &middot; {siteConfig.location.region}
+              {siteConfig.location.studio} {siteConfig.location.addressNote}
+            </p>
+            <p className="text-sm text-brand-400 mt-2">
+              {siteConfig.hours.days}, {siteConfig.hours.time}
               <br />
-              Virtual sessions available
+              {siteConfig.hours.byRequest}
             </p>
             <div className="text-sm mt-3 space-y-1">
               <a href={`tel:${siteConfig.contact.phoneE164}`} className="block text-brand-300 hover:text-white transition-colors">
@@ -43,8 +46,8 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li><Link href="/functional-synthesis" className="text-brand-300 hover:text-white transition-colors">Functional Synthesis (ABM)</Link></li>
               <li><Link href="/coaching" className="text-brand-300 hover:text-white transition-colors">Coaching</Link></li>
-              <li><Link href="/classes" className="text-brand-300 hover:text-white transition-colors">Group Classes</Link></li>
-              <li><Link href="/lessons" className="text-brand-300 hover:text-white transition-colors">Audio Lessons</Link></li>
+              <li><Link href="/classes" className="text-brand-300 hover:text-white transition-colors">TML Lessons</Link></li>
+              <li><Link href="/lessons" className="text-brand-300 hover:text-white transition-colors">Voice-Guided Lessons</Link></li>
               <li><Link href="/membership" className="text-brand-300 hover:text-white transition-colors">Membership</Link></li>
             </ul>
           </div>
@@ -116,8 +119,17 @@ export function Footer() {
               '@type': 'PostalAddress',
               addressLocality: siteConfig.location.city,
               addressRegion: siteConfig.location.state,
+              postalCode: siteConfig.location.postalCode,
               addressCountry: 'US',
             },
+            openingHoursSpecification: [
+              {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                opens: '09:00',
+                closes: '14:00',
+              },
+            ],
             areaServed: [
               { '@type': 'City', name: 'Carlsbad' },
               { '@type': 'AdministrativeArea', name: 'North County San Diego' },

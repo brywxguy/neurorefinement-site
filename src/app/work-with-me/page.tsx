@@ -1,11 +1,12 @@
 import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag } from '@/components/ui'
-import { ArrowRight, Brain, Sparkles, Users, Play, Heart } from 'lucide-react'
-import { pricing } from '@/lib/config'
+import { ArrowRight, Brain, Sparkles, Users, Play } from 'lucide-react'
+import { booking, pricing } from '@/lib/config'
+import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
   title: 'Work With Me',
-  description: 'Overview of all NeuroRefinement services — 1:1 ABM sessions, coaching, group classes, and digital lessons. Find the right fit for you.',
+  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons (ABM NeuroMovement) in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
 }
 
 export default function WorkWithMePage() {
@@ -39,16 +40,17 @@ export default function WorkWithMePage() {
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
                   <Brain className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Sessions</span>
+                <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Lessons</span>
               </div>
               <h2 className="font-display text-2xl text-brand-900 mb-3">Functional Synthesis (ABM)</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
-                Gentle, hands-on sessions that work with your brain&apos;s neuroplasticity. The most
-                direct path to discovering new movement options and reducing pain.
+                Gentle, hands-on one-on-one sessions that work with your brain&apos;s neuroplasticity,
+                in person at Bryan&apos;s Carlsbad home studio. The most direct path to discovering new
+                movement options and reducing pain.
               </p>
               <p className="text-sm text-brand-500">
-                60 min from ${pricing.abm.session60.price} &middot; 90 min from ${pricing.abm.session90.price} &middot;
-                Packs available
+                {pricing.abm.newClientLesson.shortLabel}: {pricing.abm.newClientLesson.duration} min, ${pricing.abm.newClientLesson.price} &middot;{' '}
+                {pricing.abm.session.shortLabel}: about {pricing.abm.session.duration} min, ${pricing.abm.session.price} &middot; In person
               </p>
             </div>
             <div className="text-center md:text-right">
@@ -73,7 +75,7 @@ export default function WorkWithMePage() {
                 Build on what&apos;s naturally strong in you.
               </p>
               <p className="text-sm text-brand-500">
-                Single sessions, 6 &amp; 12-week programs, VIP half-day available
+                {pricing.coaching.session.duration} min &middot; ${pricing.coaching.session.price} &middot; Remote or in person
               </p>
             </div>
             <div className="text-center md:text-right">
@@ -90,15 +92,15 @@ export default function WorkWithMePage() {
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
                   <Users className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">Group</span>
+                <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">Individual or Group</span>
               </div>
               <h2 className="font-display text-2xl text-brand-900 mb-3">Transformational Movement Lessons</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
-                Guided group movement explorations. Increase awareness, reduce effort, and
-                build community — all in a supportive environment.
+                Guided movement explorations, one-on-one or in a small group. Increase awareness,
+                reduce effort, and find new options — all in a supportive environment.
               </p>
               <p className="text-sm text-brand-500">
-                Drop-in ${pricing.classes.dropIn.price} &middot; 6-week series ${pricing.classes.series6.price}
+                Individual lessons by request &middot; Group drop-in ${pricing.classes.dropIn.price}
               </p>
             </div>
             <div className="text-center md:text-right">
@@ -133,6 +135,15 @@ export default function WorkWithMePage() {
             </div>
           </Card>
         </div>
+      </Section>
+
+      <Section>
+        <SectionHeader
+          eyebrow="Practical details"
+          title="Location, Hours & Payment"
+          description={`New here? Start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}).`}
+        />
+        <VisitDetails className="max-w-5xl mx-auto" />
       </Section>
     </>
   )

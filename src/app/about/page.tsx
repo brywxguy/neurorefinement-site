@@ -151,8 +151,9 @@ export default function AboutPage() {
             </p>
             <p>
               <strong>Feldenkrais-inspired Awareness Through Movement</strong> principles guide
-              our group lessons — helping you reduce unnecessary effort, expand your movement
-              vocabulary, and find more ease in everything you do.
+              our Transformational Movement Lessons (TML), individual and group — helping you
+              reduce unnecessary effort, expand your movement vocabulary, and find more ease in
+              everything you do. Voice-guided lessons let you continue at home.
             </p>
             <p>
               <strong>Strengths-based coaching</strong> ensures that what you learn in movement

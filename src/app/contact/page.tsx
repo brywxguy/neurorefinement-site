@@ -2,12 +2,12 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 import { Section } from '@/components/ui'
 import { InquiryForm } from '@/components/forms/InquiryForm'
-import { Mail, MapPin, Clock, Phone } from 'lucide-react'
+import { Mail, MapPin, Clock, Phone, CalendarDays } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with Bryan Thunstrom at NeuroRefinement. Based in Carlsbad, CA with virtual sessions available.',
+  description: 'Get in touch with Bryan Thunstrom at NeuroRefinement. In-person lessons at a home studio in Carlsbad, CA 92008; free intro calls on Zoom.',
 }
 
 export default function ContactPage() {
@@ -52,8 +52,10 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-medium text-brand-800">Location</p>
-                  <p className="text-brand-600">{siteConfig.location.city}, {siteConfig.location.state} &middot; {siteConfig.location.region}</p>
-                  <p className="text-sm text-brand-400">Virtual sessions available worldwide</p>
+                  <p className="text-brand-600">{siteConfig.location.studio}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.location.addressNote}</p>
+                  <p className="text-sm text-brand-400 mt-1">{siteConfig.location.formats}</p>
+                  <p className="text-sm text-brand-400">{siteConfig.location.travel}</p>
                   <a
                     href={siteConfig.location.googleBusinessProfile}
                     target="_blank"
@@ -62,6 +64,18 @@ export default function ContactPage() {
                   >
                     View on Google Maps
                   </a>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center shrink-0">
+                  <CalendarDays className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="font-medium text-brand-800">Hours</p>
+                  <p className="text-brand-600">{siteConfig.hours.days}, {siteConfig.hours.time}</p>
+                  <p className="text-sm text-brand-400">{siteConfig.hours.closed}</p>
+                  <p className="text-sm text-brand-400">{siteConfig.hours.byRequest}</p>
+                  <p className="text-sm text-brand-400 mt-1">{siteConfig.payment.note}</p>
                 </div>
               </div>
               <div className="flex gap-4">

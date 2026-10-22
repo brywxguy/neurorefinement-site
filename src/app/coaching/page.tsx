@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Star, Zap, Users, MessageSquare, Target } from 'lucide-react'
-import { pricing } from '@/lib/config'
+import { booking, calUrl, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
 
 export const metadata: Metadata = {
   title: 'Strengths-Based Coaching — Life, Career & Business',
-  description: 'CliftonStrengths coaching combined with mindful reframing to help you align your natural strengths with your goals. Virtual and in-person in Carlsbad, CA.',
+  description: 'NeuroStrengths coaching: CliftonStrengths combined with mindful reframing to help you align your natural strengths with your goals. 60-minute sessions, remote via Zoom or in person in Carlsbad, CA.',
 }
 
 export default function CoachingPage() {
@@ -30,7 +30,7 @@ export default function CoachingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button href="#pricing" size="lg">
-              View Packages <ArrowRight className="ml-2 w-5 h-5" />
+              Pricing &amp; Booking <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button href="/start-here" variant="outline" size="lg">
               Start Here
@@ -103,49 +103,38 @@ export default function CoachingPage() {
       {/* Pricing */}
       <Section id="pricing">
         <SectionHeader
-          eyebrow="Packages"
-          title="Coaching Options"
+          eyebrow="Pricing"
+          title="Coaching Session"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="max-w-sm mx-auto">
           <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.session60.label}</h3>
-            <p className="text-sm text-brand-500 mb-4">{pricing.coaching.session60.duration} minutes</p>
-            <PriceTag price={pricing.coaching.session60.price} />
-            <p className="text-xs text-brand-400 mt-3">Great for a first conversation</p>
-          </Card>
-
-          <Card className="text-center border-brand-300">
-            <span className="inline-block text-xs font-medium bg-brand-500 text-white px-3 py-1 rounded-full mb-4">
-              Most Popular
-            </span>
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.program6.label}</h3>
-            <PriceTag price={pricing.coaching.program6.price} />
-            <p className="text-xs text-brand-500 mt-2">${pricing.coaching.program6.perSession}/session</p>
-          </Card>
-
-          <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.program12.label}</h3>
-            <PriceTag price={pricing.coaching.program12.price} />
-            <p className="text-xs text-brand-500 mt-2">${pricing.coaching.program12.perSession}/session &middot; {pricing.coaching.program12.savings}</p>
-          </Card>
-
-          <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.vipDay.label}</h3>
-            <p className="text-sm text-brand-500 mb-4">{pricing.coaching.vipDay.description}</p>
-            <PriceTag price={pricing.coaching.vipDay.price} />
+            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.session.label}</h3>
+            <p className="text-sm text-brand-500 mb-4">{pricing.coaching.session.duration} minutes &middot; Remote or in person</p>
+            <PriceTag price={pricing.coaching.session.price} />
+            <p className="text-xs text-brand-400 mt-3">Remote sessions welcome</p>
           </Card>
         </div>
         <div className="text-center mt-8">
           <Button href="#booking" size="lg">
-            Book Your First Session <ArrowRight className="ml-2 w-5 h-5" />
+            Book a {booking.events.coachingSession.label} <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
       </Section>
 
       {/* Booking */}
       <Section variant="light" id="booking">
-        <SectionHeader eyebrow="Book now" title="Schedule a Coaching Session" />
+        <SectionHeader
+          eyebrow="Book now"
+          title="Schedule a Coaching Session"
+          description={`Book a ${booking.events.coachingSession.label} directly, or start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}) if you'd like to talk first.`}
+        />
         <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <Button href={calUrl(booking.events.coachingSession.slug)} size="lg">
+              Book a {booking.events.coachingSession.label} ({booking.events.coachingSession.duration} min) <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <p className="mt-3 text-sm text-brand-500">{siteConfig.payment.note}</p>
+          </div>
           <BookingOptions options={['freeCall']} />
         </div>
       </Section>

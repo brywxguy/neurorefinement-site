@@ -1,13 +1,14 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
-import { ArrowRight, Clock, MapPin, Video, CheckCircle } from 'lucide-react'
-import { pricing } from '@/lib/config'
+import { ArrowRight, Clock, MapPin, CheckCircle } from 'lucide-react'
+import { booking, otherLessonsNote, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
+import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
-  title: 'Functional Synthesis — ABM NeuroMovement Sessions',
-  description: 'Gentle, hands-on neuroplasticity-based sessions in Carlsbad, CA and virtually. Reduce pain, improve function, and discover new movement possibilities.',
+  title: 'Functional Synthesis Lessons (1:1) — ABM NeuroMovement',
+  description: `Gentle, hands-on one-on-one Functional Synthesis lessons (ABM NeuroMovement), about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}, in person at a home studio in Carlsbad, CA 92008. Reduce pain, improve function, and discover new movement possibilities.`,
 }
 
 export default function FunctionalSynthesisPage() {
@@ -85,6 +86,21 @@ export default function FunctionalSynthesisPage() {
             </div>
           </div>
         </div>
+        <figure className="max-w-2xl mx-auto mt-12">
+          <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/functional-integration-session.jpg"
+              alt="Bryan Thunstrom lying on a padded table receiving a gentle hands-on session from practitioner Christie Drullard Cone"
+              width={800}
+              height={600}
+              className="object-cover w-full h-full"
+            />
+          </div>
+          <figcaption className="text-xs text-brand-400 mt-3 text-center">
+            Bryan receiving a session from practitioner Christie Drullard Cone during his own recovery from
+            bilateral Thoracic Outlet Syndrome and Lyme disease
+          </figcaption>
+        </figure>
       </Section>
 
       {/* Children & Special Needs */}
@@ -148,15 +164,15 @@ export default function FunctionalSynthesisPage() {
           <div>
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
               <Image
-                src="/images/functional-integration-session.jpg"
-                alt="Gentle hands-on NeuroMovement session with a child"
+                src="/images/fs-session-child-toys.jpg"
+                alt="Bryan Thunstrom working with a child in a Functional Synthesis session while mother participates"
                 width={800}
                 height={600}
                 className="object-cover w-full h-full"
               />
             </div>
             <p className="text-xs text-brand-400 mt-3 text-center">
-              A Functional Integration session — gentle, hands-on work supporting a child&apos;s development
+              A Functional Synthesis session — gentle, playful work with a child, parent present
             </p>
           </div>
         </div>
@@ -171,23 +187,23 @@ export default function FunctionalSynthesisPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           <Card className="text-center">
             <div className="flex items-center justify-center gap-2 text-sm text-brand-500 mb-4">
-              <Clock className="w-4 h-4" /> {pricing.abm.session60.duration} min
+              <Clock className="w-4 h-4" /> {pricing.abm.newClientLesson.duration} min
             </div>
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.abm.session60.label}</h3>
-            <PriceTag price={pricing.abm.session60.price} />
-            <div className="flex items-center justify-center gap-4 mt-3 text-xs text-brand-400">
-              <span className="flex items-center gap-1"><MapPin className="w-3 h-3" /> In-person</span>
-              <span className="flex items-center gap-1"><Video className="w-3 h-3" /> Virtual</span>
-            </div>
+            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.abm.newClientLesson.label}</h3>
+            <PriceTag price={pricing.abm.newClientLesson.price} />
+            <p className="text-xs text-brand-400 mt-3">{pricing.abm.newClientLesson.description}</p>
           </Card>
 
           <Card className="text-center">
             <div className="flex items-center justify-center gap-2 text-sm text-brand-500 mb-4">
-              <Clock className="w-4 h-4" /> {pricing.abm.session90.duration} min
+              <Clock className="w-4 h-4" /> About {pricing.abm.session.duration} min
             </div>
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.abm.session90.label}</h3>
-            <PriceTag price={pricing.abm.session90.price} />
-            <p className="text-xs text-brand-400 mt-3">Recommended for first visits</p>
+            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.abm.session.label}</h3>
+            <PriceTag price={pricing.abm.session.price} />
+            <p className="text-xs text-brand-400 mt-3">{pricing.abm.session.lengthNote}</p>
+            <div className="flex items-center justify-center gap-1 mt-3 text-xs text-brand-400">
+              <MapPin className="w-3 h-3" /> In person, Carlsbad home studio
+            </div>
           </Card>
 
           <Card className="text-center border-brand-300">
@@ -205,6 +221,9 @@ export default function FunctionalSynthesisPage() {
             <p className="text-xs text-brand-500 mt-2">${pricing.abm.pack10.perSession}/session &middot; {pricing.abm.pack10.savings}</p>
           </Card>
         </div>
+        <p className="text-center text-sm text-brand-500 mt-8 max-w-2xl mx-auto">
+          {siteConfig.payment.note} {otherLessonsNote}
+        </p>
       </Section>
 
       {/* Booking */}
@@ -212,11 +231,12 @@ export default function FunctionalSynthesisPage() {
         <SectionHeader
           eyebrow="Book now"
           title="Schedule Your Session"
-          description="New here? Start with a free 20-minute call so Bryan can learn about your situation. Then choose a time that works for you."
+          description={`New here? Start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}) so Bryan can learn about your situation, then book your ${booking.events.newClientLesson.label}.`}
         />
         <div className="max-w-3xl mx-auto">
           <BookingOptions />
         </div>
+        <VisitDetails className="max-w-5xl mx-auto mt-12" />
       </Section>
 
       {/* FAQ */}
@@ -245,8 +265,16 @@ export default function FunctionalSynthesisPage() {
               answer: 'NeuroRefinement is educational wellness, not medical treatment. The approach works with your brain\'s ability to learn, which can benefit a wide range of situations. If you\'re unsure, I\'m happy to have a brief conversation to see if this might be a good fit. Please always consult with your healthcare provider about your specific medical needs.',
             },
             {
-              question: 'Do you offer virtual sessions?',
-              answer: 'Yes! While in-person Functional Synthesis sessions involve hands-on guidance, I also offer virtual consultations where I can guide you through movement explorations, assess your needs, and create a personalized plan. Virtual coaching sessions are fully available.',
+              question: 'Where are lessons held?',
+              answer: `Lessons are in person. ${siteConfig.location.studio} ${siteConfig.location.addressNote} The ${booking.events.freeCall.label} is on ${booking.events.freeCall.format}. ${siteConfig.location.travel}`,
+            },
+            {
+              question: 'How long is a session?',
+              answer: `${pricing.abm.session.lengthNote} Your first visit is a ${pricing.abm.newClientLesson.label}, ${pricing.abm.newClientLesson.duration} minutes: the same one-on-one session with extra time for discovery and conversation.`,
+            },
+            {
+              question: 'When are you available, and how do I pay?',
+              answer: `${siteConfig.hours.days}, ${siteConfig.hours.time}. ${siteConfig.hours.closed} ${siteConfig.hours.byRequest} ${siteConfig.payment.note}`,
             },
             {
               question: 'Do you work with children?',

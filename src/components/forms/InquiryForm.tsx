@@ -14,9 +14,9 @@ type ContactFormType = Extract<FormType, 'contact' | 'intensive'>
 const TOPICS = [
   'General question',
   'Functional Synthesis / ABM lessons',
+  'TML lessons (individual or group)',
+  'Voice-guided lessons',
   'Coaching',
-  'Group classes',
-  'Audio lessons',
   'Children with special needs',
   'Other',
 ]
@@ -164,11 +164,11 @@ export function InquiryForm() {
         </Field>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <Field label="In person or virtual?" htmlFor="format">
+          <Field label="Where?" htmlFor="format">
             <select id="format" name="details.format" defaultValue="" className={inputClass}>
               <option value="">Not sure yet</option>
-              <option value="In person (Carlsbad)">In person (Carlsbad)</option>
-              <option value="Virtual">Virtual</option>
+              <option value="In person (Carlsbad home studio)">In person (Carlsbad home studio)</option>
+              <option value="Travel to me (additional fee)">Travel to me (at Bryan&apos;s discretion, additional fee)</option>
             </select>
           </Field>
           <Field label="Preferred timing" htmlFor="timing" hint="e.g. “mid-March” or “flexible”">
