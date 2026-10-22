@@ -52,8 +52,13 @@ const optionalText = (max: number) =>
 export const inquirySchema = z
   .object({
     form_type: z.enum(FORM_TYPES),
-    name: z.string().trim().min(1, 'Please enter your name.').max(200),
-    email: z.string().trim().toLowerCase().email('Please enter a valid email address.').max(320),
+    name: z.string({ required_error: 'Please enter your name.' }).trim().min(1, 'Please enter your name.').max(200),
+    email: z
+      .string({ required_error: 'Please enter your email address.' })
+      .trim()
+      .toLowerCase()
+      .email('Please enter a valid email address.')
+      .max(320),
     phone: optionalText(50),
     who_for: optionalText(100),
     concern: optionalText(2000),
@@ -79,9 +84,9 @@ export const inquirySchema = z
       if (data.consent_followup !== true) {
         ctx.addIssue({ code: 'custom', path: ['consent_followup'], message: 'Please agree to a personal follow-up to get the lesson.' })
       }
-      if (data.consent_sms && !data.phone) {
-        ctx.addIssue({ code: 'custom', path: ['phone'], message: 'Add a cell number to get texts, or uncheck that box.' })
-      }
+    }
+    if (data.consent_sms && !data.phone) {
+      ctx.addIssue({ code: 'custom', path: ['phone'], message: 'Add a cell number to get texts, or uncheck that box.' })
     }
     if (data.form_type === 'free_call') {
       if (!data.who_for) {
