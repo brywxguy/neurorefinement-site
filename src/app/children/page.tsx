@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
-import { Button, Section, SectionHeader, FAQ } from '@/components/ui'
+import { Button, Section, SectionHeader, FAQ, ImageCaption } from '@/components/ui'
 import { ArrowRight, Heart, Brain, Sparkles, Users, CheckCircle } from 'lucide-react'
 import { booking, pricing, siteConfig } from '@/lib/config'
 
@@ -136,9 +136,8 @@ export default function ChildrenPage() {
             <p>
               Sessions are ${pricing.abm.session.price}, and your child&apos;s first visit is a{' '}
               {pricing.abm.newClientLesson.label}, {pricing.abm.newClientLesson.duration} minutes, $
-              {pricing.abm.newClientLesson.price}, with extra time for discovery and conversation with you.
-              Lessons are in person: {siteConfig.location.studio} {siteConfig.location.addressNote}{' '}
-              {siteConfig.payment.note}
+              {pricing.abm.newClientLesson.price}, with extra time for discovery and conversation with you.{' '}
+              {siteConfig.location.short} {siteConfig.payment.note}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
@@ -170,9 +169,9 @@ export default function ChildrenPage() {
               />
             </div>
           </div>
-          <p className="text-center text-sm text-brand-400 mt-4 italic">
+          <ImageCaption>
             Real Functional Synthesis sessions with children — gentle, playful, and always with family present.
-          </p>
+          </ImageCaption>
         </div>
       </Section>
     </>

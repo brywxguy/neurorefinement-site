@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
-import { ArrowRight, Star, Zap, Users, MessageSquare, Target } from 'lucide-react'
+import { Button, Section, SectionHeader, Card, PricingCard, FAQ } from '@/components/ui'
+import { ArrowRight, Clock, Star, Zap, Users, MessageSquare, Target } from 'lucide-react'
 import { booking, calUrl, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
 
@@ -106,13 +106,13 @@ export default function CoachingPage() {
           eyebrow="Pricing"
           title="Coaching Session"
         />
-        <div className="max-w-sm mx-auto">
-          <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.session.label}</h3>
-            <p className="text-sm text-brand-500 mb-4">{pricing.coaching.session.duration} minutes &middot; Remote or in person</p>
-            <PriceTag price={pricing.coaching.session.price} />
-            <p className="text-xs text-brand-400 mt-3">Remote sessions welcome</p>
-          </Card>
+        <div className="grid max-w-sm mx-auto">
+          <PricingCard
+            meta={<><Clock className="w-4 h-4" /> {pricing.coaching.session.duration} minutes &middot; Remote or in person</>}
+            title={pricing.coaching.session.label}
+            price={pricing.coaching.session.price}
+            note="Remote sessions welcome"
+          />
         </div>
         <div className="text-center mt-8">
           <Button href="#booking" size="lg">

@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
-import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
+import Link from 'next/link'
+import { Button, Section, SectionHeader, PricingCard, ImageCaption, FAQ } from '@/components/ui'
 import { ArrowRight, Clock, MapPin, CheckCircle } from 'lucide-react'
 import { booking, otherLessonsNote, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
@@ -8,8 +9,15 @@ import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
   title: 'Functional Synthesis Lessons (1:1) | Anat Baniel Method NeuroMovement',
-  description: `NeuroRefinement offers gentle, hands-on one-on-one Functional Synthesis lessons based on the Anat Baniel Method NeuroMovement, about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}, in person at a home studio in Carlsbad, CA 92008. Reduce pain, improve function, and discover new movement possibilities.`,
+  description:
+    'Gentle, hands-on Functional Synthesis lessons (1:1) that help your brain learn new options. Improve function, reduce pain, and discover new movement possibilities.',
 }
+
+const studioLocation = (
+  <>
+    <MapPin className="w-4 h-4 shrink-0 mt-0.5" /> In person, Carlsbad home studio
+  </>
+)
 
 export default function FunctionalSynthesisPage() {
   return (
@@ -89,17 +97,16 @@ export default function FunctionalSynthesisPage() {
         <figure className="max-w-2xl mx-auto mt-12">
           <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
-              src="/images/functional-integration-session.jpg"
-              alt="Bryan Thunstrom lying on a padded table receiving a gentle hands-on session from practitioner Christie Drullard Cone"
+              src="/images/hands-on-session-adult.jpg"
+              alt="A practitioner guiding a gentle hands-on session with an adult lying fully clothed on a padded table"
               width={800}
               height={600}
               className="object-cover w-full h-full"
             />
           </div>
-          <figcaption className="text-xs text-brand-400 mt-3 text-center">
-            Bryan receiving a session from practitioner Christie Drullard Cone during his own recovery from
-            bilateral Thoracic Outlet Syndrome and Lyme disease
-          </figcaption>
+          <ImageCaption as="figcaption">
+            A gentle hands-on session with an adult — lying comfortably, fully clothed, on a low padded table
+          </ImageCaption>
         </figure>
       </Section>
 
@@ -171,9 +178,7 @@ export default function FunctionalSynthesisPage() {
                 className="object-cover w-full h-full"
               />
             </div>
-            <p className="text-xs text-brand-400 mt-3 text-center">
-              A Functional Synthesis session — gentle, playful work with a child, parent present
-            </p>
+            <ImageCaption>A real Functional Synthesis session with a child — gentle, playful, and with family present.</ImageCaption>
           </div>
         </div>
       </Section>
@@ -184,45 +189,40 @@ export default function FunctionalSynthesisPage() {
           eyebrow="Pricing"
           title="Session Options"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          <Card className="text-center">
-            <div className="flex items-center justify-center gap-2 text-sm text-brand-500 mb-4">
-              <Clock className="w-4 h-4" /> {pricing.abm.newClientLesson.duration} min
-            </div>
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.abm.newClientLesson.label}</h3>
-            <PriceTag price={pricing.abm.newClientLesson.price} />
-            <p className="text-xs text-brand-400 mt-3">{pricing.abm.newClientLesson.description}</p>
-          </Card>
-
-          <Card className="text-center">
-            <div className="flex items-center justify-center gap-2 text-sm text-brand-500 mb-4">
-              <Clock className="w-4 h-4" /> About {pricing.abm.session.duration} min
-            </div>
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.abm.session.label}</h3>
-            <PriceTag price={pricing.abm.session.price} />
-            <p className="text-xs text-brand-400 mt-3">{pricing.abm.session.lengthNote}</p>
-            <div className="flex items-center justify-center gap-1 mt-3 text-xs text-brand-400">
-              <MapPin className="w-3 h-3" /> In person, Carlsbad home studio
-            </div>
-          </Card>
-
-          <Card className="text-center border-brand-300">
-            <span className="inline-block text-xs font-medium bg-brand-500 text-white px-3 py-1 rounded-full mb-4">
-              Best Value
-            </span>
-            <h3 className="font-display text-lg text-brand-800 mb-2">4-Session Pack</h3>
-            <PriceTag price={pricing.abm.pack4.price} />
-            <p className="text-xs text-brand-500 mt-2">${pricing.abm.pack4.perSession}/session &middot; {pricing.abm.pack4.savings}</p>
-          </Card>
-
-          <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">10-Session Pack</h3>
-            <PriceTag price={pricing.abm.pack10.price} />
-            <p className="text-xs text-brand-500 mt-2">${pricing.abm.pack10.perSession}/session &middot; {pricing.abm.pack10.savings}</p>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <PricingCard
+            meta={<><Clock className="w-4 h-4" /> {pricing.abm.newClientLesson.duration} min</>}
+            title={pricing.abm.newClientLesson.label}
+            price={pricing.abm.newClientLesson.price}
+            note={pricing.abm.newClientLesson.description}
+            footer={studioLocation}
+          />
+          <PricingCard
+            meta={<><Clock className="w-4 h-4" /> About {pricing.abm.session.duration} min</>}
+            title={pricing.abm.session.label}
+            price={pricing.abm.session.price}
+            note={pricing.abm.session.lengthNote}
+            footer={studioLocation}
+          />
+          <PricingCard
+            featured
+            badge="Best Value"
+            title="4-Session Pack"
+            price={pricing.abm.pack4.price}
+            note={<>${pricing.abm.pack4.perSession}/session &middot; {pricing.abm.pack4.savings}</>}
+          />
+          <PricingCard
+            title="10-Session Pack"
+            price={pricing.abm.pack10.price}
+            note={<>${pricing.abm.pack10.perSession}/session &middot; {pricing.abm.pack10.savings}</>}
+          />
         </div>
-        <p className="text-center text-sm text-brand-500 mt-8 max-w-2xl mx-auto">
-          {siteConfig.payment.note} {otherLessonsNote}
+        <p className="text-center text-brand-600 leading-relaxed mt-8 max-w-2xl mx-auto">
+          {siteConfig.payment.note} {otherLessonsNote}{' '}
+          <Link href="/bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
+            See all bundles &amp; packs
+          </Link>
+          .
         </p>
       </Section>
 

@@ -16,6 +16,29 @@ interface ButtonProps {
   disabled?: boolean
 }
 
+const buttonBase = 'inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500'
+
+const buttonVariants = {
+  primary: 'bg-brand-500 text-white hover:bg-brand-600 shadow-warm hover:shadow-warm-lg',
+  secondary: 'bg-ocean-500 text-white hover:bg-ocean-600 shadow-warm',
+  outline: 'border-2 border-brand-500 text-brand-600 hover:bg-brand-50',
+  ghost: 'text-brand-600 hover:bg-brand-50',
+}
+
+// Hover styles keyed to a parent `group` (e.g. a clickable Card) instead of the element itself.
+const buttonGroupHoverVariants = {
+  primary: 'group-hover:bg-brand-600 group-hover:shadow-warm-lg',
+  secondary: 'group-hover:bg-ocean-600',
+  outline: 'group-hover:bg-brand-50',
+  ghost: 'group-hover:bg-brand-50',
+}
+
+const buttonSizes = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-sm',
+  lg: 'px-8 py-4 text-base',
+}
+
 export function Button({
   href,
   variant = 'primary',
@@ -26,22 +49,7 @@ export function Button({
   type = 'button',
   disabled,
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500'
-
-  const variants = {
-    primary: 'bg-brand-500 text-white hover:bg-brand-600 shadow-warm hover:shadow-warm-lg',
-    secondary: 'bg-ocean-500 text-white hover:bg-ocean-600 shadow-warm',
-    outline: 'border-2 border-brand-500 text-brand-600 hover:bg-brand-50',
-    ghost: 'text-brand-600 hover:bg-brand-50',
-  }
-
-  const sizes = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-sm',
-    lg: 'px-8 py-4 text-base',
-  }
-
-  const classes = cn(baseStyles, variants[variant], sizes[size], disabled && 'opacity-50 cursor-not-allowed', className)
+  const classes = cn(buttonBase, buttonVariants[variant], buttonSizes[size], disabled && 'opacity-50 cursor-not-allowed', className)
 
   if (href) {
     return <Link href={href} className={classes}>{children}</Link>
@@ -51,6 +59,21 @@ export function Button({
     <button type={type} onClick={onClick} disabled={disabled} className={classes}>
       {children}
     </button>
+  )
+}
+
+/** Looks like a Button but isn't interactive; use inside a clickable Card so there's a single link. */
+export function ButtonLabel({
+  variant = 'primary',
+  size = 'md',
+  children,
+  className,
+  id,
+}: Pick<ButtonProps, 'variant' | 'size' | 'children' | 'className'> & { id?: string }) {
+  return (
+    <span id={id} className={cn(buttonBase, buttonVariants[variant].replace(/hover:\S+/g, ''), buttonGroupHoverVariants[variant], buttonSizes[size], className)}>
+      {children}
+    </span>
   )
 }
 
@@ -89,9 +112,11 @@ interface CardProps {
   className?: string
   hover?: boolean
   href?: string
+  /** Space-separated ids that name the link when `href` is set (keeps the accessible name short). */
+  labelledBy?: string
 }
 
-export function Card({ children, className, hover = true, href }: CardProps) {
+export function Card({ children, className, hover = true, href, labelledBy }: CardProps) {
   const classes = cn(
     'bg-white rounded-2xl border border-brand-100/50 p-6 md:p-8',
     hover && 'hover:shadow-card hover:-translate-y-0.5 transition-all duration-300',
@@ -99,7 +124,15 @@ export function Card({ children, className, hover = true, href }: CardProps) {
   )
 
   if (href) {
-    return <Link href={href} className={cn(classes, 'block')}>{children}</Link>
+    return (
+      <Link
+        href={href}
+        aria-labelledby={labelledBy}
+        className={cn(classes, 'group cursor-pointer', !/\b(grid|flex)\b/.test(className ?? '') && 'block')}
+      >
+        {children}
+      </Link>
+    )
   }
 
   return <div className={classes}>{children}</div>
@@ -157,9 +190,10 @@ interface PriceTagProps {
   period?: string
   originalPrice?: number
   size?: 'sm' | 'md' | 'lg'
+  className?: string
 }
 
-export function PriceTag({ price, period, originalPrice, size = 'md' }: PriceTagProps) {
+export function PriceTag({ price, period, originalPrice, size = 'md', className }: PriceTagProps) {
   const sizes = {
     sm: 'text-xl',
     md: 'text-3xl',
@@ -167,7 +201,7 @@ export function PriceTag({ price, period, originalPrice, size = 'md' }: PriceTag
   }
 
   return (
-    <div className="flex items-baseline gap-2">
+    <div className={cn('flex items-baseline gap-2', className)}>
       {originalPrice && (
         <span className="text-brand-400 line-through text-lg">${originalPrice}</span>
       )}
@@ -179,6 +213,47 @@ export function PriceTag({ price, period, originalPrice, size = 'md' }: PriceTag
       )}
     </div>
   )
+}
+
+// ============================================================
+// PRICING CARD
+// Place inside a grid; each card spans 5 subgrid rows (meta, title, price,
+// note, footer) so rows line up across every card in the same grid row.
+// ============================================================
+interface PricingCardProps {
+  title: string
+  price: number
+  period?: string
+  meta?: ReactNode
+  badge?: string
+  note?: ReactNode
+  footer?: ReactNode
+  featured?: boolean
+}
+
+export function PricingCard({ title, price, period, meta, badge, note, footer, featured }: PricingCardProps) {
+  return (
+    <Card className={cn('row-span-5 grid grid-rows-subgrid gap-0 text-center', featured && 'border-brand-300')}>
+      <div className="flex items-center justify-center gap-2 text-sm text-brand-500 mb-4">
+        {badge ? (
+          <span className="inline-block text-xs font-medium bg-brand-500 text-white px-3 py-1 rounded-full">{badge}</span>
+        ) : (
+          meta
+        )}
+      </div>
+      <h3 className="font-display text-xl text-brand-800 mb-3">{title}</h3>
+      <PriceTag price={price} period={period} className="justify-center mb-3" />
+      <p className="text-sm text-brand-600 leading-relaxed">{note}</p>
+      <div className="flex items-start justify-center gap-2 text-sm text-brand-500 mt-4">{footer}</div>
+    </Card>
+  )
+}
+
+// ============================================================
+// IMAGE CAPTION
+// ============================================================
+export function ImageCaption({ children, as: Tag = 'p', className }: { children: ReactNode; as?: 'p' | 'figcaption'; className?: string }) {
+  return <Tag className={cn('mt-3 text-sm text-brand-500 italic text-center', className)}>{children}</Tag>
 }
 
 // ============================================================

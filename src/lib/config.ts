@@ -8,7 +8,7 @@ export const siteConfig = {
   owner: 'Bryan Thunstrom',
   tagline: 'Refine Movement. Revitalize Life.',
   description:
-    'NeuroRefinement offers gentle, neuroplasticity-based Anat Baniel Method NeuroMovement lessons in Carlsbad, CA to help you reduce pain, improve function, and renew your life.',
+    'Gentle, neuroplasticity-based movement learning and strengths-based coaching to help you reduce pain, improve function, and renew your life.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://neurorefinement.com',
   location: {
     city: 'Carlsbad',
@@ -18,13 +18,16 @@ export const siteConfig = {
     // Never publish the street address anywhere on the site; Bryan shares it after booking.
     studio: 'Home studio in Carlsbad, CA 92008, near Tamarack and El Camino Real.',
     addressNote: 'Exact address provided after booking.',
+    short: 'In person in Carlsbad; exact address after booking.',
     formats: 'Lessons are in person at the home studio. The Free Intro Call is on Zoom.',
     travel: 'Travel to clients is available at Bryan’s discretion for an additional fee.',
     googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',
   },
   hours: {
     days: 'Monday–Friday',
+    daysShort: 'Mon–Fri',
     time: '9 AM–2 PM',
+    timeShort: '9–2',
     closed: 'Closed weekends and Carlsbad Unified (CUSD) school holidays.',
     byRequest: 'Evenings and weekends by request.',
   },
@@ -38,11 +41,12 @@ export const siteConfig = {
     phone: '(760) 607-6000',
     phoneE164: '+17606076000',
   },
+  // Footer icons appear only for non-empty URLs (Google uses location.googleBusinessProfile).
   social: {
     substack: '',   // TODO: add Substack URL
-    x: '',          // TODO: add X (Twitter) URL
+    x: '',          // TODO: add X profile URL, e.g. https://x.com/<handle>
     facebook: '',   // TODO: add Facebook URL
-    instagram: '',  // TODO: add Instagram URL
+    instagram: '',  // TODO: add Instagram URL, e.g. https://www.instagram.com/<handle>
     youtube: '',    // TODO: add YouTube URL
   },
 }
@@ -166,6 +170,15 @@ export const pricing = {
   },
 } as const
 
+// The free intro recording is 30+ minutes, so copy shouldn't state a shorter length.
+export const freeLesson = {
+  label: 'Free Lesson',
+  title: 'The Reset',
+  href: process.env.NEXT_PUBLIC_FREE_LESSON_URL || '/lessons/free-intro-reset',
+  // TODO: set to the hosted recording (mp3/m4a) so /lessons/free-intro-reset can play it.
+  audioUrl: process.env.NEXT_PUBLIC_FREE_LESSON_AUDIO_URL || '',
+}
+
 export const otherLessonsNote =
   'Bryan also offers individual or group TML (Transformational Movement Lessons) and voice-guided lessons.'
 
@@ -210,6 +223,7 @@ export const navigation = {
         { label: 'Functional Synthesis (ABM)', href: '/functional-synthesis', description: 'One-on-one lessons at the Carlsbad studio' },
         { label: 'Coaching', href: '/coaching', description: 'Strengths-based life, career & business coaching' },
         { label: 'TML Lessons', href: '/classes', description: 'Individual or group Transformational Movement Lessons' },
+        { label: 'Bundles & Packs', href: '/bundles#lesson-packs', description: 'Functional Synthesis lesson packs' },
         { label: 'Children with Special Needs', href: '/children', description: 'Brain-based movement for kids' },
       ],
     },
@@ -217,7 +231,7 @@ export const navigation = {
       label: 'Learn',
       children: [
         { label: 'Audio Lessons', href: '/lessons', description: 'Voice-guided movement library' },
-        { label: 'Bundles & Packs', href: '/bundles', description: 'Curated lesson collections' },
+        { label: 'Bundles & Packs', href: '/bundles#audio-bundles', description: 'Audio lesson bundles' },
         { label: 'Membership', href: '/membership', description: 'Ongoing access & community' },
       ],
     },

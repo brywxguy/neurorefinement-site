@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, TestimonialCard } from '@/components/ui'
-import { siteConfig, pricing, booking, lessonThemes, testimonials, otherLessonsNote } from '@/lib/config'
+import { siteConfig, pricing, booking, lessonThemes, testimonials, otherLessonsNote, freeLesson } from '@/lib/config'
 import { ThemeIcon } from '@/components/ui/ThemeIcon'
-import { VisitDetails } from '@/components/booking/VisitDetails'
+import { VisitStrip } from '@/components/booking/VisitStrip'
 import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, Baby } from 'lucide-react'
 
 export default function HomePage() {
@@ -40,7 +40,7 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="mt-6 text-sm text-brand-400">
-              {siteConfig.location.studio} {siteConfig.location.addressNote}
+              {siteConfig.location.short}
             </p>
           </div>
 
@@ -158,8 +158,8 @@ export default function HomePage() {
             {
               step: '02',
               title: 'Try a Free Lesson',
-              description: 'Experience a gentle 15-minute guided movement lesson. No equipment needed — just a comfortable place to lie down.',
-              cta: { label: 'Free Lesson', href: '/lessons/free-intro' },
+              description: 'Experience a gentle guided movement lesson. No equipment needed — just a comfortable place to lie down.',
+              cta: { label: freeLesson.label, href: freeLesson.href },
             },
             {
               step: '03',
@@ -196,8 +196,8 @@ export default function HomePage() {
             {
               icon: <Brain className="w-6 h-6" />,
               title: 'Functional Synthesis (ABM)',
-              subtitle: 'One-on-one Functional Synthesis lessons (ABM NeuroMovement), in person',
-              description: `Gentle, precise movement lessons guided by touch. Your brain learns new patterns for better coordination, less pain, and expanded possibilities. New clients start with a ${pricing.abm.newClientLesson.label}.`,
+              subtitle: '1:1 hands-on lessons',
+              description: 'Gentle, precise movement lessons guided by touch. Your brain learns new patterns for better coordination, less pain, and expanded possibilities.',
               price: `$${pricing.abm.session.price} · about ${pricing.abm.session.duration} min`,
               href: '/functional-synthesis',
             },
@@ -231,7 +231,7 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
-        <p className="text-center text-sm text-brand-500 mt-8">{otherLessonsNote}</p>
+        <p className="text-center text-brand-600 leading-relaxed mt-8 max-w-2xl mx-auto">{otherLessonsNote}</p>
       </Section>
 
       {/* ============================================================
@@ -331,8 +331,8 @@ export default function HomePage() {
           title="Getting Started Is Simple"
           description={`Start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}). Your first in-person visit is a ${pricing.abm.newClientLesson.label}: ${pricing.abm.newClientLesson.duration} minutes, $${pricing.abm.newClientLesson.price}, with extra time for discovery and conversation. After that, sessions are about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}.`}
         />
-        <VisitDetails className="max-w-5xl mx-auto" />
-        <div className="text-center mt-10">
+        <VisitStrip showIntroCall={false} />
+        <div className="text-center mt-8">
           <Button href="/functional-synthesis#booking" size="lg">
             Book a {booking.events.freeCall.label} <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
@@ -405,7 +405,7 @@ export default function HomePage() {
           </h2>
           <p className="text-lg text-brand-600 leading-relaxed mb-8">
             Take the 3-minute questionnaire and get your personalized starting point —
-            plus a free 15-minute movement lesson.
+            plus a free movement lesson.
           </p>
           <Button href="/start-here" size="lg">
             Start Your Journey <ArrowRight className="ml-2 w-5 h-5" />

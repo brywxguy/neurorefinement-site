@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button, Section, SectionHeader, Card, PriceTag } from '@/components/ui'
 import { Play, Clock, ArrowRight, Filter } from 'lucide-react'
-import { lessonThemes, pricing } from '@/lib/config'
+import { freeLesson, lessonThemes, pricing } from '@/lib/config'
 import { ThemeIcon } from '@/components/ui/ThemeIcon'
 
 export const metadata: Metadata = {
@@ -24,9 +24,9 @@ const sampleLessons = [
   },
   {
     slug: 'free-intro-reset',
-    title: 'The 15-Minute Reset',
+    title: freeLesson.title,
     theme: 'morning-routines',
-    duration: 15,
+    duration: '30+',
     difficulty: 'gentle' as const,
     description: 'Your free introduction to NeuroRefinement. A gentle full-body scan and reset you can do anywhere.',
     price: 0,
@@ -100,7 +100,7 @@ export default function LessonsPage() {
             <Button href="#free" variant="primary">
               <Play className="mr-2 w-4 h-4" /> Try Free Lesson
             </Button>
-            <Button href="/bundles" variant="outline">
+            <Button href="/bundles#audio-bundles" variant="outline">
               Browse Bundles
             </Button>
           </div>
@@ -183,13 +183,17 @@ export default function LessonsPage() {
             Start Free, Then Go Deeper
           </h2>
           <p className="text-lg text-brand-600 mb-8">
-            Try the free 15-Minute Reset, then choose individual lessons for ${pricing.lessons.single.price},
-            save with a {pricing.lessons.bundle5.label} for ${pricing.lessons.bundle5.price},
+            Try the free lesson, then choose individual lessons for ${pricing.lessons.single.price},
+            save with a{' '}
+            <Link href="/bundles#audio-bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
+              {pricing.lessons.bundle5.label}
+            </Link>{' '}
+            for ${pricing.lessons.bundle5.price},
             or get unlimited access with membership at ${pricing.membership.standard.price}/month.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/lessons/free-intro-reset" size="lg">
-              <Play className="mr-2 w-5 h-5" /> Free 15-Min Lesson
+            <Button href={freeLesson.href} size="lg">
+              <Play className="mr-2 w-5 h-5" /> {freeLesson.label}
             </Button>
             <Button href="/membership" variant="outline" size="lg">
               Explore Membership

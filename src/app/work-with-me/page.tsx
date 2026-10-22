@@ -1,12 +1,13 @@
 import { Metadata } from 'next'
-import { Button, Section, SectionHeader, Card, PriceTag } from '@/components/ui'
+import { ButtonLabel, Section, Card } from '@/components/ui'
 import { ArrowRight, Brain, Sparkles, Users, Play } from 'lucide-react'
-import { booking, pricing } from '@/lib/config'
-import { VisitDetails } from '@/components/booking/VisitDetails'
+import Link from 'next/link'
+import { pricing } from '@/lib/config'
+import { VisitStrip } from '@/components/booking/VisitStrip'
 
 export const metadata: Metadata = {
   title: 'Work With Me',
-  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons based on the Anat Baniel Method NeuroMovement in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
+  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons based on the Anat Baniel Method NeuroMovement, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
 }
 
 export default function WorkWithMePage() {
@@ -34,7 +35,7 @@ export default function WorkWithMePage() {
       <Section variant="light">
         <div className="space-y-8">
           {/* ABM */}
-          <Card hover={false} className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <Card href="/functional-synthesis" labelledBy="fs-title fs-cta" className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
@@ -42,11 +43,11 @@ export default function WorkWithMePage() {
                 </div>
                 <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Lessons</span>
               </div>
-              <h2 className="font-display text-2xl text-brand-900 mb-3">Functional Synthesis (ABM)</h2>
+              <h2 id="fs-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Functional Synthesis (ABM)</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
-                Gentle, hands-on one-on-one sessions that work with your brain&apos;s neuroplasticity,
-                in person at Bryan&apos;s Carlsbad home studio. The most direct path to discovering new
-                movement options and reducing pain.
+                Gentle, hands-on sessions that work with your brain&apos;s neuroplasticity. The most
+                direct path to discovering new movement options for easier movement, better balance
+                and coordination, and less pain and discomfort.
               </p>
               <p className="text-sm text-brand-500">
                 {pricing.abm.newClientLesson.shortLabel}: {pricing.abm.newClientLesson.duration} min, ${pricing.abm.newClientLesson.price} &middot;{' '}
@@ -54,14 +55,14 @@ export default function WorkWithMePage() {
               </p>
             </div>
             <div className="text-center md:text-right">
-              <Button href="/functional-synthesis">
+              <ButtonLabel id="fs-cta">
                 Learn More <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              </ButtonLabel>
             </div>
           </Card>
 
           {/* Coaching */}
-          <Card hover={false} className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <Card href="/coaching" labelledBy="coaching-title coaching-cta" className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
@@ -69,7 +70,7 @@ export default function WorkWithMePage() {
                 </div>
                 <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Coaching</span>
               </div>
-              <h2 className="font-display text-2xl text-brand-900 mb-3">Strengths-Based Coaching</h2>
+              <h2 id="coaching-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Strengths-Based Coaching</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
                 Life, career, and business coaching using CliftonStrengths and mindful reframing.
                 Build on what&apos;s naturally strong in you.
@@ -79,14 +80,14 @@ export default function WorkWithMePage() {
               </p>
             </div>
             <div className="text-center md:text-right">
-              <Button href="/coaching">
+              <ButtonLabel id="coaching-cta">
                 Learn More <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              </ButtonLabel>
             </div>
           </Card>
 
           {/* Classes */}
-          <Card hover={false} className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <Card href="/classes" labelledBy="tml-title tml-cta" className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
@@ -94,7 +95,7 @@ export default function WorkWithMePage() {
                 </div>
                 <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">Individual or Group</span>
               </div>
-              <h2 className="font-display text-2xl text-brand-900 mb-3">Transformational Movement Lessons</h2>
+              <h2 id="tml-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Transformational Movement Lessons</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
                 Guided movement explorations, one-on-one or in a small group. Increase awareness,
                 reduce effort, and find new options — all in a supportive environment.
@@ -104,14 +105,14 @@ export default function WorkWithMePage() {
               </p>
             </div>
             <div className="text-center md:text-right">
-              <Button href="/classes">
+              <ButtonLabel id="tml-cta">
                 See Schedule <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              </ButtonLabel>
             </div>
           </Card>
 
           {/* Lessons */}
-          <Card hover={false} className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <Card href="/lessons" labelledBy="lessons-title lessons-cta" className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
@@ -119,7 +120,7 @@ export default function WorkWithMePage() {
                 </div>
                 <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">On Demand</span>
               </div>
-              <h2 className="font-display text-2xl text-brand-900 mb-3">Audio Lesson Library</h2>
+              <h2 id="lessons-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Audio Lesson Library</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
                 Voice-guided movement lessons organized by theme. Your anytime companion
                 for backs, posture, surfing, stress, TOS, and 15+ more themes.
@@ -129,21 +130,20 @@ export default function WorkWithMePage() {
               </p>
             </div>
             <div className="text-center md:text-right">
-              <Button href="/lessons">
+              <ButtonLabel id="lessons-cta">
                 Browse Library <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              </ButtonLabel>
             </div>
           </Card>
         </div>
-      </Section>
-
-      <Section>
-        <SectionHeader
-          eyebrow="Practical details"
-          title="Location, Hours & Payment"
-          description={`New here? Start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}).`}
-        />
-        <VisitDetails className="max-w-5xl mx-auto" />
+        <p className="text-center text-brand-600 leading-relaxed mt-8">
+          Looking for lesson packs or audio bundles?{' '}
+          <Link href="/bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
+            See Bundles &amp; Packs
+          </Link>
+          .
+        </p>
+        <VisitStrip className="max-w-3xl mx-auto mt-8 rounded-2xl bg-sand-50 border border-brand-100/50 px-6 py-5" />
       </Section>
     </>
   )

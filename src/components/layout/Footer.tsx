@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { siteConfig } from '@/lib/config'
 import { Logo } from '@/components/ui/Logo'
+import { SocialLinks } from './SocialLinks'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -17,15 +18,12 @@ export function Footer() {
             <p className="text-sm text-brand-300 leading-relaxed mb-4">
               {siteConfig.tagline}
             </p>
-            <p className="text-sm text-brand-400">
-              {siteConfig.location.studio} {siteConfig.location.addressNote}
-            </p>
-            <p className="text-sm text-brand-400 mt-2">
-              {siteConfig.hours.days}, {siteConfig.hours.time}
+            <p className="text-sm text-brand-300 leading-relaxed mb-4">
+              {siteConfig.location.city}, {siteConfig.location.state}
               <br />
-              {siteConfig.hours.byRequest}
+              {siteConfig.hours.daysShort} {siteConfig.hours.time}
             </p>
-            <div className="text-sm mt-3 space-y-1">
+            <div className="text-sm space-y-2.5">
               <a href={`tel:${siteConfig.contact.phoneE164}`} className="block text-brand-300 hover:text-white transition-colors">
                 {siteConfig.contact.phone}
               </a>
@@ -38,6 +36,7 @@ export function Footer() {
                 Find us on Google
               </a>
             </div>
+            <SocialLinks />
           </div>
 
           {/* Services */}
@@ -48,6 +47,7 @@ export function Footer() {
               <li><Link href="/coaching" className="text-brand-300 hover:text-white transition-colors">Coaching</Link></li>
               <li><Link href="/classes" className="text-brand-300 hover:text-white transition-colors">TML Lessons</Link></li>
               <li><Link href="/lessons" className="text-brand-300 hover:text-white transition-colors">Voice-Guided Lessons</Link></li>
+              <li><Link href="/bundles" className="text-brand-300 hover:text-white transition-colors">Bundles &amp; Packs</Link></li>
               <li><Link href="/membership" className="text-brand-300 hover:text-white transition-colors">Membership</Link></li>
             </ul>
           </div>
@@ -68,7 +68,7 @@ export function Footer() {
           <div>
             <h3 className="font-display text-white text-lg mb-4">Stay Connected</h3>
             <p className="text-sm text-brand-300 mb-4">
-              Get a free 15-minute movement lesson and weekly insights on neuroplasticity, movement, and mindful living.
+              Get a free movement lesson and weekly insights on neuroplasticity, movement, and mindful living.
             </p>
             <form className="flex gap-2" action="/api/newsletter" method="POST">
               <input
@@ -114,7 +114,7 @@ export function Footer() {
             url: siteConfig.url,
             telephone: siteConfig.contact.phoneE164,
             hasMap: siteConfig.location.googleBusinessProfile,
-            sameAs: [siteConfig.location.googleBusinessProfile],
+            sameAs: [siteConfig.location.googleBusinessProfile, siteConfig.social.x, siteConfig.social.instagram].filter(Boolean),
             address: {
               '@type': 'PostalAddress',
               addressLocality: siteConfig.location.city,
