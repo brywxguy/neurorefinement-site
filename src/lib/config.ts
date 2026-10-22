@@ -79,7 +79,6 @@ export const booking = {
       label: 'Client Lesson',
       duration: 45,
     },
-    // Coaching is offered by request for now; not linked from the main nav.
     coachingSession: {
       slug: process.env.NEXT_PUBLIC_CAL_COACHING_SLUG || 'coaching-session',
       label: 'Coaching Session',
@@ -132,8 +131,8 @@ export const pricing = {
     pack10:    { price: 1275, sessions: 10, savings: '15% off', perSession: 127.5 },
   },
 
-  // NeuroStrengths coaching — a later phase, offered by request. Remote OK.
-  // Programs and the VIP day are kept for reference but not advertised.
+  // NeuroStrengths coaching — available but not promoted on the homepage. Remote OK.
+  // Programs and the VIP day are kept for reference but not shown on the site.
   coaching: {
     session:    { price: 175, duration: 60, label: 'NeuroStrengths Coaching Session' },
     program6:   { price: 900, sessions: 6, label: '6-Week Program', perSession: 150 },
@@ -205,6 +204,7 @@ export const navigation = {
       children: [
         { label: 'Work With Me', href: '/work-with-me', description: 'Overview of all 1:1 services' },
         { label: 'Functional Synthesis (ABM)', href: '/functional-synthesis', description: 'One-on-one lessons at the Carlsbad studio' },
+        { label: 'Coaching', href: '/coaching', description: 'Strengths-based life, career & business coaching' },
         { label: 'TML Lessons', href: '/classes', description: 'Individual or group Transformational Movement Lessons' },
         { label: 'Children with Special Needs', href: '/children', description: 'Brain-based movement for kids' },
       ],

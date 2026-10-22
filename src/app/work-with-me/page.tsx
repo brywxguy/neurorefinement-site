@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag } from '@/components/ui'
-import { ArrowRight, Brain, Users, Play } from 'lucide-react'
+import { ArrowRight, Brain, Sparkles, Users, Play } from 'lucide-react'
 import { booking, pricing } from '@/lib/config'
 import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
   title: 'Work With Me',
-  description: 'Overview of NeuroRefinement services — one-on-one ABM NeuroMovement lessons in Carlsbad, CA, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
+  description: 'Overview of NeuroRefinement services — one-on-one ABM NeuroMovement lessons in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
 }
 
 export default function WorkWithMePage() {
@@ -55,6 +55,31 @@ export default function WorkWithMePage() {
             </div>
             <div className="text-center md:text-right">
               <Button href="/functional-synthesis">
+                Learn More <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </div>
+          </Card>
+
+          {/* Coaching */}
+          <Card hover={false} className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Coaching</span>
+              </div>
+              <h2 className="font-display text-2xl text-brand-900 mb-3">Strengths-Based Coaching</h2>
+              <p className="text-brand-600 leading-relaxed mb-4">
+                Life, career, and business coaching using CliftonStrengths and mindful reframing.
+                Build on what&apos;s naturally strong in you.
+              </p>
+              <p className="text-sm text-brand-500">
+                {pricing.coaching.session.duration} min &middot; ${pricing.coaching.session.price} &middot; Remote or in person
+              </p>
+            </div>
+            <div className="text-center md:text-right">
+              <Button href="/coaching">
                 Learn More <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
@@ -110,13 +135,6 @@ export default function WorkWithMePage() {
             </div>
           </Card>
         </div>
-        <p className="text-center text-sm text-brand-500 mt-8">
-          NeuroStrengths coaching is coming soon and available by request.{' '}
-          <a href="/coaching" className="text-brand-600 underline underline-offset-2 hover:text-brand-700">
-            Learn more
-          </a>
-          .
-        </p>
       </Section>
 
       <Section>

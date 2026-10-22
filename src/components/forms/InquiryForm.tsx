@@ -16,7 +16,7 @@ const TOPICS = [
   'Functional Synthesis / ABM lessons',
   'TML lessons (individual or group)',
   'Voice-guided lessons',
-  'Coaching (by request)',
+  'Coaching',
   'Children with special needs',
   'Other',
 ]

@@ -359,7 +359,7 @@ export default function StartHerePage() {
                         {form.concerns.includes('Pain or discomfort') || form.concerns.includes('Nerve pain or neuropathy')
                           ? `Book a ${booking.events.freeCall.label}, then your ${pricing.abm.newClientLesson.label}`
                           : form.concerns.includes('Life or career direction')
-                          ? 'Ask Bryan about NeuroStrengths coaching (by request)'
+                          ? 'Book a coaching session'
                           : 'Explore the audio lesson library'}
                       </p>
                       <p className="text-sm text-brand-500">

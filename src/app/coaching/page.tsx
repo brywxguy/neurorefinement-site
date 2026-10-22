@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Star, Zap, Users, MessageSquare, Target } from 'lucide-react'
-import { booking, calUrl, pricing } from '@/lib/config'
+import { booking, calUrl, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
 
 export const metadata: Metadata = {
-  title: 'NeuroStrengths Coaching — Coming Soon, By Request',
-  description: 'NeuroStrengths coaching: CliftonStrengths combined with mindful reframing to help you align your natural strengths with your goals. Coming soon and available by request; remote sessions welcome.',
+  title: 'Strengths-Based Coaching — Life, Career & Business',
+  description: 'NeuroStrengths coaching: CliftonStrengths combined with mindful reframing to help you align your natural strengths with your goals. 60-minute sessions, remote via Zoom or in person in Carlsbad, CA.',
 }
 
 export default function CoachingPage() {
@@ -16,14 +16,11 @@ export default function CoachingPage() {
       <Section className="pt-12 md:pt-16">
         <div className="max-w-3xl">
           <span className="inline-block text-sm font-medium text-brand-500 uppercase tracking-wider mb-3">
-            1:1 Coaching &middot; Coming soon
+            1:1 Coaching
           </span>
           <h1 className="font-display text-4xl md:text-5xl text-brand-900 mb-6">
-            NeuroStrengths Coaching
+            Strengths-Based Coaching
           </h1>
-          <p className="inline-block text-sm text-brand-700 bg-brand-50 border border-brand-100 rounded-xl px-4 py-2 mb-6">
-            Coaching is coming soon as a full offering. For now it&apos;s available by request, and sessions can be remote.
-          </p>
           <p className="text-xl text-brand-600 leading-relaxed mb-4">
             Life, career, and business coaching that starts with what&apos;s already strong in you — then builds on it.
           </p>
@@ -33,7 +30,7 @@ export default function CoachingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button href="#pricing" size="lg">
-              Details <ArrowRight className="ml-2 w-5 h-5" />
+              Pricing &amp; Booking <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button href="/start-here" variant="outline" size="lg">
               Start Here
@@ -106,7 +103,7 @@ export default function CoachingPage() {
       {/* Pricing */}
       <Section id="pricing">
         <SectionHeader
-          eyebrow="By request"
+          eyebrow="Pricing"
           title="Coaching Session"
         />
         <div className="max-w-sm mx-auto">
@@ -114,12 +111,12 @@ export default function CoachingPage() {
             <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.session.label}</h3>
             <p className="text-sm text-brand-500 mb-4">{pricing.coaching.session.duration} minutes &middot; Remote or in person</p>
             <PriceTag price={pricing.coaching.session.price} />
-            <p className="text-xs text-brand-400 mt-3">Available by request while coaching is in its early phase</p>
+            <p className="text-xs text-brand-400 mt-3">Remote sessions welcome</p>
           </Card>
         </div>
         <div className="text-center mt-8">
           <Button href="#booking" size="lg">
-            Start With a {booking.events.freeCall.label} <ArrowRight className="ml-2 w-5 h-5" />
+            Book a {booking.events.coachingSession.label} <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
       </Section>
@@ -127,19 +124,18 @@ export default function CoachingPage() {
       {/* Booking */}
       <Section variant="light" id="booking">
         <SectionHeader
-          eyebrow="Get in touch"
-          title="Ask About Coaching"
-          description={`Book a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}) and mention coaching.`}
+          eyebrow="Book now"
+          title="Schedule a Coaching Session"
+          description={`Book a ${booking.events.coachingSession.label} directly, or start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}) if you'd like to talk first.`}
         />
         <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <Button href={calUrl(booking.events.coachingSession.slug)} size="lg">
+              Book a {booking.events.coachingSession.label} ({booking.events.coachingSession.duration} min) <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <p className="mt-3 text-sm text-brand-500">{siteConfig.payment.note}</p>
+          </div>
           <BookingOptions options={['freeCall']} />
-          <p className="mt-4 text-center text-sm text-brand-500">
-            Already arranged coaching with Bryan?{' '}
-            <a href={calUrl(booking.events.coachingSession.slug)} className="text-ocean-600 hover:text-ocean-700">
-              Book a {booking.events.coachingSession.label}
-            </a>
-            .
-          </p>
         </div>
       </Section>
     </>
