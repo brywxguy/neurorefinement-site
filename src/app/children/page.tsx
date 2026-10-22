@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, FAQ } from '@/components/ui'
 import { ArrowRight, Heart, Brain, Sparkles, Users, CheckCircle } from 'lucide-react'
+import { booking, pricing, siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
   title: 'Children & Special Needs — ABM NeuroMovement for Kids',
@@ -33,8 +34,8 @@ export default function ChildrenPage() {
               nervous system is ready to learn next.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button href="/contact" size="lg">
-                Schedule a Consultation <ArrowRight className="ml-2 w-5 h-5" />
+              <Button href="/functional-synthesis#booking" size="lg">
+                Book a {booking.events.freeCall.label} <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
               <Button href="/about" variant="outline" size="lg">
                 About Bryan
@@ -131,6 +132,13 @@ export default function ChildrenPage() {
               depending on their age, attention, and energy. Young children and infants
               may have shorter sessions. We always honor what your child needs in the
               moment.
+            </p>
+            <p>
+              Sessions are ${pricing.abm.session.price}, and your child&apos;s first visit is a{' '}
+              {pricing.abm.newClientLesson.label} ({pricing.abm.newClientLesson.duration} minutes, $
+              {pricing.abm.newClientLesson.price}) with extra time for discovery and conversation with you.
+              Lessons are in person: {siteConfig.location.studio} {siteConfig.location.addressNote}{' '}
+              {siteConfig.payment.note}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">

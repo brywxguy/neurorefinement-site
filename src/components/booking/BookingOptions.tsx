@@ -5,23 +5,23 @@ import Link from 'next/link'
 import { ArrowRight, CalendarCheck, CheckCircle, MessageCircle, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui'
 import { Field, FormError, HoneypotField, inputClass } from '@/components/forms/fields'
-import { booking, calLink, isCalConfigured, siteConfig } from '@/lib/config'
+import { booking, calLink, isCalConfigured, pricing, siteConfig } from '@/lib/config'
 import { HONEYPOT_FIELD, HOW_HEARD_OPTIONS, WHO_FOR_OPTIONS } from '@/lib/inquiries'
 import { submitInquiry } from '@/lib/submit-inquiry'
 import { cn } from '@/lib/utils'
 import { CalEmbed, type CalPrefill } from './CalEmbed'
 
-export type BookingOption = 'freeCall' | 'lesson45' | 'intensive'
+export type BookingOption = 'freeCall' | 'newClientLesson' | 'intensive'
 
 const OPTION_META: Record<BookingOption, { title: string; subtitle: string; icon: JSX.Element }> = {
   freeCall: {
     title: booking.events.freeCall.label,
-    subtitle: 'New here? Start with a no-pressure conversation.',
+    subtitle: `New here? A no-pressure ${booking.events.freeCall.duration}-minute conversation on ${booking.events.freeCall.format}.`,
     icon: <MessageCircle className="w-5 h-5" />,
   },
-  lesson45: {
-    title: booking.events.lesson45.label,
-    subtitle: 'Book a single Functional Synthesis lesson.',
+  newClientLesson: {
+    title: booking.events.newClientLesson.label,
+    subtitle: `Your first in-person visit: ${pricing.abm.newClientLesson.duration} min, $${pricing.abm.newClientLesson.price}.`,
     icon: <CalendarCheck className="w-5 h-5" />,
   },
   intensive: {
@@ -36,7 +36,7 @@ interface BookingOptionsProps {
   className?: string
 }
 
-export function BookingOptions({ options = ['freeCall', 'lesson45', 'intensive'], className }: BookingOptionsProps) {
+export function BookingOptions({ options = ['freeCall', 'newClientLesson', 'intensive'], className }: BookingOptionsProps) {
   const [selected, setSelected] = useState<BookingOption>(options[0])
 
   return (
@@ -81,10 +81,10 @@ export function BookingOptions({ options = ['freeCall', 'lesson45', 'intensive']
       </div>
 
       {selected === 'freeCall' && <FreeCallFlow />}
-      {selected === 'lesson45' && <LessonBooking />}
+      {selected === 'newClientLesson' && <LessonBooking />}
 
       <p className="mt-6 text-center text-sm text-brand-500">
-        Existing client? Use the private booking link Bryan sent you, or{' '}
+        Existing client? Book a {booking.events.clientLesson.label} with the private link Bryan sent you, or{' '}
         <a href={`mailto:${siteConfig.contact.email}`} className="text-ocean-600 hover:text-ocean-700">
           email Bryan
         </a>
@@ -116,9 +116,10 @@ function LessonBooking() {
   return (
     <div>
       <p className="text-sm text-brand-500 mb-3 text-center">
-        New to NeuroRefinement? Please start with the free 20-minute call so Bryan can learn about your situation first.
+        Not sure yet? Start with the {booking.events.freeCall.label} ({booking.events.freeCall.duration} minutes on{' '}
+        {booking.events.freeCall.format}) so Bryan can learn about your situation first.
       </p>
-      <CalEmbed link={calLink(booking.events.lesson45.slug)} />
+      <CalEmbed link={calLink(booking.events.newClientLesson.slug)} />
     </div>
   )
 }

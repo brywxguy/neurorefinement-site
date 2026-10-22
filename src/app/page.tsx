@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, TestimonialCard } from '@/components/ui'
-import { siteConfig, pricing, lessonThemes, testimonials } from '@/lib/config'
+import { siteConfig, pricing, booking, lessonThemes, testimonials, otherLessonsNote } from '@/lib/config'
 import { ThemeIcon } from '@/components/ui/ThemeIcon'
-import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, MessageCircle, ClipboardCheck, TrendingUp, Baby } from 'lucide-react'
+import { VisitDetails } from '@/components/booking/VisitDetails'
+import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, Baby } from 'lucide-react'
 
 export default function HomePage() {
   return (
@@ -17,7 +18,7 @@ export default function HomePage() {
             <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-100 text-brand-700 text-sm font-medium rounded-full mb-6">
               <Sparkles className="w-4 h-4" />
-              Neuroplasticity-based movement &amp; coaching
+              Neuroplasticity-based movement learning
             </span>
             <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-brand-900 mb-6 leading-tight">
               Refine Movement.
@@ -25,8 +26,8 @@ export default function HomePage() {
               <span className="text-brand-500">Revitalize Life.</span>
             </h1>
             <p className="text-xl md:text-2xl text-brand-600 leading-relaxed mb-10 max-w-2xl">
-              Gentle, science-informed movement lessons and strengths-based coaching
-              that help your brain find new options for ease, function, and vitality.
+              Gentle, science-informed ABM NeuroMovement lessons that help your brain
+              find new options for ease, function, and vitality.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button href="/start-here" size="lg">
@@ -39,7 +40,7 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="mt-6 text-sm text-brand-400">
-              Based in {siteConfig.location.city}, {siteConfig.location.state} &middot; Virtual sessions available worldwide
+              {siteConfig.location.studio} {siteConfig.location.addressNote}
             </p>
           </div>
 
@@ -163,7 +164,7 @@ export default function HomePage() {
             {
               step: '03',
               title: 'Book or Browse',
-              description: 'Ready for more? Book a 1:1 session, join a group class, or explore the audio lesson library at your own pace.',
+              description: `Ready for more? Book a ${booking.events.freeCall.label} or your ${booking.events.newClientLesson.label}, join a TML lesson, or explore the audio lesson library at your own pace.`,
               cta: { label: 'See Options', href: '/work-with-me' },
             },
           ].map((step) => (
@@ -190,30 +191,22 @@ export default function HomePage() {
           title="How We Work Together"
           description="From precision 1:1 sessions to on-demand audio lessons — choose the format that fits your life."
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {[
             {
               icon: <Brain className="w-6 h-6" />,
               title: 'Functional Synthesis (ABM)',
-              subtitle: '1:1 hands-on sessions',
-              description: 'Gentle, precise movement lessons guided by touch. Your brain learns new patterns for better coordination, less pain, and expanded possibilities.',
-              price: `From $${pricing.abm.session60.price}`,
+              subtitle: 'One-on-one ABM NeuroMovement lessons, in person',
+              description: `Gentle, precise movement lessons guided by touch. Your brain learns new patterns for better coordination, less pain, and expanded possibilities. New clients start with a ${pricing.abm.newClientLesson.label}.`,
+              price: `$${pricing.abm.session.price} · about ${pricing.abm.session.duration} min`,
               href: '/functional-synthesis',
             },
             {
-              icon: <Sparkles className="w-6 h-6" />,
-              title: 'Strengths-Based Coaching',
-              subtitle: '1:1 life, career & business coaching',
-              description: "Discover what's already strong in you. Using CliftonStrengths and mindful reframing, we build strategies that fit your natural pattern and move you forward.",
-              price: `From $${pricing.coaching.session60.price}`,
-              href: '/coaching',
-            },
-            {
               icon: <Users className="w-6 h-6" />,
-              title: 'Group Classes (TML)',
-              subtitle: 'Transformational Movement Lessons',
-              description: 'Guided group explorations that increase awareness, reduce effort, and open new movement options. Drop-in or join a 6-week series.',
-              price: `From $${pricing.classes.dropIn.price}`,
+              title: 'TML Lessons',
+              subtitle: 'Individual or group Transformational Movement Lessons',
+              description: 'Guided explorations that increase awareness, reduce effort, and open new movement options, one-on-one or in a small group.',
+              price: `Group from $${pricing.classes.dropIn.price}`,
               href: '/classes',
             },
             {
@@ -238,6 +231,7 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
+        <p className="text-center text-sm text-brand-500 mt-8">{otherLessonsNote}</p>
       </Section>
 
       {/* ============================================================
@@ -329,74 +323,19 @@ export default function HomePage() {
       </Section>
 
       {/* ============================================================
-          STRENGTHS-BASED COACHING — CliftonStrengths Discovery Flow
+          PLAN YOUR VISIT
           ============================================================ */}
-      <Section variant="dark" className="relative grain">
-        <svg className="absolute top-8 right-8 w-[350px] h-[350px] opacity-[0.06]" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="60" cy="60" r="55" stroke="#c0d9ee" strokeWidth="3.5" />
-            <circle cx="60" cy="60" r="46" stroke="#c0d9ee" strokeWidth="3.5" />
-            <circle cx="60" cy="60" r="37" stroke="#adc7d3" strokeWidth="3.5" />
-            <circle cx="60" cy="60" r="28" stroke="#adc7d3" strokeWidth="3.5" />
-            <circle cx="60" cy="60" r="19" stroke="#c0d9ee" strokeWidth="4" />
-            <circle cx="60" cy="60" r="10" stroke="#c0d9ee" strokeWidth="4" />
-            <circle cx="60" cy="60" r="3" fill="#D4A853" />
-          </svg>
-        <div className="relative z-10">
-          <SectionHeader
-            variant="dark"
-            eyebrow="Strengths-Based Coaching"
-            title="You Don't Have to Figure It All Out Alone"
-            description="What if the answer isn't fixing what's wrong — but building on what's already strong? As part of our coaching process, I use the CliftonStrengths® assessment to help you see what you naturally do best. Then we build from there."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-            {[
-              {
-                icon: <MessageCircle className="w-6 h-6" />,
-                step: '1',
-                title: 'Free Discovery Call',
-                description: "20 minutes — just a conversation about what matters to you. Your goals, your challenges, what you're hoping for. No pressure, no pitch.",
-                detail: 'Book online',
-              },
-              {
-                icon: <ClipboardCheck className="w-6 h-6" />,
-                step: '2',
-                title: 'Discover Your Top 5',
-                description: "I'll send you a personalized intake form and a pre-paid CliftonStrengths access code. Complete both before our first session so I can come prepared with real insights.",
-                detail: 'StrengthsFinder included',
-              },
-              {
-                icon: <TrendingUp className="w-6 h-6" />,
-                step: '3',
-                title: 'Coach, Move, Grow',
-                description: "We integrate your natural strengths with NeuroRefinement principles — building awareness of how your talents show up in your work, relationships, and daily life. You leave each session with clarity and a plan.",
-                detail: 'Packages available',
-              },
-            ].map((item) => (
-              <div key={item.step} className="text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-brand-700/50 text-[#C99B45] mb-5">
-                  {item.icon}
-                </div>
-                <span className="block text-xs font-medium text-brand-300 uppercase tracking-wider mb-2">
-                  Step {item.step}
-                </span>
-                <h3 className="font-display text-xl text-white mb-3">{item.title}</h3>
-                <p className="text-sm text-brand-200 leading-relaxed mb-4">{item.description}</p>
-                <span className="inline-block text-xs font-medium text-[#C99B45] uppercase tracking-wider">
-                  {item.detail}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Button href="/coaching" size="lg">
-              Book a Free Discovery Call <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <p className="mt-4 text-sm text-brand-400">
-              No commitment required &middot; Virtual or in-person &middot; CliftonStrengths&reg; is a registered trademark of Gallup, Inc.
-            </p>
-          </div>
+      <Section variant="light">
+        <SectionHeader
+          eyebrow="Plan your visit"
+          title="Getting Started Is Simple"
+          description={`Start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}). Your first in-person visit is a ${pricing.abm.newClientLesson.label}: ${pricing.abm.newClientLesson.duration} minutes, $${pricing.abm.newClientLesson.price}, with extra time for discovery and conversation. After that, sessions are about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}.`}
+        />
+        <VisitDetails className="max-w-5xl mx-auto" />
+        <div className="text-center mt-10">
+          <Button href="/functional-synthesis#booking" size="lg">
+            Book a {booking.events.freeCall.label} <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
         </div>
       </Section>
 

@@ -193,7 +193,8 @@ Row Level Security is on and the public `anon`/`authenticated` roles have no acc
    | `INQUIRY_IP_SALT` | No | Random string for hashing IPs used in rate limiting |
    | `NEXT_PUBLIC_CAL_USERNAME` | No | Default `neurorefinement` |
    | `NEXT_PUBLIC_CAL_FREE_CALL_SLUG` | No | Default `free-20-min-call` |
-   | `NEXT_PUBLIC_CAL_LESSON_45_SLUG` | No | Default `45-min-lesson` |
+   | `NEXT_PUBLIC_CAL_NEW_CLIENT_LESSON_SLUG` | No | Default `new-client-lesson` |
+   | `NEXT_PUBLIC_CAL_COACHING_SLUG` | No | Default `coaching-session` |
    | `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL` | No | Default `https://cal.com/neurorefinement/client-lesson` |
 
    `NEXT_PUBLIC_*` values are baked in at build time, so redeploy after changing them.
@@ -215,9 +216,10 @@ Cal.com event types used by the site:
 
 | Event type | URL slug | Notes |
 |------------|----------|-------|
-| Free 20-Minute Call | `free-20-min-call` | For new people. The site asks who it's for, the main concern, and how they heard *before* showing the calendar, saves those answers, and pre-fills name, email and notes in Cal.com. Optionally add the same booking questions in Cal.com (event type → Advanced → Booking questions) for anyone who books on cal.com directly. |
-| 45-Minute Lesson | `45-min-lesson` | Embedded on `/functional-synthesis`. |
-| Existing-client lesson | `client-lesson` | Hidden event type, embedded only on the unlisted page `/book/client` (not linked anywhere, hidden from search engines), which you share with clients. Hidden events can still be booked by anyone who has the link. To use a Cal.com private link instead, set `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL`. |
+| Free Intro Call (20 min, Zoom) | `free-20-min-call` | For new people. The site asks who it's for, the main concern, and how they heard *before* showing the calendar, saves those answers, and pre-fills name, email and notes in Cal.com. Optionally add the same booking questions in Cal.com (event type → Advanced → Booking questions) for anyone who books on cal.com directly. |
+| New Client Lesson (90 min, $200) | `new-client-lesson` | First visit for new clients. Embedded on `/functional-synthesis`. Length and price shown on the site come from `pricing.abm.newClientLesson`. |
+| Client Lesson (45 min) | `client-lesson` | Hidden event type, embedded only on the unlisted page `/book/client` (not linked anywhere, hidden from search engines), which you share with clients. Hidden events can still be booked by anyone who has the link. To use a Cal.com private link instead, set `NEXT_PUBLIC_CAL_EXISTING_CLIENT_URL`. |
+| Coaching Session (60 min) | `coaching-session` | By request only. Linked from `/coaching`, which is not in the main nav. |
 | Intensive | — | Not a Cal.com event: "Request an Intensive" opens the inquiry form (`form_type = intensive`). |
 
 If you change a slug in Cal.com, set the matching `NEXT_PUBLIC_CAL_*_SLUG` variable (or edit the default in `src/lib/config.ts`).

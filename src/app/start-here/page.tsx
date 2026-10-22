@@ -5,6 +5,7 @@ import { Button, Section, SectionHeader } from '@/components/ui'
 import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react'
 import { FormError, HoneypotField } from '@/components/forms/fields'
 import { HONEYPOT_FIELD } from '@/lib/inquiries'
+import { booking, pricing } from '@/lib/config'
 import { submitInquiry } from '@/lib/submit-inquiry'
 
 type Step = 'concerns' | 'areas' | 'goals' | 'history' | 'info' | 'complete'
@@ -356,14 +357,14 @@ export default function StartHerePage() {
                     <div>
                       <p className="font-medium text-brand-800">
                         {form.concerns.includes('Pain or discomfort') || form.concerns.includes('Nerve pain or neuropathy')
-                          ? 'Book a 90-min Deep Dive session'
+                          ? `Book a ${booking.events.freeCall.label}, then your ${pricing.abm.newClientLesson.label}`
                           : form.concerns.includes('Life or career direction')
-                          ? 'Book a coaching session'
+                          ? 'Ask Bryan about NeuroStrengths coaching (by request)'
                           : 'Explore the audio lesson library'}
                       </p>
                       <p className="text-sm text-brand-500">
                         {form.concerns.includes('Pain or discomfort')
-                          ? 'A hands-on Functional Synthesis session is the best next step for pain and discomfort.'
+                          ? `A hands-on Functional Synthesis session (in person in Carlsbad) is the best next step for pain and discomfort. Your first visit is ${pricing.abm.newClientLesson.duration} minutes with extra time for discovery and conversation.`
                           : 'Find lessons matched to your specific goals and interests.'}
                       </p>
                     </div>

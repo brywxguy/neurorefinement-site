@@ -24,8 +24,15 @@ export default function ClientBookingPage() {
   return (
     <Section className="pt-12 md:pt-16">
       <div className="max-w-3xl mx-auto">
-        <h1 className="font-display text-3xl md:text-4xl text-brand-900 mb-3 text-center">Book Your Next Lesson</h1>
-        <p className="text-brand-600 text-center mb-8">For existing NeuroRefinement clients.</p>
+        <h1 className="font-display text-3xl md:text-4xl text-brand-900 mb-3 text-center">
+          Book a {booking.events.clientLesson.label}
+        </h1>
+        <p className="text-brand-600 text-center mb-2">
+          For existing NeuroRefinement clients &middot; {booking.events.clientLesson.duration} minutes, in person.
+        </p>
+        <p className="text-sm text-brand-500 text-center mb-8">
+          {siteConfig.location.studio} {siteConfig.location.addressNote} {siteConfig.payment.note}
+        </p>
         {privateLink ? (
           <CalEmbed link={privateLink.link} origin={privateLink.origin} />
         ) : (

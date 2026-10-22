@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Star, Zap, Users, MessageSquare, Target } from 'lucide-react'
-import { pricing } from '@/lib/config'
+import { booking, calUrl, pricing } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
 
 export const metadata: Metadata = {
-  title: 'Strengths-Based Coaching — Life, Career & Business',
-  description: 'CliftonStrengths coaching combined with mindful reframing to help you align your natural strengths with your goals. Virtual and in-person in Carlsbad, CA.',
+  title: 'NeuroStrengths Coaching — Coming Soon, By Request',
+  description: 'NeuroStrengths coaching: CliftonStrengths combined with mindful reframing to help you align your natural strengths with your goals. Coming soon and available by request; remote sessions welcome.',
 }
 
 export default function CoachingPage() {
@@ -16,11 +16,14 @@ export default function CoachingPage() {
       <Section className="pt-12 md:pt-16">
         <div className="max-w-3xl">
           <span className="inline-block text-sm font-medium text-brand-500 uppercase tracking-wider mb-3">
-            1:1 Coaching
+            1:1 Coaching &middot; Coming soon
           </span>
           <h1 className="font-display text-4xl md:text-5xl text-brand-900 mb-6">
-            Strengths-Based Coaching
+            NeuroStrengths Coaching
           </h1>
+          <p className="inline-block text-sm text-brand-700 bg-brand-50 border border-brand-100 rounded-xl px-4 py-2 mb-6">
+            Coaching is coming soon as a full offering. For now it&apos;s available by request, and sessions can be remote.
+          </p>
           <p className="text-xl text-brand-600 leading-relaxed mb-4">
             Life, career, and business coaching that starts with what&apos;s already strong in you — then builds on it.
           </p>
@@ -30,7 +33,7 @@ export default function CoachingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button href="#pricing" size="lg">
-              View Packages <ArrowRight className="ml-2 w-5 h-5" />
+              Details <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button href="/start-here" variant="outline" size="lg">
               Start Here
@@ -103,50 +106,40 @@ export default function CoachingPage() {
       {/* Pricing */}
       <Section id="pricing">
         <SectionHeader
-          eyebrow="Packages"
-          title="Coaching Options"
+          eyebrow="By request"
+          title="Coaching Session"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="max-w-sm mx-auto">
           <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.session60.label}</h3>
-            <p className="text-sm text-brand-500 mb-4">{pricing.coaching.session60.duration} minutes</p>
-            <PriceTag price={pricing.coaching.session60.price} />
-            <p className="text-xs text-brand-400 mt-3">Great for a first conversation</p>
-          </Card>
-
-          <Card className="text-center border-brand-300">
-            <span className="inline-block text-xs font-medium bg-brand-500 text-white px-3 py-1 rounded-full mb-4">
-              Most Popular
-            </span>
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.program6.label}</h3>
-            <PriceTag price={pricing.coaching.program6.price} />
-            <p className="text-xs text-brand-500 mt-2">${pricing.coaching.program6.perSession}/session</p>
-          </Card>
-
-          <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.program12.label}</h3>
-            <PriceTag price={pricing.coaching.program12.price} />
-            <p className="text-xs text-brand-500 mt-2">${pricing.coaching.program12.perSession}/session &middot; {pricing.coaching.program12.savings}</p>
-          </Card>
-
-          <Card className="text-center">
-            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.vipDay.label}</h3>
-            <p className="text-sm text-brand-500 mb-4">{pricing.coaching.vipDay.description}</p>
-            <PriceTag price={pricing.coaching.vipDay.price} />
+            <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.coaching.session.label}</h3>
+            <p className="text-sm text-brand-500 mb-4">{pricing.coaching.session.duration} minutes &middot; Remote or in person</p>
+            <PriceTag price={pricing.coaching.session.price} />
+            <p className="text-xs text-brand-400 mt-3">Available by request while coaching is in its early phase</p>
           </Card>
         </div>
         <div className="text-center mt-8">
           <Button href="#booking" size="lg">
-            Book Your First Session <ArrowRight className="ml-2 w-5 h-5" />
+            Start With a {booking.events.freeCall.label} <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
       </Section>
 
       {/* Booking */}
       <Section variant="light" id="booking">
-        <SectionHeader eyebrow="Book now" title="Schedule a Coaching Session" />
+        <SectionHeader
+          eyebrow="Get in touch"
+          title="Ask About Coaching"
+          description={`Book a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}) and mention coaching.`}
+        />
         <div className="max-w-3xl mx-auto">
           <BookingOptions options={['freeCall']} />
+          <p className="mt-4 text-center text-sm text-brand-500">
+            Already arranged coaching with Bryan?{' '}
+            <a href={calUrl(booking.events.coachingSession.slug)} className="text-ocean-600 hover:text-ocean-700">
+              Book a {booking.events.coachingSession.label}
+            </a>
+            .
+          </p>
         </div>
       </Section>
     </>

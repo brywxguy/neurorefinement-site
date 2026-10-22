@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Calendar, Users, MapPin, Clock, CheckCircle } from 'lucide-react'
-import { pricing } from '@/lib/config'
+import { pricing, siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = {
-  title: 'Group Classes — Transformational Movement Lessons',
-  description: 'Guided group movement explorations in Carlsbad, CA. Drop-in or join a 6-week series. Increase awareness, reduce effort, and discover new options.',
+  title: 'TML — Transformational Movement Lessons (Individual or Group)',
+  description: 'Individual or group Transformational Movement Lessons in Carlsbad, CA, plus voice-guided lessons. Increase awareness, reduce effort, and discover new options.',
 }
 
 export default function ClassesPage() {
@@ -14,15 +14,19 @@ export default function ClassesPage() {
       <Section className="pt-12 md:pt-16">
         <div className="max-w-3xl">
           <span className="inline-block text-sm font-medium text-brand-500 uppercase tracking-wider mb-3">
-            Group Classes
+            Individual or Group
           </span>
           <h1 className="font-display text-4xl md:text-5xl text-brand-900 mb-6">
             Transformational Movement Lessons
           </h1>
           <p className="text-xl text-brand-600 leading-relaxed mb-8">
-            Guided group explorations inspired by Awareness Through Movement&reg; principles.
-            Increase awareness, reduce unnecessary effort, and expand your movement options
-            — in a supportive community setting.
+            Guided movement explorations based on the work of Moshe Feldenkrais. Increase
+            awareness, reduce unnecessary effort, and expand your movement options — one-on-one
+            or in a supportive small group.
+          </p>
+          <p className="text-lg text-brand-500 leading-relaxed mb-8">
+            Bryan offers individual TML lessons by request, group TML lessons, and voice-guided
+            lessons you can do at home.
           </p>
           <Button href="#schedule" size="lg">
             See Schedule <ArrowRight className="ml-2 w-5 h-5" />
@@ -93,6 +97,9 @@ export default function ClassesPage() {
           title="Upcoming Classes"
           description="Class schedule coming soon. Join the newsletter to be notified when classes are posted."
         />
+        <p className="text-center text-sm text-brand-500 mb-8 max-w-2xl mx-auto">
+          {siteConfig.location.studio} {siteConfig.location.addressNote} {siteConfig.payment.note}
+        </p>
         <div className="max-w-2xl mx-auto text-center">
           <div className="bg-white rounded-2xl border border-brand-100/50 p-12">
             <Calendar className="w-12 h-12 text-brand-300 mx-auto mb-4" />
@@ -101,7 +108,7 @@ export default function ClassesPage() {
               Sign up for the newsletter to be the first to know when classes are available.
             </p>
             <Button href="/contact" variant="outline">
-              Contact Me for Details
+              Ask About Individual or Group TML
             </Button>
           </div>
         </div>

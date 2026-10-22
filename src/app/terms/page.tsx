@@ -18,7 +18,7 @@ export default function TermsPage() {
           <h2>Services</h2>
           <p>NeuroRefinement provides educational wellness services including movement sessions, coaching, group classes, and digital audio lessons. These are not medical services. See our Disclaimer page for full details.</p>
           <h2>Payments & Cancellations</h2>
-          <p>All payments are processed securely through Stripe. Cancellation policies apply: please cancel at least 24 hours before a scheduled session. See our Refund Policy for digital product returns.</p>
+          <p>Payment for lessons and sessions is collected at time of service. Digital products are paid online through Stripe. Cancellation policies apply: please cancel at least 24 hours before a scheduled session. See our Refund Policy for digital product returns.</p>
           <h2>Intellectual Property</h2>
           <p>All content on this website — including audio lessons, articles, and written materials — is the property of NeuroRefinement and may not be reproduced without permission. Purchased digital lessons are licensed for personal use only.</p>
           <h2>Limitation of Liability</h2>
