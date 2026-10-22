@@ -169,7 +169,7 @@ export default function FunctionalSynthesisPage() {
             </div>
           </div>
           <div>
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+            <div className="aspect-[6/5] rounded-3xl overflow-hidden shadow-lg">
               <Image
                 src="/images/fs-session-child-toys.jpg"
                 alt="Bryan Thunstrom working with a child in a Functional Synthesis session while mother participates"
