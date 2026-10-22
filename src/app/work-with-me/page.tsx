@@ -137,7 +137,7 @@ export default function WorkWithMePage() {
           </Card>
         </div>
         <p className="text-center text-brand-600 leading-relaxed mt-8">
-          Looking for lesson packs or audio bundles?{' '}
+          Looking for {pricing.lessons.bundle5.onSite ? 'lesson packs or audio bundles' : 'lesson packs'}?{' '}
           <Link href="/bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
             See Bundles &amp; Packs
           </Link>

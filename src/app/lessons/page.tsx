@@ -100,9 +100,11 @@ export default function LessonsPage() {
             <Button href="#free" variant="primary">
               <Play className="mr-2 w-4 h-4" /> Try Free Lesson
             </Button>
-            <Button href="/bundles#audio-bundles" variant="outline">
-              Browse Bundles
-            </Button>
+            {pricing.lessons.bundle5.onSite && (
+              <Button href="/bundles#audio-bundles" variant="outline">
+                Browse Bundles
+              </Button>
+            )}
           </div>
         </div>
       </Section>
@@ -185,12 +187,16 @@ export default function LessonsPage() {
             Start Free, Then Go Deeper
           </h2>
           <p className="text-lg text-brand-600 mb-8">
-            Try the free lesson, then choose individual lessons for ${pricing.lessons.single.price},
-            save with a{' '}
-            <Link href="/bundles#audio-bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
-              {pricing.lessons.bundle5.label}
-            </Link>{' '}
-            for ${pricing.lessons.bundle5.price},
+            Try the free lesson, then choose individual lessons for ${pricing.lessons.single.price},{' '}
+            {pricing.lessons.bundle5.onSite && (
+              <>
+                save with a{' '}
+                <Link href="/bundles#audio-bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
+                  {pricing.lessons.bundle5.label}
+                </Link>{' '}
+                for ${pricing.lessons.bundle5.price},{' '}
+              </>
+            )}
             or get unlimited access with membership at ${pricing.membership.standard.price}/month.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

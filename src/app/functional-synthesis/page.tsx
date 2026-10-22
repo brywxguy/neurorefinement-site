@@ -189,7 +189,13 @@ export default function FunctionalSynthesisPage() {
           eyebrow="Pricing"
           title="Session Options"
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div
+          className={
+            pricing.abm.pack10.onSite
+              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto'
+              : 'grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto'
+          }
+        >
           <PricingCard
             meta={<><Clock className="w-4 h-4" /> {pricing.abm.newClientLesson.duration} min</>}
             title={pricing.abm.newClientLesson.label}
@@ -211,11 +217,13 @@ export default function FunctionalSynthesisPage() {
             price={pricing.abm.pack4.price}
             note={<>${pricing.abm.pack4.perSession}/session &middot; {pricing.abm.pack4.savings}</>}
           />
-          <PricingCard
-            title="10-Session Pack"
-            price={pricing.abm.pack10.price}
-            note={<>${pricing.abm.pack10.perSession}/session &middot; {pricing.abm.pack10.savings}</>}
-          />
+          {pricing.abm.pack10.onSite && (
+            <PricingCard
+              title="10-Session Pack"
+              price={pricing.abm.pack10.price}
+              note={<>${pricing.abm.pack10.perSession}/session &middot; {pricing.abm.pack10.savings}</>}
+            />
+          )}
         </div>
         <p className="text-center text-brand-600 leading-relaxed mt-8 max-w-2xl mx-auto">
           {siteConfig.payment.note} {otherLessonsNote}{' '}

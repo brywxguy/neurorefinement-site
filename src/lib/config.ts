@@ -136,7 +136,8 @@ export const pricing = {
       description: 'The same one-on-one session, with extra time for discovery and conversation.',
     },
     pack4:     { price: 540, sessions: 4, savings: '10% off', perSession: 135 },
-    pack10:    { price: 1275, sessions: 10, savings: '15% off', perSession: 127.5 },
+    // onSite: false hides an offer everywhere (pending Bryan's pricing decision) without deleting it.
+    pack10:    { price: 1275, sessions: 10, savings: '15% off', perSession: 127.5, onSite: false },
   },
 
   // NeuroStrengths coaching — available but not promoted on the homepage. Remote OK.
@@ -158,7 +159,7 @@ export const pricing = {
   // Digital Products
   lessons: {
     single:       { price: 25, label: 'Single Lesson' },
-    bundle5:      { price: 99, count: 5, label: '5-Lesson Bundle', perLesson: 19.8 },
+    bundle5:      { price: 99, count: 5, label: '5-Lesson Bundle', perLesson: 19.8, onSite: false },
     themePack10:  { price: 179, count: 10, label: '10-Lesson Theme Pack', perLesson: 17.9 },
     customLesson: { price: 75, label: 'Custom Lesson Request', delivery: '5 business days' },
   },
@@ -232,7 +233,9 @@ export const navigation = {
       label: 'Learn',
       children: [
         { label: 'Audio Lessons', href: '/lessons', description: 'Voice-guided movement library' },
-        { label: 'Bundles & Packs', href: '/bundles#audio-bundles', description: 'Audio lesson bundles' },
+        ...(pricing.lessons.bundle5.onSite
+          ? [{ label: 'Bundles & Packs', href: '/bundles#audio-bundles', description: 'Audio lesson bundles' }]
+          : []),
         { label: 'Membership', href: '/membership', description: 'Ongoing access & community' },
       ],
     },
