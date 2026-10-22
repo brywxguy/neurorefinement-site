@@ -28,7 +28,7 @@ export const siteConfig = {
     daysShort: 'Mon–Fri',
     time: '9 AM–2 PM',
     timeShort: '9–2',
-    closed: 'Closed weekends and Carlsbad Unified (CUSD) school holidays.',
+    closed: 'Closed most holidays.',
     byRequest: 'Evenings and weekends by request.',
   },
   payment: {
@@ -44,7 +44,7 @@ export const siteConfig = {
   // Footer icons appear only for non-empty URLs (Google uses location.googleBusinessProfile).
   social: {
     substack: '',   // TODO: add Substack URL
-    x: '',          // TODO: add X profile URL, e.g. https://x.com/<handle>
+    x: 'https://x.com/neurorefinement',
     facebook: '',   // TODO: add Facebook URL
     instagram: '',  // TODO: add Instagram URL, e.g. https://www.instagram.com/<handle>
     youtube: '',    // TODO: add YouTube URL
