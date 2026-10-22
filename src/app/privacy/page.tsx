@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Section } from '@/components/ui'
+import { siteConfig } from '@/lib/config'
 
 export const metadata: Metadata = { title: 'Privacy Policy' }
 
@@ -20,9 +21,9 @@ export default function PrivacyPage() {
           <h2>How We Use Your Information</h2>
           <p>We use your information to provide services, process payments, send communications you&apos;ve opted into, and improve our offerings. We do not sell your personal information to third parties.</p>
           <h2>Third-Party Services</h2>
-          <p>We use Stripe (payments), Calendly (scheduling), ConvertKit (email), Supabase (data storage), and Plausible (privacy-focused analytics). Each has its own privacy policy.</p>
+          <p>We use Stripe (payments), Cal.com (scheduling), ConvertKit (email), Resend (email notifications), Supabase (data storage), and Plausible (privacy-focused analytics). Each has its own privacy policy.</p>
           <h2>Contact</h2>
-          <p>Questions about this policy? Contact us at bryan@neurorefinement.com.</p>
+          <p>Questions about this policy? Contact us at {siteConfig.contact.email}.</p>
           <p className="text-sm text-brand-400 mt-8">Last updated: February 2026</p>
         </div>
       </div>

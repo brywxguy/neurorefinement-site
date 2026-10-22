@@ -231,28 +231,3 @@ export function FAQ({ items }: FAQProps) {
     </div>
   )
 }
-
-// ============================================================
-// CALENDLY EMBED
-// ============================================================
-interface CalendlyEmbedProps {
-  url?: string
-  className?: string
-}
-
-export function CalendlyEmbed({ url, className }: CalendlyEmbedProps) {
-  const calendlyUrl = url || process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com'
-
-  return (
-    <div className={cn('rounded-2xl overflow-hidden border border-brand-100/50 bg-white', className)}>
-      <iframe
-        src={calendlyUrl}
-        width="100%"
-        height="660"
-        frameBorder="0"
-        title="Schedule an appointment"
-        className="w-full"
-      />
-    </div>
-  )
-}

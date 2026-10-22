@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
-import { Button, Section } from '@/components/ui'
+import { Suspense } from 'react'
+import { Section } from '@/components/ui'
+import { InquiryForm } from '@/components/forms/InquiryForm'
 import { Mail, MapPin, Clock, Phone } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
 
@@ -75,57 +77,10 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl border border-brand-100/50 p-8">
-            <form action="/api/contact" method="POST" className="space-y-5">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-brand-700 mb-1.5">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-brand-700 mb-1.5">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
-                />
-              </div>
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-brand-700 mb-1.5">Subject</label>
-                <select
-                  id="subject"
-                  name="subject"
-                  className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
-                >
-                  <option value="general">General Question</option>
-                  <option value="abm">About ABM / Functional Synthesis</option>
-                  <option value="coaching">About Coaching</option>
-                  <option value="classes">About Group Classes</option>
-                  <option value="lessons">About Audio Lessons</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-brand-700 mb-1.5">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
-                />
-              </div>
-              <Button type="submit" className="w-full">
-                Send Message
-              </Button>
-            </form>
+          <div id="inquiry-form" className="bg-white rounded-2xl border border-brand-100/50 p-8 scroll-mt-24">
+            <Suspense fallback={null}>
+              <InquiryForm />
+            </Suspense>
           </div>
         </div>
       </Section>

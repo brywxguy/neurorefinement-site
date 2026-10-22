@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button, Section, SectionHeader, Card, TestimonialCard } from '@/components/ui'
-import { siteConfig, pricing, lessonThemes } from '@/lib/config'
+import { siteConfig, pricing, lessonThemes, testimonials } from '@/lib/config'
 import { ThemeIcon } from '@/components/ui/ThemeIcon'
 import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, MessageCircle, ClipboardCheck, TrendingUp, Baby } from 'lucide-react'
 
@@ -355,8 +355,8 @@ export default function HomePage() {
                 icon: <MessageCircle className="w-6 h-6" />,
                 step: '1',
                 title: 'Free Discovery Call',
-                description: "15 minutes — just a conversation about what matters to you. Your goals, your challenges, what you're hoping for. No pressure, no pitch.",
-                detail: 'Book via Calendly',
+                description: "20 minutes — just a conversation about what matters to you. Your goals, your challenges, what you're hoping for. No pressure, no pitch.",
+                detail: 'Book online',
               },
               {
                 icon: <ClipboardCheck className="w-6 h-6" />,
@@ -401,38 +401,22 @@ export default function HomePage() {
       </Section>
 
       {/* ============================================================
-          TESTIMONIALS (Placeholders)
+          TESTIMONIALS — hidden until real quotes are added in config.ts
           ============================================================ */}
-      <Section>
-        <SectionHeader
-          eyebrow="What people are saying"
-          title="Real Stories of Refinement"
-          description="Hear from people who've experienced the difference gentle, brain-based learning can make."
-        />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <TestimonialCard
-            quote="After years of pushing through pain, this was the first approach that actually helped my body learn a different way. I wish I'd found this sooner."
-            name="[Client Name]"
-            location="Carlsbad, CA"
-            service="Functional Synthesis — placeholder testimonial"
+      {testimonials.length > 0 && (
+        <Section>
+          <SectionHeader
+            eyebrow="What people are saying"
+            title="Real Stories of Refinement"
+            description="Hear from people who've experienced the difference gentle, brain-based learning can make."
           />
-          <TestimonialCard
-            quote="The coaching sessions helped me see my strengths in a completely new light. I'm making decisions with more confidence and less second-guessing."
-            name="[Client Name]"
-            location="Virtual"
-            service="Strengths-Based Coaching — placeholder testimonial"
-          />
-          <TestimonialCard
-            quote="I bought the surfing mobility pack expecting basic stretches. Instead, I got movement explorations that genuinely changed how I paddle and pop up."
-            name="[Client Name]"
-            location="Encinitas, CA"
-            service="Audio Lesson Library — placeholder testimonial"
-          />
-        </div>
-        <p className="text-center text-xs text-brand-400 mt-6 italic">
-          Placeholder testimonials — real client quotes will be added as they come in.
-        </p>
-      </Section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <TestimonialCard key={t.name + t.quote.slice(0, 20)} {...t} />
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* ============================================================
           MEMBERSHIP CTA

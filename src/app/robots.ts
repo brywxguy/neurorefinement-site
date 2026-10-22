@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/dashboard/'],
+      disallow: ['/api/', '/dashboard/', '/admin/', '/book/client'],
     },
     sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://neurorefinement.com'}/sitemap.xml`,
   }

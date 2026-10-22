@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Star, Zap, Users, MessageSquare, Target } from 'lucide-react'
 import { pricing } from '@/lib/config'
+import { BookingOptions } from '@/components/booking/BookingOptions'
 
 export const metadata: Metadata = {
   title: 'Strengths-Based Coaching — Life, Career & Business',
@@ -145,12 +146,7 @@ export default function CoachingPage() {
       <Section variant="light" id="booking">
         <SectionHeader eyebrow="Book now" title="Schedule a Coaching Session" />
         <div className="max-w-3xl mx-auto">
-          <div className="rounded-2xl border border-brand-100/50 bg-white p-12 text-center">
-            <p className="text-brand-500 mb-4">Calendly scheduling widget loads here</p>
-            <Button href="https://calendly.com" variant="outline" size="sm" className="mt-4">
-              Book on Calendly (placeholder)
-            </Button>
-          </div>
+          <BookingOptions options={['freeCall']} />
         </div>
       </Section>
     </>
