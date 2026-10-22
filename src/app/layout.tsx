@@ -1,7 +1,8 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { siteConfig } from '@/lib/config'
+import { CREAM, MASK_ICON_COLOR } from '@/lib/brand-mark'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -42,6 +43,11 @@ export const metadata: Metadata = {
   },
 }
 
+// Matches the cream header so Safari's tinted tab bar blends with the site.
+export const viewport: Viewport = {
+  themeColor: CREAM,
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -50,6 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color={MASK_ICON_COLOR} />
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
