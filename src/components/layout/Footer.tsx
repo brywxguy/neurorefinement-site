@@ -18,12 +18,9 @@ export function Footer() {
               {siteConfig.tagline}
             </p>
             <p className="text-sm text-brand-300 leading-relaxed mb-4">
-              {siteConfig.location.studio} {siteConfig.location.addressNote}
-            </p>
-            <p className="text-sm text-brand-300 leading-relaxed mb-4">
-              {siteConfig.hours.days}, {siteConfig.hours.time}
+              {siteConfig.location.city}, {siteConfig.location.state}
               <br />
-              {siteConfig.hours.byRequest}
+              {siteConfig.hours.daysShort} {siteConfig.hours.time}
             </p>
             <div className="text-sm space-y-2.5">
               <a href={`tel:${siteConfig.contact.phoneE164}`} className="block text-brand-300 hover:text-white transition-colors">

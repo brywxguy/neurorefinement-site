@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
-import { ButtonLabel, Section, SectionHeader, Card } from '@/components/ui'
+import { ButtonLabel, Section, Card } from '@/components/ui'
 import { ArrowRight, Brain, Sparkles, Users, Play } from 'lucide-react'
-import { booking, pricing } from '@/lib/config'
-import { VisitDetails } from '@/components/booking/VisitDetails'
+import { pricing } from '@/lib/config'
+import { VisitStrip } from '@/components/booking/VisitStrip'
 
 export const metadata: Metadata = {
   title: 'Work With Me',
@@ -135,15 +135,7 @@ export default function WorkWithMePage() {
             </div>
           </Card>
         </div>
-      </Section>
-
-      <Section>
-        <SectionHeader
-          eyebrow="Practical details"
-          title="Location, Hours & Payment"
-          description={`New here? Start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}).`}
-        />
-        <VisitDetails className="max-w-5xl mx-auto" />
+        <VisitStrip className="max-w-3xl mx-auto mt-12 rounded-2xl bg-sand-50 border border-brand-100/50 px-6 py-5" />
       </Section>
     </>
   )

@@ -24,7 +24,9 @@ export const siteConfig = {
   },
   hours: {
     days: 'Monday–Friday',
+    daysShort: 'Mon–Fri',
     time: '9 AM–2 PM',
+    timeShort: '9–2',
     closed: 'Closed weekends and Carlsbad Unified (CUSD) school holidays.',
     byRequest: 'Evenings and weekends by request.',
   },
