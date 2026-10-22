@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag, FAQ } from '@/components/ui'
 import { ArrowRight, Calendar, Users, MapPin, Clock, CheckCircle } from 'lucide-react'
 import { pricing, siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/classes', {
   title: 'TML — Transformational Movement Lessons (Individual or Group)',
   description: 'Individual or group Transformational Movement Lessons in Carlsbad, CA, plus voice-guided lessons. Increase awareness, reduce effort, and discover new options.',
-}
+})
 
 export default function ClassesPage() {
   return (

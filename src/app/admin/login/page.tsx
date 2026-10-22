@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/metadata'
 import { redirect } from 'next/navigation'
 import { Button, Section } from '@/components/ui'
 import { FormError, inputClass } from '@/components/forms/fields'
@@ -6,6 +8,8 @@ import { createAuthSupabase, isSupabaseAuthConfigured } from '@/lib/supabase-ser
 import { sendMagicLink, signOut } from '../actions'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = pageMetadata('/admin/login', { title: 'Admin sign-in' })
 
 const ERRORS: Record<string, string> = {
   missing: 'Please enter your email address.',

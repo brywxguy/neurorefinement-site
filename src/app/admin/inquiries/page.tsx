@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/metadata'
 import Link from 'next/link'
 import { Download, LogOut, Mail, Phone } from 'lucide-react'
 import { Section } from '@/components/ui'
@@ -18,6 +20,8 @@ import { signOut } from '../actions'
 import { InquiryEditor } from './InquiryEditor'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = pageMetadata('/admin/inquiries', { title: 'Inquiries' })
 
 const PAGE_LIMIT = 500
 

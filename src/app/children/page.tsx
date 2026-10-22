@@ -3,11 +3,12 @@ import Image from 'next/image'
 import { Button, Section, SectionHeader, FAQ, ImageCaption } from '@/components/ui'
 import { ArrowRight, Heart, Brain, Sparkles, Users, CheckCircle } from 'lucide-react'
 import { booking, pricing, siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/children', {
   title: 'Children & Special Needs — ABM NeuroMovement for Kids',
   description: 'Gentle, brain-based movement sessions for children with special needs. Supporting development in cerebral palsy, autism, developmental delays, and more. Carlsbad, CA.',
-}
+})
 
 export default function ChildrenPage() {
   return (

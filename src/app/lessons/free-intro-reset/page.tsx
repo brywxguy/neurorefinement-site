@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import { Section } from '@/components/ui'
 import { freeLesson } from '@/lib/config'
 import { FreeLessonGate } from './FreeLessonGate'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/lessons/free-intro-reset', {
   title: `${freeLesson.label}: ${freeLesson.title}`,
   description: 'A free, gentle guided movement lesson you can do at home. No equipment needed.',
-}
+})
 
 export default function FreeLessonPage() {
   return (

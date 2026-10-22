@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import { Section } from '@/components/ui'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = { title: 'Terms of Service' }
+export const metadata: Metadata = pageMetadata('/terms', { title: 'Terms of Service' })
 
 export default function TermsPage() {
   return (

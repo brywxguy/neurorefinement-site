@@ -1,11 +1,12 @@
 import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card } from '@/components/ui'
 import { ArrowRight, ExternalLink, BookOpen, Microscope, GraduationCap, FileText, Link2 } from 'lucide-react'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/research', {
   title: 'Research & Science',
   description: 'The neuroscience behind NeuroRefinement. Peer-reviewed research on neuroplasticity, the Anat Baniel Method, the Feldenkrais Method, and brain-based movement learning.',
-}
+})
 
 /* ─────────────────── DATA ─────────────────── */
 

@@ -1,11 +1,12 @@
 import { Metadata } from 'next'
 import { Section } from '@/components/ui'
 import { siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/disclaimer', {
   title: 'Disclaimer',
   description: 'NeuroRefinement provides educational wellness services, not medical treatment.',
-}
+})
 
 export default function DisclaimerPage() {
   return (

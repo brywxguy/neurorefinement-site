@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 import { Section } from '@/components/ui'
 import { siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = { title: 'Refund Policy' }
+export const metadata: Metadata = pageMetadata('/refund-policy', { title: 'Refund Policy' })
 
 export default function RefundPolicyPage() {
   return (

@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import { Button, Section, SectionHeader, Card, PriceTag } from '@/components/ui'
 import { ArrowRight, Check, Play, Calendar, MessageSquare, Gift, Heart } from 'lucide-react'
 import { pricing } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/membership', {
   title: 'Membership — Ongoing Refinement & Community',
   description: 'Join the NeuroRefinement community for full audio library access, monthly live classes, new lesson drops, Q&A, and member discounts.',
-}
+})
 
 export default function MembershipPage() {
   return (

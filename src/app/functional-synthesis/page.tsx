@@ -6,12 +6,13 @@ import { ArrowRight, CalendarRange, Clock, MapPin, CheckCircle } from 'lucide-re
 import { booking, intensiveSummary, otherLessonsNote, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
 import { VisitDetails } from '@/components/booking/VisitDetails'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/functional-synthesis', {
   title: 'Functional Synthesis Lessons (1:1) | Anat Baniel Method NeuroMovement',
   description:
     'Gentle, hands-on Functional Synthesis lessons (1:1) that help your brain learn new options. Improve function, reduce pain, and discover new movement possibilities.',
-}
+})
 
 const studioLocation = (
   <>

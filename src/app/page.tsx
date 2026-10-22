@@ -5,6 +5,10 @@ import { siteConfig, pricing, booking, lessonThemes, testimonials, otherLessonsN
 import { ThemeIcon } from '@/components/ui/ThemeIcon'
 import { VisitStrip } from '@/components/booking/VisitStrip'
 import { ArrowRight, Play, Brain, Heart, Sparkles, Users, Waves, Target, Sun, Baby } from 'lucide-react'
+import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/metadata'
+
+export const metadata: Metadata = pageMetadata('/')
 
 export default function HomePage() {
   return (
