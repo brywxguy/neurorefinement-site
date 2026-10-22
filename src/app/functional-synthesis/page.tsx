@@ -97,16 +97,15 @@ export default function FunctionalSynthesisPage() {
         <figure className="max-w-2xl mx-auto mt-12">
           <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
             <Image
-              src="/images/bryan-session-with-christie-drullard-cone.jpg"
-              alt="Bryan Thunstrom lying on a padded table receiving a gentle hands-on session from practitioner Christie Drullard Cone"
+              src="/images/hands-on-session-adult.jpg"
+              alt="A practitioner guiding a gentle hands-on session with an adult lying fully clothed on a padded table"
               width={800}
               height={600}
               className="object-cover w-full h-full"
             />
           </div>
           <ImageCaption as="figcaption">
-            Bryan receiving a session from practitioner Christie Drullard Cone during his own recovery from
-            bilateral Thoracic Outlet Syndrome and Lyme disease
+            A gentle hands-on session with an adult — lying comfortably, fully clothed, on a low padded table
           </ImageCaption>
         </figure>
       </Section>
@@ -179,7 +178,7 @@ export default function FunctionalSynthesisPage() {
                 className="object-cover w-full h-full"
               />
             </div>
-            <ImageCaption>A Functional Synthesis session — gentle, playful work with a child, parent present</ImageCaption>
+            <ImageCaption>A real Functional Synthesis session with a child — gentle, playful, and with family present.</ImageCaption>
           </div>
         </div>
       </Section>

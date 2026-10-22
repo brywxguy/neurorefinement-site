@@ -18,6 +18,7 @@ export const siteConfig = {
     // Never publish the street address anywhere on the site; Bryan shares it after booking.
     studio: 'Home studio in Carlsbad, CA 92008, near Tamarack and El Camino Real.',
     addressNote: 'Exact address provided after booking.',
+    short: 'In person in Carlsbad; exact address after booking.',
     formats: 'Lessons are in person at the home studio. The Free Intro Call is on Zoom.',
     travel: 'Travel to clients is available at Bryan’s discretion for an additional fee.',
     googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',

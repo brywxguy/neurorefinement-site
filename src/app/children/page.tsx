@@ -136,9 +136,8 @@ export default function ChildrenPage() {
             <p>
               Sessions are ${pricing.abm.session.price}, and your child&apos;s first visit is a{' '}
               {pricing.abm.newClientLesson.label}, {pricing.abm.newClientLesson.duration} minutes, $
-              {pricing.abm.newClientLesson.price}, with extra time for discovery and conversation with you.
-              Lessons are in person: {siteConfig.location.studio} {siteConfig.location.addressNote}{' '}
-              {siteConfig.payment.note}
+              {pricing.abm.newClientLesson.price}, with extra time for discovery and conversation with you.{' '}
+              {siteConfig.location.short} {siteConfig.payment.note}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">

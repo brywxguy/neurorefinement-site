@@ -40,7 +40,7 @@ export default function HomePage() {
               </Button>
             </div>
             <p className="mt-6 text-sm text-brand-400">
-              {siteConfig.location.studio} {siteConfig.location.addressNote}
+              {siteConfig.location.short}
             </p>
           </div>
 
