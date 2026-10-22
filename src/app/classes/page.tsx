@@ -19,10 +19,10 @@ export default function ClassesPage() {
           <h1 className="font-display text-4xl md:text-5xl text-brand-900 mb-6">
             Transformational Movement Lessons
           </h1>
-          <p className="text-xl text-brand-600 leading-relaxed mb-8">
-            Guided movement explorations based on the work of Moshe Feldenkrais. Increase
-            awareness, reduce unnecessary effort, and expand your movement options — one-on-one
-            or in a supportive small group.
+          <p className="text-xl text-brand-600 leading-relaxed mb-4">
+            Guided explorations inspired by Awareness Through Movement&reg; principles.
+            Increase awareness, reduce unnecessary effort, and expand your movement options
+            — one-on-one or in a supportive small group.
           </p>
           <p className="text-lg text-brand-500 leading-relaxed mb-8">
             Bryan offers individual TML lessons by request, group TML lessons, and voice-guided

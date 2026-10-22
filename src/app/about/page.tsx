@@ -150,9 +150,9 @@ export default function AboutPage() {
               discover new options it didn&apos;t know it had.
             </p>
             <p>
-              <strong>Transformational Movement Lessons (TML)</strong>, based on the work of
-              Moshe Feldenkrais, guide our individual and group lessons — helping you reduce
-              unnecessary effort, expand your movement vocabulary, and find more ease in
+              <strong>Feldenkrais-inspired Awareness Through Movement</strong> principles guide
+              our Transformational Movement Lessons (TML), individual and group — helping you
+              reduce unnecessary effort, expand your movement vocabulary, and find more ease in
               everything you do. Voice-guided lessons let you continue at home.
             </p>
             <p>

@@ -58,7 +58,7 @@ const coreResearch = [
     title: 'Changes in neural resting state activity in primary and higher-order motor areas induced by a short sensorimotor intervention based on the Feldenkrais Method',
     journal: 'Frontiers in Human Neuroscience, 9',
     url: 'https://pubmed.ncbi.nlm.nih.gov/26029085/',
-    summary: 'Brain imaging study using fMRI showing measurable neural changes in motor areas after hands-on Feldenkrais sessions — direct evidence that these gentle, awareness-based methods change the brain.',
+    summary: 'Brain imaging study using fMRI showing measurable neural changes in motor areas after Feldenkrais Functional Integration sessions — direct evidence that these gentle, awareness-based methods change the brain.',
   },
   {
     authors: 'Palmer CF',
@@ -66,7 +66,7 @@ const coreResearch = [
     title: 'Feldenkrais Movement Lessons Improve Older Adults\' Awareness, Comfort, and Function',
     journal: 'Gerontology & Geriatric Medicine, Volume 3',
     url: 'https://pubmed.ncbi.nlm.nih.gov/28840153/',
-    summary: 'Study showing that Feldenkrais group movement lessons improve self-awareness, physical comfort, and daily function in older adults — directly relevant to NeuroRefinement\'s work with aging and fall prevention.',
+    summary: 'Study showing that Awareness Through Movement lessons improve self-awareness, physical comfort, and daily function in older adults — directly relevant to NeuroRefinement\'s work with aging and fall prevention.',
   },
 ]
 
@@ -88,8 +88,8 @@ const books = [
   {
     author: 'Feldenkrais M',
     year: 1972,
-    title: 'Health Exercises for Personal Growth',
-    note: 'Moshe Feldenkrais\'s classic book of guided movement lessons. The original text that launched the Feldenkrais Method — foundational to ABM NeuroMovement and all brain-based movement education.',
+    title: 'Awareness Through Movement: Health Exercises for Personal Growth',
+    note: 'The original text that launched the Feldenkrais Method — foundational to ABM NeuroMovement and all brain-based movement education.',
     amazonUrl: 'https://www.amazon.com/dp/0062503227?tag=neurorefineme-20',
   },
   {
