@@ -53,11 +53,10 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="font-medium text-brand-800">Location</p>
-                  <p className="text-brand-600">{siteConfig.location.studio}</p>
+                  <p className="text-brand-600">{siteConfig.location.studioCompact}</p>
                   <p className="text-sm text-brand-500">{siteConfig.location.addressNote}</p>
-                  <p className="text-sm text-brand-500">{siteConfig.location.formats}</p>
-                  <p className="text-sm text-brand-500">{siteConfig.location.groupClasses}</p>
-                  <p className="text-sm text-brand-500">{siteConfig.location.travel}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.location.formatsCompact}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.location.travelCompact}</p>
                   <a
                     href={siteConfig.location.googleBusinessProfile}
                     target="_blank"
