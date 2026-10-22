@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
-import { Button, Section, SectionHeader, FAQ } from '@/components/ui'
+import { Button, Section, SectionHeader, FAQ, ImageCaption } from '@/components/ui'
 import { ArrowRight, Heart, Brain, Sparkles, Users, CheckCircle } from 'lucide-react'
 import { booking, pricing, siteConfig } from '@/lib/config'
 
@@ -170,9 +170,9 @@ export default function ChildrenPage() {
               />
             </div>
           </div>
-          <p className="text-center text-sm text-brand-400 mt-4 italic">
+          <ImageCaption>
             Real Functional Synthesis sessions with children — gentle, playful, and always with family present.
-          </p>
+          </ImageCaption>
         </div>
       </Section>
     </>

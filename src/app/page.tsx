@@ -231,7 +231,7 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
-        <p className="text-center text-sm text-brand-500 mt-8">{otherLessonsNote}</p>
+        <p className="text-center text-brand-600 leading-relaxed mt-8 max-w-2xl mx-auto">{otherLessonsNote}</p>
       </Section>
 
       {/* ============================================================
@@ -332,7 +332,7 @@ export default function HomePage() {
           description={`Start with a ${booking.events.freeCall.label} (${booking.events.freeCall.duration} minutes on ${booking.events.freeCall.format}). Your first in-person visit is a ${pricing.abm.newClientLesson.label}: ${pricing.abm.newClientLesson.duration} minutes, $${pricing.abm.newClientLesson.price}, with extra time for discovery and conversation. After that, sessions are about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}.`}
         />
         <VisitDetails className="max-w-5xl mx-auto" />
-        <div className="text-center mt-10">
+        <div className="text-center mt-8">
           <Button href="/functional-synthesis#booking" size="lg">
             Book a {booking.events.freeCall.label} <ArrowRight className="ml-2 w-5 h-5" />
           </Button>

@@ -97,7 +97,7 @@ export default function ClassesPage() {
           title="Upcoming Classes"
           description="Class schedule coming soon. Join the newsletter to be notified when classes are posted."
         />
-        <p className="text-center text-sm text-brand-500 mb-8 max-w-2xl mx-auto">
+        <p className="text-center text-brand-600 leading-relaxed mb-8 max-w-2xl mx-auto">
           {siteConfig.location.studio} {siteConfig.location.addressNote} {siteConfig.payment.note}
         </p>
         <div className="max-w-2xl mx-auto text-center">

@@ -157,9 +157,10 @@ interface PriceTagProps {
   period?: string
   originalPrice?: number
   size?: 'sm' | 'md' | 'lg'
+  className?: string
 }
 
-export function PriceTag({ price, period, originalPrice, size = 'md' }: PriceTagProps) {
+export function PriceTag({ price, period, originalPrice, size = 'md', className }: PriceTagProps) {
   const sizes = {
     sm: 'text-xl',
     md: 'text-3xl',
@@ -167,7 +168,7 @@ export function PriceTag({ price, period, originalPrice, size = 'md' }: PriceTag
   }
 
   return (
-    <div className="flex items-baseline gap-2">
+    <div className={cn('flex items-baseline gap-2', className)}>
       {originalPrice && (
         <span className="text-brand-400 line-through text-lg">${originalPrice}</span>
       )}
@@ -179,6 +180,47 @@ export function PriceTag({ price, period, originalPrice, size = 'md' }: PriceTag
       )}
     </div>
   )
+}
+
+// ============================================================
+// PRICING CARD
+// Place inside a grid; each card spans 5 subgrid rows (meta, title, price,
+// note, footer) so rows line up across every card in the same grid row.
+// ============================================================
+interface PricingCardProps {
+  title: string
+  price: number
+  period?: string
+  meta?: ReactNode
+  badge?: string
+  note?: ReactNode
+  footer?: ReactNode
+  featured?: boolean
+}
+
+export function PricingCard({ title, price, period, meta, badge, note, footer, featured }: PricingCardProps) {
+  return (
+    <Card className={cn('row-span-5 grid grid-rows-subgrid gap-0 text-center', featured && 'border-brand-300')}>
+      <div className="flex items-center justify-center gap-2 text-sm text-brand-500 mb-4">
+        {badge ? (
+          <span className="inline-block text-xs font-medium bg-brand-500 text-white px-3 py-1 rounded-full">{badge}</span>
+        ) : (
+          meta
+        )}
+      </div>
+      <h3 className="font-display text-xl text-brand-800 mb-3">{title}</h3>
+      <PriceTag price={price} period={period} className="justify-center mb-3" />
+      <p className="text-sm text-brand-600 leading-relaxed">{note}</p>
+      <div className="flex items-start justify-center gap-2 text-sm text-brand-500 mt-4">{footer}</div>
+    </Card>
+  )
+}
+
+// ============================================================
+// IMAGE CAPTION
+// ============================================================
+export function ImageCaption({ children, as: Tag = 'p', className }: { children: ReactNode; as?: 'p' | 'figcaption'; className?: string }) {
+  return <Tag className={cn('mt-3 text-sm text-brand-500 italic text-center', className)}>{children}</Tag>
 }
 
 // ============================================================

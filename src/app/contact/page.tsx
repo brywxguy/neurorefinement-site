@@ -54,8 +54,8 @@ export default function ContactPage() {
                   <p className="font-medium text-brand-800">Location</p>
                   <p className="text-brand-600">{siteConfig.location.studio}</p>
                   <p className="text-sm text-brand-500">{siteConfig.location.addressNote}</p>
-                  <p className="text-sm text-brand-400 mt-1">{siteConfig.location.formats}</p>
-                  <p className="text-sm text-brand-400">{siteConfig.location.travel}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.location.formats}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.location.travel}</p>
                   <a
                     href={siteConfig.location.googleBusinessProfile}
                     target="_blank"
@@ -73,9 +73,9 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium text-brand-800">Hours</p>
                   <p className="text-brand-600">{siteConfig.hours.days}, {siteConfig.hours.time}</p>
-                  <p className="text-sm text-brand-400">{siteConfig.hours.closed}</p>
-                  <p className="text-sm text-brand-400">{siteConfig.hours.byRequest}</p>
-                  <p className="text-sm text-brand-400 mt-1">{siteConfig.payment.note}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.hours.closed}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.hours.byRequest}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.payment.note}</p>
                 </div>
               </div>
               <div className="flex gap-4">

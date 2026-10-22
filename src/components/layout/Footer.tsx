@@ -17,15 +17,15 @@ export function Footer() {
             <p className="text-sm text-brand-300 leading-relaxed mb-4">
               {siteConfig.tagline}
             </p>
-            <p className="text-sm text-brand-400">
+            <p className="text-sm text-brand-300 leading-relaxed mb-4">
               {siteConfig.location.studio} {siteConfig.location.addressNote}
             </p>
-            <p className="text-sm text-brand-400 mt-2">
+            <p className="text-sm text-brand-300 leading-relaxed mb-4">
               {siteConfig.hours.days}, {siteConfig.hours.time}
               <br />
               {siteConfig.hours.byRequest}
             </p>
-            <div className="text-sm mt-3 space-y-1">
+            <div className="text-sm space-y-2.5">
               <a href={`tel:${siteConfig.contact.phoneE164}`} className="block text-brand-300 hover:text-white transition-colors">
                 {siteConfig.contact.phone}
               </a>
