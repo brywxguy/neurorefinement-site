@@ -72,6 +72,10 @@ export const inquirySchema = z
       ctx.addIssue({ code: 'custom', path: ['message'], message: 'Please include a short message.' })
     }
     if (data.form_type === 'free_lesson') {
+      const lastName = data.details?.lastName
+      if (typeof lastName !== 'string' || !lastName.trim() || lastName.length > 200) {
+        ctx.addIssue({ code: 'custom', path: ['lastName'], message: 'Please enter your last name.' })
+      }
       if (data.consent_followup !== true) {
         ctx.addIssue({ code: 'custom', path: ['consent_followup'], message: 'Please agree to a personal follow-up to get the lesson.' })
       }

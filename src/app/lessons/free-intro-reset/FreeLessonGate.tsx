@@ -92,7 +92,8 @@ function SignupForm({ title, onUnlocked }: { title: string; onUnlocked: () => vo
     const consentSms = data.get('consent_sms') === 'on'
 
     const errors: Record<string, string> = {}
-    if (!get('name')) errors.name = 'Please enter your first name.'
+    if (!get('firstName')) errors.name = 'Please enter your first name.'
+    if (!get('lastName')) errors.lastName = 'Please enter your last name.'
     if (!get('email')) errors.email = 'Please enter your email.'
     if (!consentFollowup) errors.consent_followup = 'Please agree to a personal follow-up to get the lesson.'
     if (consentSms && !get('phone')) errors.phone = 'Add a cell number to get texts, or uncheck that box.'
@@ -103,12 +104,12 @@ function SignupForm({ title, onUnlocked }: { title: string; onUnlocked: () => vo
     setSubmitting(true)
     const result = await submitInquiry({
       form_type: 'free_lesson',
-      name: get('name'),
+      name: `${get('firstName')} ${get('lastName')}`,
       email: get('email'),
       phone: get('phone'),
       consent_followup: consentFollowup,
       consent_sms: consentSms,
-      details: { lesson: title },
+      details: { lesson: title, firstName: get('firstName'), lastName: get('lastName') },
       [HONEYPOT_FIELD]: get(HONEYPOT_FIELD),
     })
     setSubmitting(false)
@@ -131,16 +132,21 @@ function SignupForm({ title, onUnlocked }: { title: string; onUnlocked: () => vo
         </div>
         <HoneypotField />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <Field label="First name" htmlFor="fl-name" required error={err('name')}>
-            <input id="fl-name" name="name" type="text" required maxLength={200} autoComplete="given-name" className={inputClass} aria-invalid={Boolean(err('name'))} />
+          <Field label="First name" htmlFor="fl-first-name" required error={err('name')}>
+            <input id="fl-first-name" name="firstName" type="text" required maxLength={100} autoComplete="given-name" className={inputClass} aria-invalid={Boolean(err('name'))} />
           </Field>
+          <Field label="Last name" htmlFor="fl-last-name" required error={err('lastName')}>
+            <input id="fl-last-name" name="lastName" type="text" required maxLength={100} autoComplete="family-name" className={inputClass} aria-invalid={Boolean(err('lastName'))} />
+          </Field>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <Field label="Email" htmlFor="fl-email" required error={err('email')}>
             <input id="fl-email" name="email" type="email" required maxLength={320} autoComplete="email" className={inputClass} aria-invalid={Boolean(err('email'))} />
           </Field>
+          <Field label="Cell phone" htmlFor="fl-phone" hint="Optional" error={err('phone')}>
+            <input id="fl-phone" name="phone" type="tel" maxLength={50} autoComplete="tel" className={inputClass} aria-invalid={Boolean(err('phone'))} />
+          </Field>
         </div>
-        <Field label="Cell phone" htmlFor="fl-phone" hint="Optional" error={err('phone')}>
-          <input id="fl-phone" name="phone" type="tel" maxLength={50} autoComplete="tel" className={inputClass} aria-invalid={Boolean(err('phone'))} />
-        </Field>
         <div className="space-y-3">
           <label className="flex items-start gap-3 text-sm text-brand-700">
             <input type="checkbox" name="consent_followup" required className="mt-1 accent-brand-500" aria-invalid={Boolean(err('consent_followup'))} />
