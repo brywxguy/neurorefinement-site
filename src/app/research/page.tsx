@@ -40,7 +40,7 @@ const coreResearch = [
     authors: 'Merzenich MM, Jenkins WM, Johnston P, Schreiner C, Miller SL, Tallal P',
     year: 1996,
     title: 'Temporal processing deficits of language-learning impaired children ameliorated by training',
-    journal: 'Science, 271:77\u201384',
+    journal: 'Science, 271:77–84',
     url: 'https://pubmed.ncbi.nlm.nih.gov/8539603/',
     summary: 'Foundational neuroplasticity research by Michael Merzenich demonstrating that the brain can reorganize in response to training — the scientific bedrock underlying all brain-based movement methods including ABM.',
   },
@@ -53,7 +53,7 @@ const coreResearch = [
     summary: 'Mark Reese\'s influential analysis of how the Feldenkrais Method embodies dynamic systems theory — the scientific framework for understanding how new movement patterns emerge through exploration rather than instruction.',
   },
   {
-    authors: 'Verrel J, Almagor E, Schumann F, Lindenberger U, K\u00fchn S',
+    authors: 'Verrel J, Almagor E, Schumann F, Lindenberger U, Kühn S',
     year: 2015,
     title: 'Changes in neural resting state activity in primary and higher-order motor areas induced by a short sensorimotor intervention based on the Feldenkrais Method',
     journal: 'Frontiers in Human Neuroscience, 9',
@@ -119,7 +119,7 @@ const additionalResources = [
   {
     title: '9 Essentials — Research References (PDF)',
     url: 'https://www.anatbanielmethod.com/wp-content/uploads/2019/09/9-essentials-neuromovement-references-research.pdf',
-    description: 'Official compilation of Merzenich and other neuroscience papers (1992\u20131999) supporting each of the Nine Essentials.',
+    description: 'Official compilation of Merzenich and other neuroscience papers (1992–1999) supporting each of the Nine Essentials.',
     icon: FileText,
   },
   {
@@ -192,7 +192,7 @@ export default function ResearchPage() {
             <p className="text-xl text-brand-200 leading-relaxed mb-4">
               NeuroRefinement is built on decades of peer-reviewed neuroplasticity research,
               the clinical innovations of the Anat Baniel Method, and the foundational work of
-              Mosh\u00e9 Feldenkrais. This page collects the science that informs everything we do.
+              Moshé Feldenkrais. This page collects the science that informs everything we do.
             </p>
             <p className="text-brand-300 text-sm italic max-w-2xl">
               &ldquo;Scientists have defined the &lsquo;rules&rsquo; governing brain plasticity.
@@ -257,7 +257,7 @@ export default function ResearchPage() {
         <SectionHeader
           eyebrow="Essential Reading"
           title="Books That Inform Our Practice"
-          description="These books shaped NeuroRefinement\u2019s approach. Essential reading for understanding brain-based movement learning."
+          description="These books shaped NeuroRefinement’s approach. Essential reading for understanding brain-based movement learning."
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {books.map((book) => (

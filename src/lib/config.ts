@@ -239,12 +239,12 @@ export const navigation = {
     {
       label: 'Learn',
       children: [
+        { label: 'Research', href: '/research', description: 'The science behind the method' },
         { label: 'Audio Lessons', href: '/lessons', description: 'Voice-guided movement library' },
         { label: 'Membership', href: '/membership', description: 'Ongoing access & community' },
       ],
     },
     { label: 'Blog', href: '/blog' },
-    { label: 'Research', href: '/research' },
     { label: 'Contact', href: '/contact' },
   ],
   cta: { label: 'Start Here', href: '/start-here' },
