@@ -25,8 +25,7 @@ export default function FunctionalSynthesisPage() {
           </h1>
           <p className="text-xl text-brand-600 leading-relaxed mb-4">
             Gentle, hands-on sessions that work with your brain&apos;s natural ability to learn
-            and reorganize. Based on the Anat Baniel Method&reg; NeuroMovement&reg; approach,
-            which grew out of the work of Moshe Feldenkrais.
+            and reorganize. Based on the Anat Baniel Method&reg; NeuroMovement&reg; approach.
           </p>
           <p className="text-lg text-brand-500 leading-relaxed mb-8">
             This isn&apos;t about stretching or strengthening. It&apos;s about giving your
@@ -87,6 +86,21 @@ export default function FunctionalSynthesisPage() {
             </div>
           </div>
         </div>
+        <figure className="max-w-2xl mx-auto mt-12">
+          <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/functional-integration-session.jpg"
+              alt="Bryan Thunstrom lying on a padded table receiving a gentle hands-on session from practitioner Christie Drullard Cone"
+              width={800}
+              height={600}
+              className="object-cover w-full h-full"
+            />
+          </div>
+          <figcaption className="text-xs text-brand-400 mt-3 text-center">
+            Bryan receiving a session from practitioner Christie Drullard Cone during his own recovery from
+            bilateral Thoracic Outlet Syndrome and Lyme disease
+          </figcaption>
+        </figure>
       </Section>
 
       {/* Children & Special Needs */}
@@ -150,15 +164,15 @@ export default function FunctionalSynthesisPage() {
           <div>
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
               <Image
-                src="/images/functional-integration-session.jpg"
-                alt="Gentle hands-on NeuroMovement session with a child"
+                src="/images/fs-session-child-toys.jpg"
+                alt="Bryan Thunstrom working with a child in a Functional Synthesis session while mother participates"
                 width={800}
                 height={600}
                 className="object-cover w-full h-full"
               />
             </div>
             <p className="text-xs text-brand-400 mt-3 text-center">
-              A Functional Synthesis session — gentle, hands-on work supporting a child&apos;s development
+              A Functional Synthesis session — gentle, playful work with a child, parent present
             </p>
           </div>
         </div>
