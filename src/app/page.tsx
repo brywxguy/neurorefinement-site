@@ -196,7 +196,7 @@ export default function HomePage() {
             {
               icon: <Brain className="w-6 h-6" />,
               title: 'Functional Synthesis (ABM)',
-              subtitle: 'One-on-one ABM NeuroMovement lessons, in person',
+              subtitle: 'One-on-one Functional Synthesis lessons (ABM NeuroMovement), in person',
               description: `Gentle, precise movement lessons guided by touch. Your brain learns new patterns for better coordination, less pain, and expanded possibilities. New clients start with a ${pricing.abm.newClientLesson.label}.`,
               price: `$${pricing.abm.session.price} · about ${pricing.abm.session.duration} min`,
               href: '/functional-synthesis',
@@ -204,7 +204,7 @@ export default function HomePage() {
             {
               icon: <Users className="w-6 h-6" />,
               title: 'TML Lessons',
-              subtitle: 'Individual or group Transformational Movement Lessons',
+              subtitle: 'Individual or group Transformational Movement Lessons (ABM NeuroMovement)',
               description: 'Guided explorations that increase awareness, reduce effort, and open new movement options, one-on-one or in a small group.',
               price: `Group from $${pricing.classes.dropIn.price}`,
               href: '/classes',

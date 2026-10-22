@@ -7,8 +7,8 @@ import { BookingOptions } from '@/components/booking/BookingOptions'
 import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
-  title: 'Functional Synthesis — ABM NeuroMovement Sessions',
-  description: `Gentle, hands-on ABM NeuroMovement lessons, about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}, in person at a home studio in Carlsbad, CA 92008. Reduce pain, improve function, and discover new movement possibilities.`,
+  title: 'Functional Synthesis Lessons (1:1) — ABM NeuroMovement',
+  description: `Gentle, hands-on one-on-one Functional Synthesis lessons (ABM NeuroMovement), about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}, in person at a home studio in Carlsbad, CA 92008. Reduce pain, improve function, and discover new movement possibilities.`,
 }
 
 export default function FunctionalSynthesisPage() {
@@ -270,7 +270,7 @@ export default function FunctionalSynthesisPage() {
             },
             {
               question: 'How long is a session?',
-              answer: `${pricing.abm.session.lengthNote} Your first visit is a ${pricing.abm.newClientLesson.label} (${pricing.abm.newClientLesson.duration} minutes): the same one-on-one session with extra time for discovery and conversation.`,
+              answer: `${pricing.abm.session.lengthNote} Your first visit is a ${pricing.abm.newClientLesson.label}, ${pricing.abm.newClientLesson.duration} minutes: the same one-on-one session with extra time for discovery and conversation.`,
             },
             {
               question: 'When are you available, and how do I pay?',

@@ -6,7 +6,7 @@ import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
   title: 'Work With Me',
-  description: 'Overview of NeuroRefinement services — one-on-one ABM NeuroMovement lessons in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
+  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons (ABM NeuroMovement) in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
 }
 
 export default function WorkWithMePage() {
@@ -40,7 +40,7 @@ export default function WorkWithMePage() {
                 <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-500 flex items-center justify-center">
                   <Brain className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Sessions</span>
+                <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Lessons</span>
               </div>
               <h2 className="font-display text-2xl text-brand-900 mb-3">Functional Synthesis (ABM)</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
@@ -49,8 +49,8 @@ export default function WorkWithMePage() {
                 movement options and reducing pain.
               </p>
               <p className="text-sm text-brand-500">
-                {pricing.abm.newClientLesson.label}: {pricing.abm.newClientLesson.duration} min, ${pricing.abm.newClientLesson.price} &middot;{' '}
-                {pricing.abm.session.label}: about {pricing.abm.session.duration} min, ${pricing.abm.session.price} &middot; In person
+                {pricing.abm.newClientLesson.shortLabel}: {pricing.abm.newClientLesson.duration} min, ${pricing.abm.newClientLesson.price} &middot;{' '}
+                {pricing.abm.session.shortLabel}: about {pricing.abm.session.duration} min, ${pricing.abm.session.price} &middot; In person
               </p>
             </div>
             <div className="text-center md:text-right">

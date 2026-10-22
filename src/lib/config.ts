@@ -71,12 +71,12 @@ export const booking = {
     // First visit for new clients. Length and price come from pricing.abm.newClientLesson.
     newClientLesson: {
       slug: process.env.NEXT_PUBLIC_CAL_NEW_CLIENT_LESSON_SLUG || 'new-client-lesson',
-      label: 'New Client Lesson',
+      label: 'New Client Functional Synthesis Lesson',
     },
     // Existing clients only (hidden event, see existingClientUrl).
     clientLesson: {
       slug: 'client-lesson',
-      label: 'Client Lesson',
+      label: 'Functional Synthesis Lesson',
       duration: 45,
     },
     coachingSession: {
@@ -113,18 +113,21 @@ export function calUrl(eventSlug: string) {
 // ============================================================
 
 export const pricing = {
-  // 1:1 ABM NeuroMovement lessons (in person at the home studio)
+  // ABM NeuroMovement is the overall practice. These are its 1:1 Functional Synthesis (FS)
+  // lessons, in person at the home studio. Never label a session 'ABM NeuroMovement Session'.
   abm: {
     session: {
       price: 150,
       duration: 45, // approximate; always under 60
-      label: 'ABM NeuroMovement Session',
+      label: 'Functional Synthesis Lesson (1:1)',
+      shortLabel: 'FS Lesson (1:1)',
       lengthNote: 'About 45 minutes (always under 60). Length is flexible, especially for children with special needs.',
     },
     newClientLesson: {
       price: 200,
       duration: 90,
-      label: 'New Client Lesson (First Visit)',
+      label: 'New Client Functional Synthesis Lesson (1:1)',
+      shortLabel: 'New Client FS Lesson (1:1)',
       description: 'The same one-on-one session, with extra time for discovery and conversation.',
     },
     pack4:     { price: 540, sessions: 4, savings: '10% off', perSession: 135 },

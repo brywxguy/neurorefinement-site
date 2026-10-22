@@ -135,8 +135,8 @@ export default function ChildrenPage() {
             </p>
             <p>
               Sessions are ${pricing.abm.session.price}, and your child&apos;s first visit is a{' '}
-              {pricing.abm.newClientLesson.label} ({pricing.abm.newClientLesson.duration} minutes, $
-              {pricing.abm.newClientLesson.price}) with extra time for discovery and conversation with you.
+              {pricing.abm.newClientLesson.label}, {pricing.abm.newClientLesson.duration} minutes, $
+              {pricing.abm.newClientLesson.price}, with extra time for discovery and conversation with you.
               Lessons are in person: {siteConfig.location.studio} {siteConfig.location.addressNote}{' '}
               {siteConfig.payment.note}
             </p>
