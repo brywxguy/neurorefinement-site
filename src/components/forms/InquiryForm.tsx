@@ -13,7 +13,7 @@ type ContactFormType = Extract<FormType, 'contact' | 'intensive'>
 
 const TOPICS = [
   'General question',
-  'Functional Synthesis / ABM lessons',
+  'Functional Synthesis lessons',
   'TML lessons (individual or group)',
   'Voice-guided lessons',
   'Coaching',
