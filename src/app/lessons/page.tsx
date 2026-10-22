@@ -19,7 +19,7 @@ const sampleLessons = [
     duration: 25,
     difficulty: 'gentle' as const,
     description: 'A soothing exploration of your spine that helps your brain discover new options for ease and comfort.',
-    price: 25,
+    price: pricing.lessons.single.price,
     isFree: false,
   },
   {
@@ -39,7 +39,7 @@ const sampleLessons = [
     duration: 30,
     difficulty: 'moderate' as const,
     description: 'Improve paddle strength and shoulder mobility through brain-based movement exploration.',
-    price: 25,
+    price: pricing.lessons.single.price,
     isFree: false,
   },
   {
@@ -49,7 +49,7 @@ const sampleLessons = [
     duration: 20,
     difficulty: 'gentle' as const,
     description: 'Perfect for midday or after work. Undo the patterns of sitting and screen time.',
-    price: 25,
+    price: pricing.lessons.single.price,
     isFree: false,
   },
   {
@@ -59,7 +59,7 @@ const sampleLessons = [
     duration: 35,
     difficulty: 'gentle' as const,
     description: 'Specifically designed for those experiencing thoracic outlet or upper extremity discomfort. Very gentle, awareness-focused.',
-    price: 25,
+    price: pricing.lessons.single.price,
     isFree: false,
   },
   {
@@ -69,7 +69,7 @@ const sampleLessons = [
     duration: 25,
     difficulty: 'gentle' as const,
     description: 'Improve your sense of stability and confidence in standing and walking. Great for older adults.',
-    price: 25,
+    price: pricing.lessons.single.price,
     isFree: false,
   },
 ]
