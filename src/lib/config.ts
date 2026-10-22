@@ -3,6 +3,9 @@
 // Edit prices, offerings, and settings here. Used across all pages.
 // ============================================================
 
+// Public cross streets only; the street address is shared after booking.
+const CROSS_STREETS = 'Tamarack & El Camino Real'
+
 export const siteConfig = {
   name: 'NeuroRefinement',
   owner: 'Bryan Thunstrom',
@@ -23,7 +26,8 @@ export const siteConfig = {
     groupClasses: 'Group TML classes meet on Zoom or at locations announced in advance.',
     travel: 'Travel to clients is available at Bryan’s discretion for an additional fee.',
     // Compact lines for the Contact page Location block.
-    studioCompact: 'Home studio in Carlsbad, CA 92008 (Tamarack & El Camino Real)',
+    crossStreets: CROSS_STREETS,
+    studioCompact: `Home studio in Carlsbad, CA 92008 (${CROSS_STREETS})`,
     formatsCompact: 'Intro calls on Zoom. Group TML classes on Zoom or announced locations.',
     travelCompact: 'Travel available for an added fee.',
     googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',
@@ -247,6 +251,7 @@ export const navigation = {
         { label: 'Research', href: '/research', description: 'The science behind the method' },
         { label: 'Audio Lessons', href: '/lessons', description: 'Voice-guided movement library' },
         { label: 'Membership', href: '/membership', description: 'Ongoing access & community' },
+        { label: 'FAQ', href: '/faq', description: 'Common questions answered' },
       ],
     },
     { label: 'Blog', href: '/blog' },
