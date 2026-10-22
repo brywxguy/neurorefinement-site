@@ -7,8 +7,8 @@ import { BookingOptions } from '@/components/booking/BookingOptions'
 import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
-  title: 'Functional Synthesis Lessons (1:1) — ABM NeuroMovement',
-  description: `Gentle, hands-on one-on-one Functional Synthesis lessons (ABM NeuroMovement), about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}, in person at a home studio in Carlsbad, CA 92008. Reduce pain, improve function, and discover new movement possibilities.`,
+  title: 'Functional Synthesis Lessons (1:1) | Anat Baniel Method NeuroMovement',
+  description: `NeuroRefinement offers gentle, hands-on one-on-one Functional Synthesis lessons based on the Anat Baniel Method NeuroMovement, about ${pricing.abm.session.duration} minutes, $${pricing.abm.session.price}, in person at a home studio in Carlsbad, CA 92008. Reduce pain, improve function, and discover new movement possibilities.`,
 }
 
 export default function FunctionalSynthesisPage() {
