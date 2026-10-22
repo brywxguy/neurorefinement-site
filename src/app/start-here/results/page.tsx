@@ -4,11 +4,12 @@ import { ArrowRight, Brain, CalendarCheck, Play, Sparkles } from 'lucide-react'
 import { Button, ButtonLabel, Card, Section, SectionHeader } from '@/components/ui'
 import { booking, freeLesson, pricing, siteConfig } from '@/lib/config'
 import { parseConcerns, parseGoals, recommend, type QuizRecommendation } from '@/lib/quiz'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/start-here/results', {
   title: 'Your Recommended Starting Point',
   robots: { index: false, follow: false },
-}
+})
 
 const BOOKING_HREF = '/functional-synthesis#booking'
 

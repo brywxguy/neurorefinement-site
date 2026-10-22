@@ -3,11 +3,12 @@ import { Button, Section, SectionHeader, Card, PricingCard, FAQ } from '@/compon
 import { ArrowRight, Clock, Star, Zap, Users, MessageSquare, Target } from 'lucide-react'
 import { booking, calUrl, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/coaching', {
   title: 'Strengths-Based Coaching — Life, Career & Business',
   description: 'NeuroStrengths coaching: CliftonStrengths combined with mindful reframing to help you align your natural strengths with your goals. 60-minute sessions, remote via Zoom or in person in Carlsbad, CA.',
-}
+})
 
 export default function CoachingPage() {
   return (

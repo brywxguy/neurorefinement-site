@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Section, SectionHeader, Card } from '@/components/ui'
 import { Clock, ArrowRight } from 'lucide-react'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/blog', {
   title: 'Blog — Movement, Neuroplasticity & Mindful Living',
   description: 'Articles on neuroplasticity, gentle movement, strengths-based coaching, and practical wellness. Evidence-informed, warmly written.',
-}
+})
 
 // Sample blog data — will be replaced by MDX content or CMS
 const posts = [

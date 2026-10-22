@@ -4,11 +4,12 @@ import { ArrowRight, Brain, Sparkles, Users, Play } from 'lucide-react'
 import Link from 'next/link'
 import { pricing } from '@/lib/config'
 import { VisitStrip } from '@/components/booking/VisitStrip'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/work-with-me', {
   title: 'Work With Me',
   description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons based on the Anat Baniel Method NeuroMovement, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
-}
+})
 
 export default function WorkWithMePage() {
   return (

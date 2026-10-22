@@ -4,11 +4,12 @@ import { Button, Section, SectionHeader, Card, PriceTag } from '@/components/ui'
 import { Play, Clock, ArrowRight, Filter } from 'lucide-react'
 import { freeLesson, lessonThemes, pricing } from '@/lib/config'
 import { ThemeIcon } from '@/components/ui/ThemeIcon'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/lessons', {
   title: 'Audio Lesson Library — Voice-Guided Movement Lessons',
   description: 'On-demand voice-guided movement lessons organized by theme. Gentle neuroplasticity-based explorations for backs, posture, surfing, stress, TOS, and more.',
-}
+})
 
 // Sample lesson data — will be replaced by Supabase queries
 const sampleLessons = [

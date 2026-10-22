@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import { CalendarRange, MapPin, Package } from 'lucide-react'
 import { Button, PricingCard, Section, SectionHeader } from '@/components/ui'
 import { booking, intensiveSummary, pricing, siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/bundles', {
   title: 'Bundles & Packs',
   description: `Functional Synthesis lesson packs (1:1) and the ${pricing.abm.intensive.label}: ${intensiveSummary}`,
-}
+})
 
 export default function BundlesPage() {
   const { pack4, intensive, session } = pricing.abm

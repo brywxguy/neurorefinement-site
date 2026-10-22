@@ -4,11 +4,12 @@ import Link from 'next/link'
 import { Button, Section, SectionHeader, FAQ } from '@/components/ui'
 import { ArrowRight, Award, Heart, Brain, Lightbulb } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/about', {
   title: 'About Bryan Thunstrom',
   description: 'Certified ABM NeuroMovement practitioner and strengths-based coach. Learn about Bryan\'s journey from chronic illness to helping others refine movement and renew life.',
-}
+})
 
 export default function AboutPage() {
   return (

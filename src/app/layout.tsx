@@ -3,12 +3,13 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { siteConfig } from '@/lib/config'
 import { CREAM, MASK_ICON_COLOR } from '@/lib/brand-mark'
+import { DEFAULT_TITLE } from '@/lib/metadata'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: DEFAULT_TITLE,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -28,13 +29,19 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: siteConfig.owner }],
   creator: siteConfig.owner,
+  // Fallback for routes without their own metadata (e.g. 404). Pages use pageMetadata()
+  // so their social tags and og:url match their own title and path.
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: siteConfig.url,
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: DEFAULT_TITLE,
     description: siteConfig.description,
     siteName: siteConfig.name,
+  },
+  twitter: {
+    card: 'summary',
+    title: DEFAULT_TITLE,
+    description: siteConfig.description,
   },
   robots: {
     index: true,

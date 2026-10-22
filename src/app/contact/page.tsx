@@ -4,11 +4,12 @@ import { Section } from '@/components/ui'
 import { InquiryForm } from '@/components/forms/InquiryForm'
 import { Mail, MapPin, Clock, Phone, CalendarDays } from 'lucide-react'
 import { siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/contact', {
   title: 'Contact',
   description: 'Get in touch with Bryan Thunstrom at NeuroRefinement. In-person lessons at a home studio in Carlsbad, CA 92008; free intro calls on Zoom.',
-}
+})
 
 export default function ContactPage() {
   return (

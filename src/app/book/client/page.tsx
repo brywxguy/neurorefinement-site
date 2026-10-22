@@ -2,12 +2,13 @@ import { Metadata } from 'next'
 import { Section } from '@/components/ui'
 import { CalEmbed } from '@/components/booking/CalEmbed'
 import { booking, siteConfig } from '@/lib/config'
+import { pageMetadata } from '@/lib/metadata'
 
 // Unlisted page Bryan shares with existing clients. Not linked from the site or sitemap.
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata('/book/client', {
   title: 'Client Booking',
   robots: { index: false, follow: false },
-}
+})
 
 function parsePrivateLink(url: string) {
   try {
