@@ -4,7 +4,7 @@ import { FormEvent, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui'
-import { siteConfig } from '@/lib/config'
+import { intensiveSummary, pricing, siteConfig } from '@/lib/config'
 import { HOW_HEARD_OPTIONS, WHO_FOR_OPTIONS, type FormType } from '@/lib/inquiries'
 import { submitInquiry } from '@/lib/submit-inquiry'
 import { Field, FormError, HoneypotField, inputClass } from './fields'
@@ -125,8 +125,8 @@ export function InquiryForm() {
         </div>
         {formType === 'intensive' && (
           <p className="mt-2 text-sm text-brand-500">
-            Intensives are several lessons over a few consecutive days. Tell Bryan a bit about your situation and he&apos;ll
-            follow up to plan dates and format.
+            The {pricing.abm.intensive.label} is {intensiveSummary} Tell
+            Bryan a bit about your situation and he&apos;ll follow up to plan dates.
           </p>
         )}
       </fieldset>

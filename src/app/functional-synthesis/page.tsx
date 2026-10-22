@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button, Section, SectionHeader, PricingCard, ImageCaption, FAQ } from '@/components/ui'
-import { ArrowRight, Clock, MapPin, CheckCircle } from 'lucide-react'
-import { booking, otherLessonsNote, pricing, siteConfig } from '@/lib/config'
+import { ArrowRight, CalendarRange, Clock, MapPin, CheckCircle } from 'lucide-react'
+import { booking, intensiveSummary, otherLessonsNote, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
 import { VisitDetails } from '@/components/booking/VisitDetails'
 
@@ -189,13 +189,7 @@ export default function FunctionalSynthesisPage() {
           eyebrow="Pricing"
           title="Session Options"
         />
-        <div
-          className={
-            pricing.abm.pack10.onSite
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto'
-              : 'grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto'
-          }
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           <PricingCard
             meta={<><Clock className="w-4 h-4" /> {pricing.abm.newClientLesson.duration} min</>}
             title={pricing.abm.newClientLesson.label}
@@ -217,18 +211,19 @@ export default function FunctionalSynthesisPage() {
             price={pricing.abm.pack4.price}
             note={<>${pricing.abm.pack4.perSession}/session &middot; {pricing.abm.pack4.savings}</>}
           />
-          {pricing.abm.pack10.onSite && (
-            <PricingCard
-              title="10-Session Pack"
-              price={pricing.abm.pack10.price}
-              note={<>${pricing.abm.pack10.perSession}/session &middot; {pricing.abm.pack10.savings}</>}
-            />
-          )}
+          <PricingCard
+            meta={<><CalendarRange className="w-4 h-4" /> {pricing.abm.intensive.lessons} lessons + audio homework</>}
+            title={pricing.abm.intensive.label}
+            price={pricing.abm.intensive.price}
+            note={intensiveSummary}
+            footer={studioLocation}
+            action={<Button href={booking.intensiveHref} size="sm">Request an Intensive</Button>}
+          />
         </div>
         <p className="text-center text-brand-600 leading-relaxed mt-8 max-w-2xl mx-auto">
           {siteConfig.payment.note} {otherLessonsNote}{' '}
           <Link href="/bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
-            See all bundles &amp; packs
+            See packs &amp; intensives
           </Link>
           .
         </p>

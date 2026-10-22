@@ -217,8 +217,8 @@ export function PriceTag({ price, period, originalPrice, size = 'md', className 
 
 // ============================================================
 // PRICING CARD
-// Place inside a grid; each card spans 5 subgrid rows (meta, title, price,
-// note, footer) so rows line up across every card in the same grid row.
+// Place inside a grid; each card spans 6 subgrid rows (meta, title, price,
+// note, footer, action) so rows line up across every card in the same grid row.
 // ============================================================
 interface PricingCardProps {
   title: string
@@ -228,12 +228,14 @@ interface PricingCardProps {
   badge?: string
   note?: ReactNode
   footer?: ReactNode
+  /** Optional button; keep it a real link (not nested in another link). */
+  action?: ReactNode
   featured?: boolean
 }
 
-export function PricingCard({ title, price, period, meta, badge, note, footer, featured }: PricingCardProps) {
+export function PricingCard({ title, price, period, meta, badge, note, footer, action, featured }: PricingCardProps) {
   return (
-    <Card className={cn('row-span-5 grid grid-rows-subgrid gap-0 text-center', featured && 'border-brand-300')}>
+    <Card className={cn('row-span-6 grid grid-rows-subgrid gap-0 text-center', featured && 'border-brand-300')}>
       <div className="flex items-center justify-center gap-2 text-sm text-brand-500 mb-4">
         {badge ? (
           <span className="inline-block text-xs font-medium bg-brand-500 text-white px-3 py-1 rounded-full">{badge}</span>
@@ -245,6 +247,7 @@ export function PricingCard({ title, price, period, meta, badge, note, footer, f
       <PriceTag price={price} period={period} className="justify-center mb-3" />
       <p className="text-sm text-brand-600 leading-relaxed">{note}</p>
       <div className="flex items-start justify-center gap-2 text-sm text-brand-500 mt-4">{footer}</div>
+      <div className={cn('flex items-end justify-center', action && 'mt-6')}>{action}</div>
     </Card>
   )
 }
