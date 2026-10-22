@@ -71,7 +71,7 @@ export default function ClassesPage() {
 
       {/* Pricing */}
       <Section variant="warm">
-        <SectionHeader eyebrow="Pricing" title="Class Options" />
+        <SectionHeader eyebrow="Pricing" title="Class Options" description={siteConfig.location.groupClasses} />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           <Card className="text-center">
             <h3 className="font-display text-lg text-brand-800 mb-2">{pricing.classes.dropIn.label}</h3>

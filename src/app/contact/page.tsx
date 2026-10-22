@@ -56,6 +56,7 @@ export default function ContactPage() {
                   <p className="text-brand-600">{siteConfig.location.studio}</p>
                   <p className="text-sm text-brand-500">{siteConfig.location.addressNote}</p>
                   <p className="text-sm text-brand-500">{siteConfig.location.formats}</p>
+                  <p className="text-sm text-brand-500">{siteConfig.location.groupClasses}</p>
                   <p className="text-sm text-brand-500">{siteConfig.location.travel}</p>
                   <a
                     href={siteConfig.location.googleBusinessProfile}

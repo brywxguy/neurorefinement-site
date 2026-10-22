@@ -20,6 +20,7 @@ export const siteConfig = {
     addressNote: 'Exact address provided after booking.',
     short: 'In person in Carlsbad; exact address after booking.',
     formats: 'Lessons are in person at the home studio. The Free Intro Call is on Zoom.',
+    groupClasses: 'Group TML classes meet on Zoom or at locations announced in advance.',
     travel: 'Travel to clients is available at Bryan’s discretion for an additional fee.',
     googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',
   },
