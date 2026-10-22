@@ -24,20 +24,21 @@ export default function FreeLessonPage() {
         <Card hover={false} className="text-left">
           {freeLesson.audioUrl ? (
             <>
-              <h2 className="font-display text-xl text-brand-800 mb-1 flex items-center gap-2">
-                <Play className="w-5 h-5 text-brand-500" /> Listen now
+              <h2 className="font-display text-xl text-brand-800 mb-4 flex items-center gap-2">
+                <Play className="w-5 h-5 text-brand-500" /> Listen to {freeLesson.title}
               </h2>
-              <p className="text-sm text-brand-500 mb-4">{freeLesson.audioTitle}</p>
-              <audio controls preload="none" src={freeLesson.audioUrl} aria-label={freeLesson.audioTitle} className="w-full">
-                Your browser can&apos;t play this recording.{' '}
-                <a href={freeLesson.audioUrl} className="text-ocean-600 underline">Download it instead</a>.
+              <audio
+                controls
+                controlsList="nodownload"
+                preload="none"
+                src={freeLesson.audioUrl}
+                aria-label={freeLesson.title}
+                className="w-full"
+              >
+                Your browser can&apos;t play this recording.
               </audio>
               <p className="text-sm text-brand-500 mt-4">
-                Find a quiet, comfortable place to lie down, and listen at your own pace — pause any time.{' '}
-                <a href={freeLesson.audioUrl} download className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
-                  Download the recording
-                </a>
-                .
+                Find a quiet, comfortable place to lie down, and listen at your own pace — pause any time.
               </p>
             </>
           ) : (
