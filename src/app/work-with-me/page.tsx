@@ -43,7 +43,7 @@ export default function WorkWithMePage() {
                 </div>
                 <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Lessons</span>
               </div>
-              <h2 id="fs-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Functional Synthesis (ABM)</h2>
+              <h2 id="fs-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Functional Synthesis</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
                 Gentle, hands-on sessions that work with your brain&apos;s neuroplasticity. The most
                 direct path to discovering new movement options for easier movement, better balance

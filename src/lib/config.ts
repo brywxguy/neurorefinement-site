@@ -229,7 +229,7 @@ export const navigation = {
       label: 'Services',
       children: [
         { label: 'Work With Me', href: '/work-with-me', description: 'Overview of all 1:1 services' },
-        { label: 'Functional Synthesis (ABM)', href: '/functional-synthesis', description: 'One-on-one lessons at the Carlsbad studio' },
+        { label: 'Functional Synthesis', href: '/functional-synthesis', description: 'One-on-one lessons at the Carlsbad studio' },
         { label: 'Coaching', href: '/coaching', description: 'Strengths-based life, career & business coaching' },
         { label: 'TML Lessons', href: '/classes', description: 'Individual or group Transformational Movement Lessons' },
         { label: 'Bundles & Packs', href: '/bundles', description: 'Lesson packs & intensives' },
