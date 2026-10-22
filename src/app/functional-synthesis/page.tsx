@@ -270,7 +270,7 @@ export default function FunctionalSynthesisPage() {
             },
             {
               question: 'Where are lessons held?',
-              answer: `Lessons are in person. ${siteConfig.location.studio} ${siteConfig.location.addressNote} The ${booking.events.freeCall.label} is on ${booking.events.freeCall.format}. ${siteConfig.location.travel}`,
+              answer: `One-on-one lessons are in person. ${siteConfig.location.studio} ${siteConfig.location.addressNote} The ${booking.events.freeCall.label} is on ${booking.events.freeCall.format}. ${siteConfig.location.groupClasses} ${siteConfig.location.travel}`,
             },
             {
               question: 'How long is a session?',

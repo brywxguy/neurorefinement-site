@@ -22,6 +22,10 @@ export const siteConfig = {
     formats: 'Lessons are in person at the home studio. The Free Intro Call is on Zoom.',
     groupClasses: 'Group TML classes meet on Zoom or at locations announced in advance.',
     travel: 'Travel to clients is available at Bryan’s discretion for an additional fee.',
+    // Compact lines for the Contact page Location block.
+    studioCompact: 'Home studio in Carlsbad, CA 92008 (Tamarack & El Camino Real)',
+    formatsCompact: 'Intro calls on Zoom. Group TML classes on Zoom or announced locations.',
+    travelCompact: 'Travel available for an added fee.',
     googleBusinessProfile: 'https://maps.app.goo.gl/cvy9Wac52uqBgxca8',
   },
   hours: {
