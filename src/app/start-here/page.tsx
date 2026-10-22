@@ -1,16 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { Button, Section, SectionHeader } from '@/components/ui'
-import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Button, Section } from '@/components/ui'
+import { ArrowRight, ArrowLeft } from 'lucide-react'
 import { FormError, HoneypotField } from '@/components/forms/fields'
 import { HONEYPOT_FIELD } from '@/lib/inquiries'
-import { booking, pricing } from '@/lib/config'
 import { submitInquiry } from '@/lib/submit-inquiry'
+import { CHILD_CONCERN, QUIZ_CONCERNS, QUIZ_GOALS, recommend, resultsHref } from '@/lib/quiz'
 
-type Step = 'concerns' | 'areas' | 'goals' | 'history' | 'info' | 'complete'
+type Step = 'concerns' | 'areas' | 'goals' | 'history' | 'info'
 
 export default function StartHerePage() {
+  const router = useRouter()
   const [step, setStep] = useState<Step>('concerns')
   const [form, setForm] = useState({
     concerns: [] as string[],
@@ -35,34 +37,54 @@ export default function StartHerePage() {
     }))
   }
 
+  // Recommendations never depend on saving: sharing contact details is optional, and if the
+  // save fails the visitor still gets their results (with a note to reach Bryan directly).
   const handleSubmit = async () => {
-    setSubmitting(true)
     setError(null)
-    const result = await submitInquiry({
-      form_type: 'start_here',
-      name: form.name,
-      email: form.email,
-      concern: form.concerns.join(', '),
-      how_heard: form.howDidYouHear,
-      message: form.movementHistory,
-      details: {
-        concerns: form.concerns,
-        painAreas: form.painAreas,
-        goals: form.goals,
-        stressLevel: form.stressLevel,
-        consent: form.consent,
-      },
-      [HONEYPOT_FIELD]: (document.getElementById(HONEYPOT_FIELD) as HTMLInputElement | null)?.value,
-    })
-    setSubmitting(false)
-    if (result.ok) {
-      setStep('complete')
-    } else {
-      setError(result.message)
+    const name = form.name.trim()
+    const email = form.email.trim()
+    if (!form.consent) {
+      setError('Please tick the box above to see your recommendations.')
+      return
     }
+    if (Boolean(name) !== Boolean(email)) {
+      setError('To have Bryan follow up, please add both your name and email — or leave both blank.')
+      return
+    }
+
+    let saved: boolean | undefined
+    if (name && email) {
+      setSubmitting(true)
+      const rec = recommend(form.concerns, form.goals)
+      const result = await submitInquiry({
+        form_type: 'start_here',
+        name,
+        email,
+        who_for: form.concerns.includes(CHILD_CONCERN) ? 'My child' : undefined,
+        concern: form.concerns.join(', '),
+        how_heard: form.howDidYouHear,
+        message: form.movementHistory,
+        details: {
+          concerns: form.concerns,
+          painAreas: form.painAreas,
+          goals: form.goals,
+          stressLevel: form.stressLevel,
+          consent: form.consent,
+          recommendedPath: rec.path,
+        },
+        [HONEYPOT_FIELD]: (document.getElementById(HONEYPOT_FIELD) as HTMLInputElement | null)?.value,
+      })
+      if (!result.ok && result.fieldErrors?.email) {
+        setSubmitting(false)
+        setError(result.fieldErrors.email)
+        return
+      }
+      saved = result.ok
+    }
+    router.push(resultsHref(form.concerns, form.goals, saved))
   }
 
-  const steps: Step[] = ['concerns', 'areas', 'goals', 'history', 'info', 'complete']
+  const steps: Step[] = ['concerns', 'areas', 'goals', 'history', 'info']
   const currentIndex = steps.indexOf(step)
 
   return (
@@ -78,18 +100,16 @@ export default function StartHerePage() {
           </p>
 
           {/* Progress bar */}
-          {step !== 'complete' && (
-            <div className="flex gap-2 max-w-xs mx-auto mb-8">
-              {steps.slice(0, -1).map((s, i) => (
-                <div
-                  key={s}
-                  className={`h-1.5 flex-1 rounded-full transition-colors ${
-                    i <= currentIndex ? 'bg-brand-500' : 'bg-brand-200'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
+          <div className="flex gap-2 max-w-xs mx-auto mb-8">
+            {steps.map((s, i) => (
+              <div
+                key={s}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
+                  i <= currentIndex ? 'bg-brand-500' : 'bg-brand-200'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -102,20 +122,7 @@ export default function StartHerePage() {
                 What brings you here? <span className="text-sm font-body text-brand-400">(Select all that apply)</span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                {[
-                  'Pain or discomfort',
-                  'Stiffness or limited mobility',
-                  'Stress or tension',
-                  'Better posture',
-                  'Athletic performance',
-                  'Balance or fall concerns',
-                  'Recovery from injury/surgery',
-                  'Nerve pain or neuropathy',
-                  'General wellness & vitality',
-                  'Life or career direction',
-                  'Curiosity about this approach',
-                  'Other',
-                ].map((concern) => (
+                {QUIZ_CONCERNS.map((concern) => (
                   <button
                     key={concern}
                     onClick={() => toggleItem('concerns', concern)}
@@ -179,18 +186,7 @@ export default function StartHerePage() {
                 What does success look like for you?
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                {[
-                  'Less pain, more comfort',
-                  'Better flexibility and range',
-                  'Improved balance and stability',
-                  'More energy and vitality',
-                  'Better sleep',
-                  'Athletic improvement',
-                  'Career clarity and direction',
-                  'More confidence in my body',
-                  'Stress management',
-                  'Connection and community',
-                ].map((goal) => (
+                {QUIZ_GOALS.map((goal) => (
                   <button
                     key={goal}
                     onClick={() => toggleItem('goals', goal)}
@@ -268,19 +264,23 @@ export default function StartHerePage() {
           {step === 'info' && (
             <div>
               <h2 className="font-display text-2xl text-brand-800 mb-6">
-                Last step — how can we reach you?
+                Last step — want Bryan to follow up?
               </h2>
+              <p className="text-brand-600 mb-6 -mt-3">
+                Add your name and email if you&apos;d like Bryan to review your answers and reach out.
+                This is optional — your recommendations appear either way.
+              </p>
               <div className="space-y-4 mb-8">
                 <input
                   type="text"
-                  placeholder="Your name"
+                  placeholder="Your name (optional)"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
                 />
                 <input
                   type="email"
-                  placeholder="Email address"
+                  placeholder="Email address (optional)"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl border border-brand-200 text-brand-800 focus:outline-none focus:border-brand-500"
@@ -317,78 +317,13 @@ export default function StartHerePage() {
                 <Button variant="ghost" onClick={() => setStep('history')}>
                   <ArrowLeft className="mr-2 w-4 h-4" /> Back
                 </Button>
-                <Button
-                  onClick={handleSubmit}
-                  disabled={!form.name || !form.email || !form.consent || submitting}
-                >
-                  {submitting ? 'Sending…' : 'Get My Recommendations'} <ArrowRight className="ml-2 w-4 h-4" />
+                <Button onClick={handleSubmit} disabled={submitting}>
+                  {submitting ? 'Saving…' : 'Show My Recommendations'} <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
             </div>
           )}
 
-          {/* Complete */}
-          {step === 'complete' && (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 rounded-full bg-brand-100 text-brand-500 flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8" />
-              </div>
-              <h2 className="font-display text-3xl text-brand-900 mb-4">
-                You&apos;re All Set, {form.name.split(' ')[0]}!
-              </h2>
-              <p className="text-lg text-brand-600 mb-8 max-w-lg mx-auto">
-                Based on what you shared, here&apos;s your personalized starting point.
-                Bryan will also review your answers and may follow up personally.
-              </p>
-
-              {/* Personalized Recommendations (rule-based MVP) */}
-              <div className="bg-white rounded-2xl border border-brand-100/50 p-8 text-left max-w-lg mx-auto mb-8">
-                <h3 className="font-display text-xl text-brand-800 mb-4">Your Recommended Path</h3>
-                <div className="space-y-4">
-                  <div className="flex gap-3">
-                    <span className="font-display text-2xl text-brand-300">1</span>
-                    <div>
-                      <p className="font-medium text-brand-800">Start with the free 15-Minute Reset</p>
-                      <p className="text-sm text-brand-500">Get a feel for the approach in the comfort of home.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="font-display text-2xl text-brand-300">2</span>
-                    <div>
-                      <p className="font-medium text-brand-800">
-                        {form.concerns.includes('Pain or discomfort') || form.concerns.includes('Nerve pain or neuropathy')
-                          ? `Book a ${booking.events.freeCall.label}, then your ${pricing.abm.newClientLesson.label}`
-                          : form.concerns.includes('Life or career direction')
-                          ? 'Book a coaching session'
-                          : 'Explore the audio lesson library'}
-                      </p>
-                      <p className="text-sm text-brand-500">
-                        {form.concerns.includes('Pain or discomfort')
-                          ? `A hands-on Functional Synthesis session (in person in Carlsbad) is the best next step for pain and discomfort. Your first visit is ${pricing.abm.newClientLesson.duration} minutes with extra time for discovery and conversation.`
-                          : 'Find lessons matched to your specific goals and interests.'}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="font-display text-2xl text-brand-300">3</span>
-                    <div>
-                      <p className="font-medium text-brand-800">Consider membership for ongoing support</p>
-                      <p className="text-sm text-brand-500">Full library access, monthly live classes, and community.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/lessons/free-intro-reset" size="lg">
-                  Start Free Lesson
-                </Button>
-                <Button href="/functional-synthesis" variant="outline" size="lg">
-                  Book a Session
-                </Button>
-              </div>
-            </div>
-          )}
         </div>
       </Section>
     </>
