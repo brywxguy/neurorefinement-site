@@ -5,8 +5,10 @@ import { FormError } from '@/components/forms/fields'
 import { requireAdmin } from '@/lib/admin-auth'
 import {
   FORM_TYPE_LABELS,
+  FORM_TYPES,
   INQUIRY_STATUSES,
   INQUIRY_STATUS_LABELS,
+  type FormType,
   type Inquiry,
   type InquiryStatus,
 } from '@/lib/inquiries'
@@ -41,6 +43,11 @@ function humanizeKey(key: string) {
   return key.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_-]/g, ' ').replace(/^./, (c) => c.toUpperCase())
 }
 
+function consentLabel(value: boolean | null | undefined, at: string | null | undefined) {
+  if (value == null) return null
+  return value ? `Yes${at ? ` (${formatWhen(at)})` : ''}` : 'No'
+}
+
 function formatValue(value: unknown): string {
   if (Array.isArray(value)) return value.join(', ')
   if (typeof value === 'boolean') return value ? 'Yes' : 'No'
@@ -48,15 +55,30 @@ function formatValue(value: unknown): string {
   return String(value ?? '')
 }
 
-export default async function AdminInquiriesPage({ searchParams }: { searchParams: { status?: string } }) {
+const TYPE_FILTERS: Array<{ key: FormType | null; label: string }> = [
+  { key: null, label: 'All forms' },
+  { key: 'free_lesson', label: 'Free lesson' },
+]
+
+function filterHref(status: InquiryStatus | null, type: FormType | null, base = '/admin/inquiries') {
+  const params = new URLSearchParams()
+  if (status) params.set('status', status)
+  if (type) params.set('type', type)
+  const qs = params.toString()
+  return qs ? `${base}?${qs}` : base
+}
+
+export default async function AdminInquiriesPage({ searchParams }: { searchParams: { status?: string; type?: string } }) {
   const admin = await requireAdmin()
   const statusFilter = INQUIRY_STATUSES.includes(searchParams.status as InquiryStatus)
     ? (searchParams.status as InquiryStatus)
     : null
+  const typeFilter = FORM_TYPES.includes(searchParams.type as FormType) ? (searchParams.type as FormType) : null
 
   const supabase = getServiceSupabase()
   let inquiries: Inquiry[] = []
   let counts: Record<string, number> = {}
+  let typeCounts: Record<string, number> = {}
   let loadError: string | null = null
 
   if (!supabase) {
@@ -64,21 +86,27 @@ export default async function AdminInquiriesPage({ searchParams }: { searchParam
   } else {
     let query = supabase
       .from('inquiries')
-      .select('id, created_at, updated_at, form_type, name, email, phone, who_for, concern, how_heard, message, source_page, status, notes, details')
+      .select('*')
       .order('created_at', { ascending: false })
       .limit(PAGE_LIMIT)
     if (statusFilter) query = query.eq('status', statusFilter)
-    const [list, statuses] = await Promise.all([query, supabase.from('inquiries').select('status')])
+    if (typeFilter) query = query.eq('form_type', typeFilter)
+    const [list, all] = await Promise.all([query, supabase.from('inquiries').select('status, form_type')])
     if (list.error) loadError = list.error.message
     inquiries = (list.data as Inquiry[] | null) ?? []
-    counts = (statuses.data ?? []).reduce<Record<string, number>>((acc, row) => {
-      acc[row.status] = (acc[row.status] || 0) + 1
-      acc.all = (acc.all || 0) + 1
-      return acc
-    }, {})
+    for (const row of all.data ?? []) {
+      if (!typeFilter || row.form_type === typeFilter) {
+        counts[row.status] = (counts[row.status] || 0) + 1
+        counts.all = (counts.all || 0) + 1
+      }
+      if (!statusFilter || row.status === statusFilter) {
+        typeCounts[row.form_type] = (typeCounts[row.form_type] || 0) + 1
+        typeCounts.all = (typeCounts.all || 0) + 1
+      }
+    }
   }
 
-  const exportHref = `/admin/inquiries/export${statusFilter ? `?status=${statusFilter}` : ''}`
+  const exportHref = filterHref(statusFilter, typeFilter, '/admin/inquiries/export')
   const tabs: Array<{ key: InquiryStatus | null; label: string }> = [
     { key: null, label: 'All' },
     ...INQUIRY_STATUSES.map((s) => ({ key: s, label: INQUIRY_STATUS_LABELS[s] })),
@@ -109,13 +137,31 @@ export default async function AdminInquiriesPage({ searchParams }: { searchParam
         </div>
       </div>
 
+      <nav aria-label="Filter by form" className="flex flex-wrap gap-2 mb-3">
+        {TYPE_FILTERS.map((tab) => {
+          const active = tab.key === typeFilter
+          return (
+            <Link
+              key={tab.label}
+              href={filterHref(statusFilter, tab.key)}
+              aria-current={active ? 'page' : undefined}
+              className={cn(
+                'px-4 py-2 rounded-full text-sm border transition',
+                active ? 'bg-brand-500 border-brand-500 text-white' : 'bg-white border-brand-200 text-brand-600 hover:border-brand-400'
+              )}
+            >
+              {tab.label} <span className="opacity-70">({typeCounts[tab.key ?? 'all'] ?? 0})</span>
+            </Link>
+          )
+        })}
+      </nav>
       <nav aria-label="Filter by status" className="flex flex-wrap gap-2 mb-8">
         {tabs.map((tab) => {
           const active = tab.key === statusFilter
           return (
             <Link
               key={tab.label}
-              href={tab.key ? `/admin/inquiries?status=${tab.key}` : '/admin/inquiries'}
+              href={filterHref(tab.key, typeFilter)}
               aria-current={active ? 'page' : undefined}
               className={cn(
                 'px-4 py-2 rounded-full text-sm border transition',
@@ -132,7 +178,8 @@ export default async function AdminInquiriesPage({ searchParams }: { searchParam
 
       {!loadError && inquiries.length === 0 && (
         <div className="rounded-2xl border border-brand-100/50 bg-white p-10 text-center text-brand-500">
-          No inquiries{statusFilter ? ` with status “${INQUIRY_STATUS_LABELS[statusFilter]}”` : ''} yet.
+          No {typeFilter ? `${FORM_TYPE_LABELS[typeFilter].toLowerCase()} signups` : 'inquiries'}
+          {statusFilter ? ` with status “${INQUIRY_STATUS_LABELS[statusFilter]}”` : ''} yet.
         </div>
       )}
 
@@ -143,6 +190,8 @@ export default async function AdminInquiriesPage({ searchParams }: { searchParam
             ['Concern', inq.concern],
             ['How heard', inq.how_heard],
             ['Message', inq.message],
+            ['Follow-up OK', consentLabel(inq.consent_followup, inq.consented_at)],
+            ['Texts OK', consentLabel(inq.consent_sms, inq.consented_at)],
             ['Page', inq.source_page],
           ]
           const details = Object.entries(inq.details || {}).filter(([, v]) => formatValue(v) !== '')
