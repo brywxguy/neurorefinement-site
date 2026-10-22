@@ -26,7 +26,7 @@ const sampleLessons = [
     slug: 'free-intro-reset',
     title: freeLesson.title,
     theme: 'morning-routines',
-    duration: '30+',
+    duration: null,
     difficulty: 'gentle' as const,
     description: 'Your free introduction to NeuroRefinement. A gentle full-body scan and reset you can do anywhere.',
     price: 0,
@@ -143,9 +143,11 @@ export default function LessonsPage() {
                 <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${difficultyColors[lesson.difficulty]}`}>
                   {lesson.difficulty}
                 </span>
-                <span className="text-xs text-brand-400 flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> {lesson.duration} min
-                </span>
+                {lesson.duration && (
+                  <span className="text-xs text-brand-400 flex items-center gap-1">
+                    <Clock className="w-3 h-3" /> {lesson.duration} min
+                  </span>
+                )}
                 {lesson.isFree && (
                   <span className="inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-600">
                     Free

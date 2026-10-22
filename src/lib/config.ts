@@ -170,13 +170,14 @@ export const pricing = {
   },
 } as const
 
-// The free intro recording is 30+ minutes, so copy shouldn't state a shorter length.
+// Copy about the free lesson never states its length.
 export const freeLesson = {
   label: 'Free Lesson',
   title: 'The Reset',
   href: process.env.NEXT_PUBLIC_FREE_LESSON_URL || '/lessons/free-intro-reset',
-  // TODO: set to the hosted recording (mp3/m4a) so /lessons/free-intro-reset can play it.
+  // Hosted MP3 played on /lessons/free-intro-reset. Set in Vercel, then redeploy (inlined at build time).
   audioUrl: process.env.NEXT_PUBLIC_FREE_LESSON_AUDIO_URL || '',
+  audioTitle: 'NeuroRefinement Introductory Lesson',
 }
 
 export const otherLessonsNote =

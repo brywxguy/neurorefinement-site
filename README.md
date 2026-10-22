@@ -247,7 +247,7 @@ To change who can sign in, set `ADMIN_EMAILS`.
 - [ ] **Headshot photo** — Professional, warm photo for About page and homepage
 - [ ] **Practice space photos** — If doing in-person sessions (optional)
 - [ ] **ABM certification** — Scan/photo of certificate for credentials section
-- [ ] **First 3-5 audio lessons** — At minimum the free intro lesson ("The Reset", 30+ min; set `NEXT_PUBLIC_FREE_LESSON_AUDIO_URL` to the hosted recording so `/lessons/free-intro-reset` plays it)
+- [ ] **First 3-5 audio lessons** — At minimum the free intro lesson ("The Reset"; set `NEXT_PUBLIC_FREE_LESSON_AUDIO_URL` to the hosted recording so `/lessons/free-intro-reset` plays it)
 - [ ] **Audio lesson transcripts** — Accessibility requirement
 - [ ] **Confirm email address** — Update in `src/lib/config.ts`
 - [ ] **Cal.com event types** — See [Inquiries, Booking & Admin](#inquiries-booking--admin)
