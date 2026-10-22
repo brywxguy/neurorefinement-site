@@ -1,12 +1,13 @@
 import { Metadata } from 'next'
 import { ButtonLabel, Section, Card } from '@/components/ui'
 import { ArrowRight, Brain, Sparkles, Users, Play } from 'lucide-react'
+import Link from 'next/link'
 import { pricing } from '@/lib/config'
 import { VisitStrip } from '@/components/booking/VisitStrip'
 
 export const metadata: Metadata = {
   title: 'Work With Me',
-  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons based on the Anat Baniel Method NeuroMovement in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
+  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons based on the Anat Baniel Method NeuroMovement, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
 }
 
 export default function WorkWithMePage() {
@@ -44,9 +45,9 @@ export default function WorkWithMePage() {
               </div>
               <h2 id="fs-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Functional Synthesis (ABM)</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
-                Gentle, hands-on one-on-one sessions that work with your brain&apos;s neuroplasticity,
-                in person at Bryan&apos;s Carlsbad home studio. The most direct path to discovering new
-                movement options and reducing pain.
+                Gentle, hands-on sessions that work with your brain&apos;s neuroplasticity. The most
+                direct path to discovering new movement options for easier movement, better balance
+                and coordination, and less pain and discomfort.
               </p>
               <p className="text-sm text-brand-500">
                 {pricing.abm.newClientLesson.shortLabel}: {pricing.abm.newClientLesson.duration} min, ${pricing.abm.newClientLesson.price} &middot;{' '}
@@ -135,7 +136,14 @@ export default function WorkWithMePage() {
             </div>
           </Card>
         </div>
-        <VisitStrip className="max-w-3xl mx-auto mt-12 rounded-2xl bg-sand-50 border border-brand-100/50 px-6 py-5" />
+        <p className="text-center text-brand-600 leading-relaxed mt-8">
+          Looking for lesson packs or audio bundles?{' '}
+          <Link href="/bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
+            See Bundles &amp; Packs
+          </Link>
+          .
+        </p>
+        <VisitStrip className="max-w-3xl mx-auto mt-8 rounded-2xl bg-sand-50 border border-brand-100/50 px-6 py-5" />
       </Section>
     </>
   )
