@@ -137,6 +137,14 @@ export async function POST(req: NextRequest) {
         message: inquiry.message ?? null,
         source_page: inquiry.source_page ?? null,
         details: inquiry.details ?? {},
+        // Consent columns only exist for free lesson signups (see the free_lesson migration).
+        ...(inquiry.form_type === 'free_lesson'
+          ? {
+              consent_followup: inquiry.consent_followup === true,
+              consent_sms: inquiry.consent_sms === true,
+              consented_at: new Date().toISOString(),
+            }
+          : {}),
         ip_hash: ipHash,
         user_agent: req.headers.get('user-agent')?.slice(0, 500) ?? null,
       })

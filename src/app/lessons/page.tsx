@@ -26,7 +26,7 @@ const sampleLessons = [
     slug: 'free-intro-reset',
     title: freeLesson.title,
     theme: 'morning-routines',
-    duration: '30+',
+    duration: null,
     difficulty: 'gentle' as const,
     description: 'Your free introduction to NeuroRefinement. A gentle full-body scan and reset you can do anywhere.',
     price: 0,
@@ -100,9 +100,6 @@ export default function LessonsPage() {
             <Button href="#free" variant="primary">
               <Play className="mr-2 w-4 h-4" /> Try Free Lesson
             </Button>
-            <Button href="/bundles#audio-bundles" variant="outline">
-              Browse Bundles
-            </Button>
           </div>
         </div>
       </Section>
@@ -143,9 +140,11 @@ export default function LessonsPage() {
                 <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${difficultyColors[lesson.difficulty]}`}>
                   {lesson.difficulty}
                 </span>
-                <span className="text-xs text-brand-400 flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> {lesson.duration} min
-                </span>
+                {lesson.duration && (
+                  <span className="text-xs text-brand-400 flex items-center gap-1">
+                    <Clock className="w-3 h-3" /> {lesson.duration} min
+                  </span>
+                )}
                 {lesson.isFree && (
                   <span className="inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-600">
                     Free
@@ -183,12 +182,7 @@ export default function LessonsPage() {
             Start Free, Then Go Deeper
           </h2>
           <p className="text-lg text-brand-600 mb-8">
-            Try the free lesson, then choose individual lessons for ${pricing.lessons.single.price},
-            save with a{' '}
-            <Link href="/bundles#audio-bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
-              {pricing.lessons.bundle5.label}
-            </Link>{' '}
-            for ${pricing.lessons.bundle5.price},
+            Try the free lesson, then choose individual lessons for ${pricing.lessons.single.price},{' '}
             or get unlimited access with membership at ${pricing.membership.standard.price}/month.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

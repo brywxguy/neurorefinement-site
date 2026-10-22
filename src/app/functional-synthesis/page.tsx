@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button, Section, SectionHeader, PricingCard, ImageCaption, FAQ } from '@/components/ui'
-import { ArrowRight, Clock, MapPin, CheckCircle } from 'lucide-react'
-import { booking, otherLessonsNote, pricing, siteConfig } from '@/lib/config'
+import { ArrowRight, CalendarRange, Clock, MapPin, CheckCircle } from 'lucide-react'
+import { booking, intensiveSummary, otherLessonsNote, pricing, siteConfig } from '@/lib/config'
 import { BookingOptions } from '@/components/booking/BookingOptions'
 import { VisitDetails } from '@/components/booking/VisitDetails'
 
@@ -169,7 +169,7 @@ export default function FunctionalSynthesisPage() {
             </div>
           </div>
           <div>
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
+            <div className="aspect-[6/5] rounded-3xl overflow-hidden shadow-lg">
               <Image
                 src="/images/fs-session-child-toys.jpg"
                 alt="Bryan Thunstrom working with a child in a Functional Synthesis session while mother participates"
@@ -212,15 +212,18 @@ export default function FunctionalSynthesisPage() {
             note={<>${pricing.abm.pack4.perSession}/session &middot; {pricing.abm.pack4.savings}</>}
           />
           <PricingCard
-            title="10-Session Pack"
-            price={pricing.abm.pack10.price}
-            note={<>${pricing.abm.pack10.perSession}/session &middot; {pricing.abm.pack10.savings}</>}
+            meta={<><CalendarRange className="w-4 h-4" /> {pricing.abm.intensive.lessons} lessons + audio homework</>}
+            title={pricing.abm.intensive.label}
+            price={pricing.abm.intensive.price}
+            note={intensiveSummary}
+            footer={studioLocation}
+            action={<Button href={booking.intensiveHref} size="sm">Request an Intensive</Button>}
           />
         </div>
         <p className="text-center text-brand-600 leading-relaxed mt-8 max-w-2xl mx-auto">
           {siteConfig.payment.note} {otherLessonsNote}{' '}
           <Link href="/bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
-            See all bundles &amp; packs
+            See packs &amp; intensives
           </Link>
           .
         </p>

@@ -195,7 +195,7 @@ export default function HomePage() {
           {[
             {
               icon: <Brain className="w-6 h-6" />,
-              title: 'Functional Synthesis (ABM)',
+              title: 'Functional Synthesis',
               subtitle: '1:1 hands-on lessons',
               description: 'Gentle, precise movement lessons guided by touch. Your brain learns new patterns for better coordination, less pain, and expanded possibilities.',
               price: `$${pricing.abm.session.price} · about ${pricing.abm.session.duration} min`,

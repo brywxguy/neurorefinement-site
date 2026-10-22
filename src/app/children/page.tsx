@@ -43,12 +43,12 @@ export default function ChildrenPage() {
             </div>
           </div>
           <div>
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-lg">
+            <div className="aspect-[6/5] rounded-3xl overflow-hidden shadow-lg">
               <Image
                 src="/images/fs-session-child-toys.jpg"
                 alt="Bryan Thunstrom working with a child in a Functional Synthesis session while mother participates"
-                width={600}
-                height={750}
+                width={720}
+                height={600}
                 className="object-cover w-full h-full"
                 priority
               />
@@ -141,7 +141,7 @@ export default function ChildrenPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+            <div className="aspect-[6/5] rounded-2xl overflow-hidden shadow-md">
               <Image
                 src="/images/fs-session-child-toys.jpg"
                 alt="Functional Synthesis session — practitioner and child exploring movement through play with mother present"
@@ -150,7 +150,7 @@ export default function ChildrenPage() {
                 className="object-cover w-full h-full"
               />
             </div>
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+            <div className="aspect-[6/5] rounded-2xl overflow-hidden shadow-md">
               <Image
                 src="/images/fs-session-child-reading.jpg"
                 alt="Practitioner reading with child during Functional Synthesis session — learning through connection"
@@ -159,7 +159,7 @@ export default function ChildrenPage() {
                 className="object-cover w-full h-full"
               />
             </div>
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-md">
+            <div className="aspect-[6/5] rounded-2xl overflow-hidden shadow-md">
               <Image
                 src="/images/fs-session-child-ambulance.jpg"
                 alt="Child engaging with toys during a gentle NeuroMovement session with parents present"

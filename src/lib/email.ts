@@ -44,6 +44,8 @@ export async function sendInquiryNotification(
     ['Main concern', inquiry.form_type === 'intake' ? undefined : inquiry.concern],
     ['How they heard', inquiry.how_heard],
     ['Message', inquiry.message],
+    ['Follow-up consent', inquiry.consent_followup === undefined ? undefined : inquiry.consent_followup ? 'Yes' : 'No'],
+    ['Texts OK', inquiry.consent_sms === undefined ? undefined : inquiry.consent_sms ? 'Yes' : 'No'],
     ['Submitted from', inquiry.source_page],
   ]
   const filled = rows.filter((r): r is [string, string] => Boolean(r[1]))

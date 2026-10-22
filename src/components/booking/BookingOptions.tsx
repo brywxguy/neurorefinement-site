@@ -26,7 +26,7 @@ const OPTION_META: Record<BookingOption, { title: string; subtitle: string; icon
   },
   intensive: {
     title: 'Request an Intensive',
-    subtitle: 'Several lessons over consecutive days.',
+    subtitle: `${pricing.abm.intensive.label}: ${pricing.abm.intensive.lessons} lessons + ${pricing.abm.intensive.homeworkMonths} month of audio homework.`,
     icon: <Sparkles className="w-5 h-5" />,
   },
 }

@@ -178,7 +178,7 @@ Row Level Security is on and the public `anon`/`authenticated` roles have no acc
 
 ### Setup checklist
 
-1. **Database:** run `supabase/migrations/20261021210000_inquiries.sql` (SQL Editor or `supabase db push`).
+1. **Database:** run `supabase/migrations/20261021210000_inquiries.sql`, then `20261022170000_free_lesson_signups.sql` (SQL Editor or `supabase db push`).
 2. **Vercel env vars** (Production *and* Preview):
 
    | Variable | Required | Purpose |
@@ -228,7 +228,7 @@ If you change a slug in Cal.com, set the matching `NEXT_PUBLIC_CAL_*_SLUG` varia
 
 1. Go to **`/admin/inquiries`** (e.g. `https://neurorefinement.com/admin/inquiries`).
 2. Enter `bryan@neurorefinement.com` or `bpthunstrom@gmail.com` and click **Email me a sign-in link**, then open the link **in the same browser**.
-3. Inquiries are listed newest first. Use the tabs to filter by status (New, Contacted, Booked, Not a fit), change the status and add private notes on each one, then click **Save**. Click **Form answers** to see the full questionnaire or intake answers.
+3. Inquiries are listed newest first. Use the tabs to filter by status (New, Contacted, Booked, Not a fit) and by form (**Free lesson** shows signups for The Reset, with their follow-up and text consents and when they gave them), change the status and add private notes on each one, then click **Save**. Click **Form answers** to see the full questionnaire or intake answers.
 4. **Export CSV** downloads the current filter (all columns, including notes) for a spreadsheet.
 
 To change who can sign in, set `ADMIN_EMAILS`.
@@ -247,7 +247,7 @@ To change who can sign in, set `ADMIN_EMAILS`.
 - [ ] **Headshot photo** — Professional, warm photo for About page and homepage
 - [ ] **Practice space photos** — If doing in-person sessions (optional)
 - [ ] **ABM certification** — Scan/photo of certificate for credentials section
-- [ ] **First 3-5 audio lessons** — At minimum the free intro lesson ("The Reset", 30+ min; set `NEXT_PUBLIC_FREE_LESSON_AUDIO_URL` to the hosted recording so `/lessons/free-intro-reset` plays it)
+- [ ] **First 3-5 audio lessons** — At minimum the free intro lesson ("The Reset"; set `NEXT_PUBLIC_FREE_LESSON_AUDIO_URL` to the hosted recording so `/lessons/free-intro-reset` plays it)
 - [ ] **Audio lesson transcripts** — Accessibility requirement
 - [ ] **Confirm email address** — Update in `src/lib/config.ts`
 - [ ] **Cal.com event types** — See [Inquiries, Booking & Admin](#inquiries-booking--admin)

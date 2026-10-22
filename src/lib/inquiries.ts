@@ -2,9 +2,9 @@ import { z } from 'zod'
 
 // Shared by client forms, the /api/inquiries route and the admin page.
 // Keep FORM_TYPES / INQUIRY_STATUSES in sync with the CHECK constraints in
-// supabase/migrations/20261021210000_inquiries.sql.
+// supabase/migrations (20261021210000_inquiries.sql, 20261022170000_free_lesson_signups.sql).
 
-export const FORM_TYPES = ['contact', 'intensive', 'free_call', 'start_here', 'intake'] as const
+export const FORM_TYPES = ['contact', 'intensive', 'free_call', 'start_here', 'intake', 'free_lesson'] as const
 export type FormType = (typeof FORM_TYPES)[number]
 
 export const FORM_TYPE_LABELS: Record<FormType, string> = {
@@ -13,6 +13,7 @@ export const FORM_TYPE_LABELS: Record<FormType, string> = {
   free_call: 'Free 20-min call',
   start_here: 'Start Here questionnaire',
   intake: 'New client intake',
+  free_lesson: 'Free lesson',
 }
 
 export const INQUIRY_STATUSES = ['new', 'contacted', 'booked', 'not_a_fit'] as const
@@ -59,6 +60,8 @@ export const inquirySchema = z
     how_heard: optionalText(200),
     message: optionalText(10000),
     source_page: optionalText(500),
+    consent_followup: z.boolean().optional(),
+    consent_sms: z.boolean().optional(),
     details: z
       .record(z.unknown())
       .optional()
@@ -67,6 +70,18 @@ export const inquirySchema = z
   .superRefine((data, ctx) => {
     if ((data.form_type === 'contact' || data.form_type === 'intensive') && !data.message) {
       ctx.addIssue({ code: 'custom', path: ['message'], message: 'Please include a short message.' })
+    }
+    if (data.form_type === 'free_lesson') {
+      const lastName = data.details?.lastName
+      if (typeof lastName !== 'string' || !lastName.trim() || lastName.length > 200) {
+        ctx.addIssue({ code: 'custom', path: ['lastName'], message: 'Please enter your last name.' })
+      }
+      if (data.consent_followup !== true) {
+        ctx.addIssue({ code: 'custom', path: ['consent_followup'], message: 'Please agree to a personal follow-up to get the lesson.' })
+      }
+      if (data.consent_sms && !data.phone) {
+        ctx.addIssue({ code: 'custom', path: ['phone'], message: 'Add a cell number to get texts, or uncheck that box.' })
+      }
     }
     if (data.form_type === 'free_call') {
       if (!data.who_for) {
@@ -96,6 +111,9 @@ export type Inquiry = {
   status: InquiryStatus
   notes: string | null
   details: Record<string, unknown>
+  consent_followup?: boolean | null
+  consent_sms?: boolean | null
+  consented_at?: string | null
 }
 
 export type InquiryResponse =

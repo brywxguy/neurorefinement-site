@@ -43,7 +43,7 @@ export default function WorkWithMePage() {
                 </div>
                 <span className="text-sm font-medium text-brand-500 uppercase tracking-wider">1:1 Lessons</span>
               </div>
-              <h2 id="fs-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Functional Synthesis (ABM)</h2>
+              <h2 id="fs-title" className="font-display text-2xl text-brand-900 mb-3 group-hover:text-brand-600 transition-colors">Functional Synthesis</h2>
               <p className="text-brand-600 leading-relaxed mb-4">
                 Gentle, hands-on sessions that work with your brain&apos;s neuroplasticity. The most
                 direct path to discovering new movement options for easier movement, better balance
@@ -137,7 +137,7 @@ export default function WorkWithMePage() {
           </Card>
         </div>
         <p className="text-center text-brand-600 leading-relaxed mt-8">
-          Looking for lesson packs or audio bundles?{' '}
+          Looking for a lesson pack or an intensive?{' '}
           <Link href="/bundles" className="text-ocean-600 underline underline-offset-2 hover:text-ocean-700">
             See Bundles &amp; Packs
           </Link>

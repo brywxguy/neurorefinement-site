@@ -28,7 +28,7 @@ export const siteConfig = {
     daysShort: 'Mon–Fri',
     time: '9 AM–2 PM',
     timeShort: '9–2',
-    closed: 'Closed weekends and Carlsbad Unified (CUSD) school holidays.',
+    closed: 'Closed most holidays.',
     byRequest: 'Evenings and weekends by request.',
   },
   payment: {
@@ -44,7 +44,7 @@ export const siteConfig = {
   // Footer icons appear only for non-empty URLs (Google uses location.googleBusinessProfile).
   social: {
     substack: '',   // TODO: add Substack URL
-    x: '',          // TODO: add X profile URL, e.g. https://x.com/<handle>
+    x: 'https://x.com/neurorefinement',
     facebook: '',   // TODO: add Facebook URL
     instagram: '',  // TODO: add Instagram URL, e.g. https://www.instagram.com/<handle>
     youtube: '',    // TODO: add YouTube URL
@@ -136,7 +136,14 @@ export const pricing = {
       description: 'The same one-on-one session, with extra time for discovery and conversation.',
     },
     pack4:     { price: 540, sessions: 4, savings: '10% off', perSession: 135 },
-    pack10:    { price: 1275, sessions: 10, savings: '15% off', perSession: 127.5 },
+    // Booked via the intensive request flow (booking.intensiveHref). Change the price here only.
+    intensive: {
+      price: 795,
+      label: 'Lesson + Homework Intensive',
+      lessons: 6,
+      homeworkMonths: 1,
+      schedule: 'for example, 3 one week and 3 another week',
+    },
   },
 
   // NeuroStrengths coaching — available but not promoted on the homepage. Remote OK.
@@ -158,7 +165,6 @@ export const pricing = {
   // Digital Products
   lessons: {
     single:       { price: 25, label: 'Single Lesson' },
-    bundle5:      { price: 99, count: 5, label: '5-Lesson Bundle', perLesson: 19.8 },
     themePack10:  { price: 179, count: 10, label: '10-Lesson Theme Pack', perLesson: 17.9 },
     customLesson: { price: 75, label: 'Custom Lesson Request', delivery: '5 business days' },
   },
@@ -170,12 +176,15 @@ export const pricing = {
   },
 } as const
 
-// The free intro recording is 30+ minutes, so copy shouldn't state a shorter length.
+const { intensive } = pricing.abm
+export const intensiveSummary = `${intensive.lessons} Functional Synthesis lessons (${intensive.schedule}), plus ${intensive.homeworkMonths} month of access to all TML audio lessons as homework.`
+
+// Copy about the free lesson never states its length.
 export const freeLesson = {
   label: 'Free Lesson',
   title: 'The Reset',
   href: process.env.NEXT_PUBLIC_FREE_LESSON_URL || '/lessons/free-intro-reset',
-  // TODO: set to the hosted recording (mp3/m4a) so /lessons/free-intro-reset can play it.
+  // Hosted MP3 played on /lessons/free-intro-reset. Set in Vercel, then redeploy (inlined at build time).
   audioUrl: process.env.NEXT_PUBLIC_FREE_LESSON_AUDIO_URL || '',
 }
 
@@ -220,10 +229,10 @@ export const navigation = {
       label: 'Services',
       children: [
         { label: 'Work With Me', href: '/work-with-me', description: 'Overview of all 1:1 services' },
-        { label: 'Functional Synthesis (ABM)', href: '/functional-synthesis', description: 'One-on-one lessons at the Carlsbad studio' },
+        { label: 'Functional Synthesis', href: '/functional-synthesis', description: 'One-on-one lessons at the Carlsbad studio' },
         { label: 'Coaching', href: '/coaching', description: 'Strengths-based life, career & business coaching' },
         { label: 'TML Lessons', href: '/classes', description: 'Individual or group Transformational Movement Lessons' },
-        { label: 'Bundles & Packs', href: '/bundles#lesson-packs', description: 'Functional Synthesis lesson packs' },
+        { label: 'Bundles & Packs', href: '/bundles', description: 'Lesson packs & intensives' },
         { label: 'Children with Special Needs', href: '/children', description: 'Brain-based movement for kids' },
       ],
     },
@@ -231,7 +240,6 @@ export const navigation = {
       label: 'Learn',
       children: [
         { label: 'Audio Lessons', href: '/lessons', description: 'Voice-guided movement library' },
-        { label: 'Bundles & Packs', href: '/bundles#audio-bundles', description: 'Audio lesson bundles' },
         { label: 'Membership', href: '/membership', description: 'Ongoing access & community' },
       ],
     },
