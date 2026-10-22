@@ -8,7 +8,7 @@ export const siteConfig = {
   owner: 'Bryan Thunstrom',
   tagline: 'Refine Movement. Revitalize Life.',
   description:
-    'Gentle, neuroplasticity-based ABM NeuroMovement lessons in Carlsbad, CA to help you reduce pain, improve function, and renew your life.',
+    'NeuroRefinement offers gentle, neuroplasticity-based lessons in the Anat Baniel Method NeuroMovement in Carlsbad, CA to help you reduce pain, improve function, and renew your life.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://neurorefinement.com',
   location: {
     city: 'Carlsbad',
@@ -113,8 +113,9 @@ export function calUrl(eventSlug: string) {
 // ============================================================
 
 export const pricing = {
-  // ABM NeuroMovement is the overall practice. These are its 1:1 Functional Synthesis (FS)
-  // lessons, in person at the home studio. Never label a session 'ABM NeuroMovement Session'.
+  // NeuroRefinement is the practice; ABM NeuroMovement is the method Bryan practices, never the
+  // practice or business name. These are 1:1 Functional Synthesis (FS) lessons, in person at the
+  // home studio. Never label a session 'ABM NeuroMovement Session'.
   abm: {
     session: {
       price: 150,

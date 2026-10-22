@@ -2,7 +2,7 @@
 
 **Refining Movement. Renewing Life.**
 
-A modern website for Bryan Thunstrom's ABM NeuroMovement® practice and strengths-based coaching business, based in Carlsbad, CA.
+A modern website for NeuroRefinement, Bryan Thunstrom's practice in Carlsbad, CA. Bryan is a certified Anat Baniel Method® NeuroMovement® practitioner and strengths-based coach; NeuroRefinement offers one-on-one Functional Synthesis lessons and Transformational Movement Lessons in the Anat Baniel Method NeuroMovement, plus coaching.
 
 ---
 
@@ -109,7 +109,7 @@ neurorefinement/
 │   │   ├── page.tsx             # Homepage
 │   │   ├── about/               # About Bryan
 │   │   ├── work-with-me/        # Services overview
-│   │   ├── functional-synthesis/ # ABM sessions page
+│   │   ├── functional-synthesis/ # Functional Synthesis lessons page
 │   │   ├── coaching/            # Coaching page
 │   │   ├── classes/             # Group classes
 │   │   ├── lessons/             # Audio lesson library

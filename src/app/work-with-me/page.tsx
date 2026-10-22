@@ -6,7 +6,7 @@ import { VisitDetails } from '@/components/booking/VisitDetails'
 
 export const metadata: Metadata = {
   title: 'Work With Me',
-  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons (ABM NeuroMovement) in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
+  description: 'Overview of NeuroRefinement services — one-on-one Functional Synthesis lessons in the Anat Baniel Method NeuroMovement in Carlsbad, CA, strengths-based coaching, individual or group TML lessons, and voice-guided lessons. Find the right fit for you.',
 }
 
 export default function WorkWithMePage() {
